@@ -9,3 +9,25 @@
 .movie {
     float:right;
 }
+
+#headerbar{
+  position: fixed;
+  width: 20%;
+  font-family: sans-serif;
+  padding: 10px;
+  line-height: 2em;
+  font-size: 16px;
+}
+
+#catli{
+  text-align: right;
+  list-style-type: none;
+}
+
+.content{
+  margin: 10px;
+}
+
+.header{
+  height: 70px;
+}

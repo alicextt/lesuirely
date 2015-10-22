@@ -122,7 +122,6 @@ horizantal
   width: 80%;
   margin-left: auto;
   margin-right: auto;
-  font-family: ;
 }
 .horizontal ul {
   list-style: none;
@@ -186,7 +185,10 @@ div#search {
 
 .right {
   width:70%;
-  float:right;
+  height: 100%;
+  padding-top: 120px;
+  padding-left: 20%;
+  /*float:right;*/
 }
 .item {
   margin: 10px;
@@ -209,10 +211,6 @@ div#search {
 #catli{
   text-align: right;
   list-style-type: none;
-}
-
-.content{
-  margin: 10px;
 }
 
 .header{

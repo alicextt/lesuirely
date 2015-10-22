@@ -17,7 +17,7 @@ td,footer, header,menu, nav {
   width: 960px;
 }
 .container {
-  background-color: #A9D0F5;
+  background-color: #1E38CF;
   width: 100%;
   position: fixed;
 }
@@ -48,7 +48,6 @@ td,footer, header,menu, nav {
 }
 .group {
   clear: both;
-  *zoom: 1;
 }
 
 .row, .row-alt {
@@ -79,12 +78,13 @@ Navigation
   float: left;
   display: block;
   padding: 3px;
+
 }
 
 
 .nav ul li a {
-  color: #000;
-  background: #EE0B0B;
+  color: #fff;
+  background: #1E38CF;
   display: block;
   font-size: 1.00em;
   letter-spacing: 0;
@@ -93,24 +93,24 @@ Navigation
   padding: 4px 25px;
   text-decoration: none;
   box-shadow:-1px 1px 0 transparent;
-  border-right: 1px solid #F5DA81;
+
 }
 
 .nav ul li a:hover {
-  background-color: #DF013A;
+  background-color: #1E38CF;
   color: #fff;
   text-decoration: none;
 }
-.nav ul li a p{
+/*.nav ul li a p{
   border: 1px solid #fff;
   background-color: white;
   border-radius: 8px;
   display: inline-block;
   padding-bottom:0;
   letter-spacing:0;
-  padding: 0px;
+  padding: 10px;
   width: 115%;
-}
+}*/
 
 /*
 ========================================
@@ -137,28 +137,26 @@ horizantal
 
 
 .horizontal ul li a {
-  color: #000;
-  background: #A9D0F5;
+  color: #fff;
+  background: #1E38CF;
   display: block;
-  font-size: 1.50em;
-  letter-spacing: 0;
-  margin: 0;
-  font-weight: normal;
-  padding: 4px 20px;
+  font-family: sans-serif;
+  font-size: 1.2em;
+  letter-spacing: 0px;
+  margin: 0px;
+  font-weight: bold;
+  padding: 4px 30px;
   text-decoration: none;
-  box-shadow:-1px 1px 0 transparent;
-  border-right: 1px solid #F5DA81;
+  line-height: 110px;
 }
 
 .horizontal ul li a:hover {
-  background-color: ;
-  color: #fff;
+  color: #000;
   text-decoration: none;
 }
 
 .horizontal ul li a h2:hover {
-  background-color: ;
-  color: #fff;
+  color: #000;
   text-decoration: none;
 }
 
@@ -175,13 +173,17 @@ horizantal
   height:20%
 
 }
-div#search {
-  position: absolute;
+
+.horizontal img{
+  vertical-align: middle; 
+}
+
+.search{
+  padding-top: 48px;
   width: 150px;
   right: 15px;
-  top: -4px;
-  transition: width 0.2s ease-in-out 1s;
 }
+
 
 .right {
   width:70%;
@@ -205,7 +207,7 @@ div#search {
   padding: 10px;
   line-height: 2em;
   font-size: 16px;
-  margin-top: 110px;
+  margin-top: 120px;
 }
 
 #catli{

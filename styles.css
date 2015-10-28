@@ -1,11 +1,15 @@
+body{
+  width: 1245px;
+  height: 470px;
+}
+
 .container,
 .grid {
   margin: 0;
-  width: 960px;
+  width: 1245px;
 }
 .container {
   background-color: #1E38CF;
-  width: 100%;
   position: fixed;
 }
 
@@ -52,7 +56,7 @@
 }
 
 .horizontal img{
-  vertical-align: middle; 
+  vertical-align: middle;
 }
 
 .search{
@@ -78,7 +82,6 @@
 
 #headerbar{
   position: fixed;
-  width: 20%;
   font-family: sans-serif;
   padding-top: 50px;
   line-height: 2em;

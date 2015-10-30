@@ -1,41 +1,35 @@
 body{
   width: 1245px;
-  height: 470px;
+  height: 800px;
 }
 
-.container,
-.grid {
-  margin: 0;
-  width: 1245px;
-}
 .container {
+  margin: 0;
+  width: inherit;
   background-color: #1E38CF;
   position: fixed;
 }
 
 input{
-  width: 170px;
-  margin-right: 10px;
+  width:100%;
+  line-height: 15px;
+  font-family: arial, sans-serif;
+  height: 33px;
+  font-size: 15px;
+  text-indent: 8px;
 }
 
 .horizontal {
   height: 70px;
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-}
-.horizontal ul {
-  list-style: none;
-  padding: 0 30px;
-  margin: 0;
+  width: 95%;
+  margin:auto;
 }
 
 .horizontal ul li {
   float: left;
-  display: block;
+  display: inline;
   padding: 3px;
 }
-
 
 .horizontal ul li a {
   color: #fff;
@@ -43,11 +37,9 @@ input{
   display: block;
   font-family: fantasy;
   font-size: 1.8em;
-  letter-spacing: 0px;
   margin: 0px;
   font-weight: bold;
   padding: 4px 30px;
-  text-decoration: none;
   line-height: 110px;
 }
 
@@ -56,26 +48,46 @@ input{
   text-decoration: none;
 }
 
-.horizontal li:hover{
-  color: black;
-}
-
 .horizontal img{
   vertical-align: middle;
 }
 
-.search{
-  padding-top: 48px;
-  width: 200px;
-  right: 15px;
+.nav-search{
+  padding: 37px 30px;
+  width: 350px;
+  display: block;
 }
 
+#nav-search-con{
+  margin-left: 5px;
+  background-color: #febd69;
+  width:40px;
+  height: 35px;
+  position: relative;
+  float: right;
+  display: inline-block;
+  border-radius: 5px;
+
+}
+form .glyphicon-search{
+  padding: 2px;
+  font-size: 1.5em;
+}
+
+.nav-fill{
+  border-top: 1px solid #bdbdbd;
+  border-bottom: 1px solid #cdcdcd;
+  border-radius: 5px;
+  overflow: hidden;
+  display: block;
+  position: relative;
+}
 
 .right {
   width:70%;
   height: 100%;
-  padding-top: 120px;
-  padding-left: 20%;
+  padding-left: 280px;
+  padding-top: 170px;
 }
 .item {
   margin: 10px;
@@ -99,9 +111,6 @@ input{
   list-style-type: none;
 }
 
-#catli li{
-  /*border-bottom: 2px solid blue;*/
-}
 .header{
   height: 70px;
   position: fixed;
@@ -112,9 +121,4 @@ input{
   width: 200px;
   padding-right: 15px;
   padding-bottom: 10px;
-}
-
-.right{
-  padding-left: 280px;
-  padding-top: 170px;
 }

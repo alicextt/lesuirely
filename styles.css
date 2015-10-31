@@ -6,6 +6,7 @@ body{
 .container {
   margin: 0;
   width: inherit;
+  background-image: url("book.jpg");
   background-color: #1E38CF;
   position: fixed;
 }
@@ -33,7 +34,7 @@ input{
 
 .horizontal ul li a {
   color: #fff;
-  background: #1E38CF;
+  /*background: #1E38CF;*/
   display: block;
   font-family: fantasy;
   font-size: 1.8em;

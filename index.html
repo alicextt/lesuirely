@@ -14,10 +14,14 @@
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+<script src="event.js"></<script type="text/javascript">
+
+</script>
   <link href="styles.css" rel="stylesheet">
 </head>
-<body>
+<body onload="getDate()">
   <!-- header-->
+  <noscript> Browser does not support JAVASCRIPT</noscript>
   <header class="container">
     <div class="horizontal">
       <ul>
@@ -97,6 +101,10 @@
           <td class="item"><img src = "img3.jpg"></td>
         </tr>
       </table>
+    </div>
+    <div>
+      <p> Last Modified:</p>
+      <span id="lastModified"/>
     </div>
   </body>
   </html>

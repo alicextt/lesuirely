@@ -1,0 +1,14 @@
+For Git:
+1. Use git pull before writing code.
+2. To commit code:
+git add —-all
+git commit -m “message”
+git push
+Then you can check the status.
+
+For MAMP (MAC version, windows might be different):
+put the project in /Application/MAMP/htdocs
+The URL is http://localhost:8888/lesuirely/index.php
+The port number is 8888, this can be changed on the setting of MAMP.
+
+Turn error on: go to bin/php/php-latest/ conf/ php.ini

@@ -105,7 +105,13 @@ form .glyphicon-search{
   font-size: 16px;
   margin-top: 120px;
 }
-
+.lastModi{
+  padding-left: 20px;
+  font-size: 15px;
+  width:250px;
+  line-height: normal;
+  text-align: right;
+}
 #catli{
   text-align: right;
   list-style-type: none;

@@ -1,0 +1,65 @@
+<!DocType html>
+
+<html>
+<head>
+  <title>
+    Books and Movie
+  </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  <script src = "event.js" text = "text/javascript" language = "javascript"></script>
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body onload="getDate()">
+  <!-- header-->
+  <noscript> Browser does not support JAVASCRIPT</noscript>
+  <header class="container">
+    <div class="horizontal">
+      <ul>
+        <li><img src="logo.png" alt="Lesuirely" height="110"
+          width="125"></li>
+          <li><a href="#">Movies</a></li>
+          <li><a href="#">Books</a></li>
+          <li>
+            <form accept-charset="utf-8" class="nav-search" method="GET" name="site-search" action="search.php">
+              <div>
+                <button class="glyphicon glyphicon-search" id="nav-search-con" type="Submit"/>
+              </div>
+              <div class="nav-fill">
+                <input placeholder="Search" autocomplete="off" name="search" type="text">
+              </div>
+            </form>
+          </li>
+          <li><a id = "signup" href = "signUp.html">Join Today</a></li>
+          <li><a id = "sign" onclick = "">Sign In</a></li>
+          <li><a href=""><img src="cart.png" alt="Lesuirely" height="50" width="50"></a></li>
+        </ul>
+      </div>
+    </header>
+    <div class="right">
+      <legend>New to Leisuirely? Sign up!</legend>
+    <form accept-charset="UTF-8" action="" method="post">
+          <div class="form-group">
+            <label for="usr">User Name:</label>
+            <input type="text" class="form-control" id="usr">
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" class="form-control" id="email">
+          </div>
+          <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" id="pwd">
+          </div>
+          <div class="center">
+        <button class="btn btn-warning" type="submit">Sign up for Leisuirely</button>
+      </div>
+    </form>
+</div>
+</body>
+</html>

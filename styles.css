@@ -26,6 +26,9 @@ input{
   margin:auto;
 }
 
+.horizontal ul{
+  padding-left: 10px;
+}
 .horizontal ul li {
   float: left;
   display: inline;
@@ -40,7 +43,7 @@ input{
   font-size: 1.8em;
   margin: 0px;
   font-weight: bold;
-  padding: 4px 30px;
+  padding: 4px 20px;
   line-height: 110px;
 }
 
@@ -89,6 +92,14 @@ form .glyphicon-search{
   height: 100%;
   padding-left: 280px;
   padding-top: 170px;
+}
+.right form{
+  width: 70%;
+  margin: 40px;
+}
+
+.center{
+  text-align: center;
 }
 .item {
   margin: 10px;

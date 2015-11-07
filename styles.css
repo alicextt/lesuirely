@@ -6,6 +6,7 @@ body{
 .container {
   margin: 0;
   width: inherit;
+  background-image: url("book3.jpg");
   background-color: #1E38CF;
   position: fixed;
 }
@@ -25,6 +26,9 @@ input{
   margin:auto;
 }
 
+.horizontal ul{
+  padding-left: 10px;
+}
 .horizontal ul li {
   float: left;
   display: inline;
@@ -33,13 +37,13 @@ input{
 
 .horizontal ul li a {
   color: #fff;
-  background: #1E38CF;
+  /*background: #1E38CF;*/
   display: block;
   font-family: fantasy;
   font-size: 1.8em;
   margin: 0px;
   font-weight: bold;
-  padding: 4px 30px;
+  padding: 4px 20px;
   line-height: 110px;
 }
 
@@ -88,6 +92,14 @@ form .glyphicon-search{
   height: 100%;
   padding-left: 280px;
   padding-top: 170px;
+}
+.right form{
+  width: 70%;
+  margin: 40px;
+}
+
+.center{
+  text-align: center;
 }
 .item {
   margin: 10px;

@@ -15,14 +15,14 @@
   <script src = "event.js" text = "text/javascript" language = "javascript"></script>
   <link href="styles.css" rel="stylesheet">
 </head>
-<body onload="getDate()">
+<body>
   <!-- header-->
   <noscript> Browser does not support JAVASCRIPT</noscript>
   <header class="container">
     <div class="horizontal">
       <ul>
-        <li><img src="logo.png" alt="Lesuirely" height="110"
-          width="125"></li>
+        <li><a href="index.html"><img src="logo.png" alt="leisurely" height="110"
+          width="125"></li></a>
           <li><a href="#">Movies</a></li>
           <li><a href="#">Books</a></li>
           <li>
@@ -42,22 +42,26 @@
       </div>
     </header>
     <div class="right">
-      <legend>New to Leisuirely? Sign up!</legend>
-    <form accept-charset="UTF-8" action="" method="post">
+      <legend>New to Leisurely? Sign up!</legend>
+    <form accept-charset="UTF-8" action="#" method="post">
           <div class="form-group">
             <label for="usr">User Name:</label>
-            <input type="text" class="form-control" id="usr">
+            <input type="text" class="form-control" id="usr"/><div class="error" id="usrerror"></div>
           </div>
           <div class="form-group">
             <label for="email">Email:</label>
-            <input type="text" class="form-control" id="email">
+            <input type="text" class="form-control" id="email"/><div class="error" id="mailerror"></div>
           </div>
           <div class="form-group">
             <label for="pwd">Password:</label>
-            <input type="password" class="form-control" id="pwd">
+            <input type="password" class="form-control" id="pwd"/><div class="error" id="pwderror"></div>
+          </div>
+          <div class="form-group">
+            <label for="cpwd">Confirm Password:</label>
+            <input type="password" class="form-control" id="cpwd"/><div class="error" id="cpwderror"></div>
           </div>
           <div class="center">
-        <button class="btn btn-warning" type="submit">Sign up for Leisuirely</button>
+        <button class="btn btn-warning" type="button" id="register">Sign up for Leisuirely</button>
       </div>
     </form>
 </div>

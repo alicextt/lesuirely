@@ -12,3 +12,20 @@ The URL is http://localhost:8888/lesuirely/index.php
 The port number is 8888, this can be changed on the setting of MAMP.
 
 Turn error on: go to bin/php/php-latest/ conf/ php.ini
+
+This blog is used for jquery with mysql validation and sign up:
+http://www.formget.com/jquery-registration-form/
+
+Mysql, sequel Pro:
+http://www.sequelpro.com/docs/connecting_to_mamp_or_xampp
+
+1. create a local DB name : Leisurely.
+2. 
+run 
+CREATE TABLE usr(
+id int(10) NOT NULL AUTO_INCREMENT,
+name varchar(255) NOT NULL,
+email varchar(255) NOT NULL,
+password varchar(255) NOT NULL,
+PRIMARY KEY (id)
+)

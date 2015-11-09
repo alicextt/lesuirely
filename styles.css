@@ -42,8 +42,8 @@ input{
   color: #fff;
   /*background: #1E38CF;*/
   display: block;
-  font-family: fantasy;
-  font-size: 1.8em;
+  font-family: 'Comic sans MS';
+  font-size: 1.7em;
   margin: 0px;
   font-weight: bold;
   padding: 4px 20px;
@@ -142,4 +142,94 @@ form .glyphicon-search{
   width: 200px;
   padding-right: 15px;
   padding-bottom: 10px;
+}
+
+.checkout{
+  margin: 0;
+  width: 100%;
+  background-image: url("header.jpg");
+  /*position: fixed;*/
+}
+
+.checkout img{
+  vertical-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.box{
+  width: 90%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgba(255,255,255,1.0);
+  color: #000;
+  box-shadow: inset 0 0 15px #000000;
+}
+.box legend{
+ text-align: center;
+ padding-top: 1em;
+ font-family: helvetica;
+ font-weight: bold;
+ font-size: 2em;
+}
+
+#accordion{
+  display: block;
+  padding-top: 1em;
+  padding-left: 5em;
+  padding-right: 5em;
+  padding-bottom: 5em;
+}
+.accordion-toggle {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.5em;
+  border: 2px solid #333333;
+  background-color:#333333; 
+  color:white;
+  font-family: helvetica;
+  margin:1px;
+  padding:.5em;
+}
+.accordion-content {
+  display: none;
+  background-color: rgb(213, 209, 205);
+}
+.accordion-content.default {display: block;}
+.accordion-content.default ul{
+  list-style: none;
+  padding: 1em;
+}
+
+.inner-accordion-toggle {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2em;
+  /*border: 2px solid #333333;*/
+  background-color:rgb(213, 209, 205); 
+  color:#333333;
+  font-family: helvetica;
+  margin:1px;
+  padding:.5em;
+}
+
+.inner-accordion-content {
+  display: none;
+  background-color: rgb(213, 209, 205);
+  color:#333333;
+}
+
+.inner-accordion-content.default {display: block;}
+.form1, .inner-accordion-content form{
+  width:60%;
+  color:#333333;
+  margin-left: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+.inner-accordion-content p{
+  font-size: 1.0em;
+  margin: 1em;
 }

@@ -89,7 +89,6 @@ $("#register").click(function(){
 });
 });
 
-<<<<<<< HEAD
 $(document).ready(function($) {
     $('#accordion').find('.accordion-toggle').click(function(){
 
@@ -113,7 +112,7 @@ $(document).ready(function($) {
 
     });
   });
-=======
+
 
 //Silder
 var ul;
@@ -192,4 +191,3 @@ function onClickNext(){
 }
 
 window.onload = init;
->>>>>>> 550f54c2b7efa9b6e3a023ade288daf8f8c9cb86

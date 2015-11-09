@@ -29,3 +29,7 @@ email varchar(255) NOT NULL,
 password varchar(255) NOT NULL,
 PRIMARY KEY (id)
 )
+
+For shopping cart:
+https://codegeekz.com/free-jquery-shopping-cart-plugins/
+http://livedocs.digicrafts.com.hk/examples/JSAJAXPayPalCart/

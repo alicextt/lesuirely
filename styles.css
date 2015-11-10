@@ -187,7 +187,7 @@ form .glyphicon-search{
   font-weight: bold;
   font-size: 1.5em;
   border: 2px solid #333333;
-  background-color:#333333; 
+  background-color:#333333;
   color:white;
   font-family: helvetica;
   margin:1px;
@@ -208,7 +208,7 @@ form .glyphicon-search{
   font-weight: bold;
   font-size: 1.2em;
   /*border: 2px solid #333333;*/
-  background-color:rgb(213, 209, 205); 
+  background-color:rgb(213, 209, 205);
   color:#333333;
   font-family: helvetica;
   margin:1px;
@@ -234,7 +234,7 @@ form .glyphicon-search{
   margin: 1em;
 }
 
-.btn{
+.cbtn{
   background-color: rgba(255,255,255,0.5);
   color:#333333;
   border: 1px solid #333330;
@@ -256,7 +256,7 @@ form .glyphicon-search{
 .slider_wrapper{
   overflow: hidden;
   position:relative;
-  width: 100%;  
+  width: 100%;
   /*1366px*/
   height: 500px;
   top:auto;

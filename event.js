@@ -93,10 +93,11 @@ $(document).ready(function($) {
     $('#accordion').find('.accordion-toggle').click(function(){
 
       //Expand or collapse this panel
-      $(this).next().slideToggle('fast');
+      $(this).next().slideToggle('400');
 
       //Hide the other panels
-      $(".accordion-content").not($(this).next()).slideUp('fast');
+      $(".accordion-content").not($(this).next()).slideUp('400');
+    
 
     });
   });
@@ -105,10 +106,10 @@ $(document).ready(function($) {
     $('#accordion').find('.inner-accordion-toggle').click(function(){
 
       //Expand or collapse this panel
-      $(this).next().slideToggle('fast');
+      $(this).next().slideToggle('400');
 
       //Hide the other panels
-      $(".inner-accordion-content").not($(this).next()).slideUp('fast');
+      $(".inner-accordion-content").not($(this).next()).slideUp('400');
 
     });
   });

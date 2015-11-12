@@ -1,5 +1,5 @@
 function getDate(){
-  var x = new Date(document.lastModified);
+  var x = document.lastModified;
   document.getElementById("lastModified").innerHTML = x;
 }
 
@@ -97,7 +97,7 @@ $(document).ready(function($) {
 
       //Hide the other panels
       $(".accordion-content").not($(this).next()).slideUp('400');
-    
+
 
     });
   });
@@ -168,7 +168,7 @@ function slideTo(imageToGo){
     step:function(delta){
       ul.style.left = parseInt(currentPostion + direction * delta * imageWidth * numOfImageToGo) + 'px';
     },
-    callback:function(){currentImage = imageToGo;}  
+    callback:function(){currentImage = imageToGo;}
   };
   animate(opts);
 }
@@ -176,19 +176,19 @@ function slideTo(imageToGo){
 function onClickPrev(){
   if (currentImage == 0){
     slideTo(imageNumber - 1);
-  }     
+  }
   else{
     slideTo(currentImage - 1);
-  }   
+  }
 }
 
 function onClickNext(){
   if (currentImage == imageNumber - 1){
     slideTo(0);
-  }   
+  }
   else{
     slideTo(currentImage + 1);
-  }   
+  }
 }
 
 window.onload = init;

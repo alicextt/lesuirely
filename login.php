@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 
-<body>
+<body onload="getDate()">
   <!-- header-->
   <noscript> Browser does not support JAVASCRIPT</noscript>
   <header class="container">

@@ -3,27 +3,28 @@ function getDate(){
   document.getElementById("lastModified").innerHTML = x;
 }
 
-function changeImage(){
-  var button = document.getElementById("id");
-  document.getElementById("imageChange").src = "img2.jpg";
-}
+// function changeImage(){
+//   var button = document.getElementById("id");
+//   document.getElementById("imageChange").src = "img2.jpg";
+// }
 
-function signin(){
-  var text = document.getElementById("sign");
-  if(text.innerHTML == "Sign In"){
-    text.innerHTML = "Sign Up";
-  }
-  else if(text.innerHTML == "Sign Up"){
-    text.innerHTML = "Sign In";
-  }
-}
+// function signin(){
+//   var text = document.getElementById("sign");
+//   if(text.innerHTML == "Sign In"){
+//     text.innerHTML = "Sign Up";
+//   }
+//   else if(text.innerHTML == "Sign Up"){
+//     text.innerHTML = "Sign In";
+//   }
+// }
 
 $(window).load(function(){
   window.resizeTo(1245, 800);
 });
 
 $(document).ready(function(){
-  $(":password").hover(function(){
+  // sign up passoorc check function
+$(":password").hover(function(){
     $(":password").attr('type','text');
   },function(){
     $("#pwd").attr('type','password');
@@ -31,6 +32,7 @@ $(document).ready(function(){
   }
 );
 
+// the register button clicked will first do validation and then will do an ajax call to register.php and save data into DB.
 $("#register").click(function(){
   var name=$("#usr").val();
   var email = $("#email").val();
@@ -87,32 +89,49 @@ $("#register").click(function(){
     });
   }
 });
+
+// login and check if user name && password are correct
+$("#login").click(function(){
+  var name1=$("#usrname").val();
+  var pwd1=$("#pwd").val();
+  $.post("login.php", {
+        name:name1,
+        pwd:pwd1
+      }, function(data){
+        if (data == 'Success') {
+          $("form")[0].reset();
+          // this will jump to the index html
+          window.location.replace("index.html");
+        }
+        alert(data);
+      });
+});
 });
 
 $(document).ready(function($) {
-    $('#accordion').find('.accordion-toggle').click(function(){
+  $('#accordion').find('.accordion-toggle').click(function(){
 
-      //Expand or collapse this panel
-      $(this).next().slideToggle('400');
+    //Expand or collapse this panel
+    $(this).next().slideToggle('400');
 
-      //Hide the other panels
-      $(".accordion-content").not($(this).next()).slideUp('400');
+    //Hide the other panels
+    $(".accordion-content").not($(this).next()).slideUp('400');
 
 
-    });
   });
+});
 
 $(document).ready(function($) {
-    $('#accordion').find('.inner-accordion-toggle').click(function(){
+  $('#accordion').find('.inner-accordion-toggle').click(function(){
 
-      //Expand or collapse this panel
-      $(this).next().slideToggle('400');
+    //Expand or collapse this panel
+    $(this).next().slideToggle('400');
 
-      //Hide the other panels
-      $(".inner-accordion-content").not($(this).next()).slideUp('400');
+    //Hide the other panels
+    $(".inner-accordion-content").not($(this).next()).slideUp('400');
 
-    });
   });
+});
 
 
 //Silder

@@ -9,7 +9,7 @@ $email = filter_var($email, FILTER_SANITIZE_EMAIL); // Sanitizing email(Remove u
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
   echo "Invalid Email.......";
 }else{
-  $result = mysql_query("SELECT * FROM usr WHERE email='$email'");
+  $result = mysql_query("SELECT * FROM usr WHERE name='$name'");
   $data = mysql_num_rows($result);
   console.log($data);
   if(($data)==0){
@@ -21,7 +21,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
       echo "Error....!!";
     }
   }else{
-    echo "This email is already registered, Please try another email...";
+    echo "This user name is already registered, Please try another user name...";
   }
 }
 mysql_close ($connection);

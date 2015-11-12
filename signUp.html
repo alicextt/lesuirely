@@ -15,15 +15,15 @@
   <script src = "event.js" text = "text/javascript" language = "javascript"></script>
   <link href="styles.css" rel="stylesheet">
 </head>
-<body>
-  <!-- header-->
+<body onload="getDate()">
+    <!-- header-->
   <noscript> Browser does not support JAVASCRIPT</noscript>
   <header class="container">
     <div class="horizontal">
       <ul>
-        <li><a href="homepage.html"><img src="logo.png" alt="leisurely" height="110"
+        <li><a href="index.html"><img src="logo.png" alt="leisurely" height="110"
           width="125"></li></a>
-          <li><a href="moviePage.html">Movies</a></li>
+          <li><a href="movie.html">Movies</a></li>
           <li><a href="#">Books</a></li>
           <li>
             <form accept-charset="utf-8" class="nav-search" method="GET" name="site-search" action="search.php">
@@ -36,11 +36,12 @@
             </form>
           </li>
           <li><a id = "signup" href = "signUp.html">Join Today</a></li>
-          <li><a id = "sign" onclick = "">Sign In</a></li>
-          <li><a href=""><img src="cart.png" alt="Lesuirely" height="50" width="50"></a></li>
+          <li><a id = "sign" href="login.php">Sign In</a></li>
+          <li><a href="checkout.html"><img src="cart.png" alt="Lesuirely" height="50" width="50"></a></li>
         </ul>
       </div>
     </header>
+    <div>
     <div class="right">
       <legend>New to Leisurely? Sign up!</legend>
     <form accept-charset="UTF-8" action="#" method="post">
@@ -64,6 +65,15 @@
         <button class="btn btn-warning" type="button" id="register">Sign up for Leisurely</button>
       </div>
     </form>
+</div>
+</div>
+<div id="copycont">
+  <footer>
+      <p class="center"> Copyright@2015, designed by <a class="yellow">Leisurely Admin | Privacy Policy</a></p>
+      <p class="center">  Site Last Modified:
+        <span id="lastModified"/> </p>
+        <noscript> Browser does not support JAVASCRIPT</noscript>
+      </footer>
 </div>
 </body>
 </html>

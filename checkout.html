@@ -25,11 +25,12 @@
       <legend>Checkout</legend>
       <div id="accordion">
 
-        <h4 class="accordion-toggle">Customer</h4>
+        <h4 class="accordion-toggle"> + Customer</h4>
         <div class="accordion-content default">
+          <div class ="form1">
           <ul>
             <li>
-                <h4 class="inner-accordion-toggle">Returning Customer</h4>
+                <h4 class="inner-accordion-toggle"> + Returning Customer</h4>
                 <div class="inner-accordion-content">
                   <p>Sign-in for easy checkout.</p>
                   <form accept-charset="UTF-8" action="#" method="post">
@@ -50,7 +51,7 @@
             </li>
 
             <li>
-                <h4 class="inner-accordion-toggle">Guest and New Customer</h4>
+                <h4 class="inner-accordion-toggle"> + Guest and New Customer</h4>
                 <div class="inner-accordion-content">
                   <p>Please enter your email address.</p>
                   <form accept-charset="UTF-8" action="#" method="post">
@@ -63,8 +64,9 @@
             </li>
           </ul>
         </div>
+      </div>
 
-        <h4 class="accordion-toggle">Shipping</h4>
+        <h4 class="accordion-toggle"> + Shipping</h4>
         <div class="accordion-content">
           <div class="form1">
           <form accept-charset="UTF-8" action="#" method="post">
@@ -163,25 +165,54 @@
             <input type="number" class="form-control" id="num"/><div class="error" id="numerror"></div>
           </div>
 
+           <div class="form-group">
+            <label for="usr">Delivery: </label>
+          <div class="radio">
+                  <label><input type="radio" name="optradio" checked>7-9 business days (Free Shipping on Orders over $35.00)</label>
+          </div>
+          <div class="radio">
+                  <label><input type="radio" name="optradio">3-5 business days - $7.00</label>
+          </div>
+          <div class="radio">
+              <label><input type="radio" name="optradio">2 business days - $17.00</label>
+          </div>  
+          <div class="radio">
+                <label><input type="radio" name="optradio">1 business day - $22.00</label>
+          </div>  
+            </div>
          </div>
         </div>
 
-        <h4 class="accordion-toggle">Gift Options</h4>
+        <h4 class="accordion-toggle"> + Gift Options</h4>
         <div class="accordion-content">
           <div class="form1">
           <div class="form-group">
-            <label for="num">Enter Your 10-digit Gift Card Number:</label>
+             <label for="usr">Gift Wrap? </label>
+          <div class="radio">
+                  <label><input type="radio" name="optradio" checked>No</label>
+          </div>
+          <div class="radio">
+                  <label><input type="radio" name="optradio">Yes</label>
+          </div>
+          </div>
+          </div>
+        </div>
+
+        <h4 class="accordion-toggle"> + Payment and Promotions</h4>
+        <div class="accordion-content">
+        <div class="form1">
+          <div class="form-group">
+            <label for="num">Enter Your 10-digit Gift Card Number (if any):</label>
+            <input type="number" class="form-control" id="num"/>
+          </div>
+          <div class="form-group">
+            <label for="num">Enter PROMO Code for additional discounts (if any):</label>
             <input type="number" class="form-control" id="num"/>
           </div>
           </div>
         </div>
 
-        <h4 class="accordion-toggle">Payment and Promotions</h4>
-        <div class="accordion-content">
-        <p>Yet to Decide</p>
-        </div>
-
-        <h4 class="accordion-toggle">Place Order</h4>
+        <h4 class="accordion-toggle"> + Place Order</h4>
         <div class="accordion-content">
         <p>Yet to Decide</p>
         </div>

@@ -93,7 +93,6 @@ form .glyphicon-search{
 
 .right {
   width:70%;
-  height: 100%;
   padding-left: 280px;
   padding-top: 170px;
 }
@@ -121,13 +120,7 @@ form .glyphicon-search{
   font-size: 16px;
   margin-top: 120px;
 }
-.lastModi{
-  padding-left: 20px;
-  font-size: 15px;
-  width:250px;
-  line-height: normal;
-  text-align: right;
-}
+
 #catli{
   text-align: right;
   list-style-type: none;
@@ -201,7 +194,7 @@ form .glyphicon-search{
   background-color: rgb(213, 209, 205);
   box-shadow: inset 0px 0px 0px 4px #333333;
   margin: 0px;
-  
+
 }
 .accordion_body ul{
   list-style: none;
@@ -309,4 +302,13 @@ form .glyphicon-search{
 #next{
   background: #000 url('https://dl.dropboxusercontent.com/u/65639888/image/next.png') no-repeat center;
   right: 0px;
+}
+
+#copycont{
+  height: 70px;
+  padding: 20px;
+  line-height: 10px;
+  font-family: "Trebuchet MS";
+  font-size: 12px;
+  background-color:  #B36D6F;
 }

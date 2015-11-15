@@ -3,7 +3,7 @@
 <html>
 <head>
   <title>
-    Movies
+    Leisurely
   </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +24,7 @@
       <ul>
         <li><a href="index.html"><img src="logo.png" alt="leisurely" height="110"
           width="125"></li></a>
-          <li><a href="#">Movies</a></li>
+          <li><a href="movie.html">Movies</a></li>
           <li><a href="#">Books</a></li>
           <li>
             <form accept-charset="utf-8" class="nav-search" method="GET" name="site-search" action="search.php">
@@ -36,74 +36,22 @@
               </div>
             </form>
           </li>
-          <li><a id = "signup" href = "signUp.html">Join Today</a></li>
-          <li><a id = "sign" href="login.php">Sign In</a></li>
+          <li><a id = "signup" href = "signup.html">Join Today</a></li>
+          <li><a id = "sign" href="login.html">Sign In</a></li>
           <li><a href="checkout.html"><img src="cart.png" alt="Lesuirely" height="50" width="50"></a></li>
         </ul>
       </div>
     </header>
-    <div id="headerbar">
-      <div class="lastModi">
-            <p>Site Last Modified:</p>
-            <span id="lastModified"/>
-            <noscript> Browser does not support JAVASCRIPT</noscript>
+    <div class="slide">
+      <div class="slider_wrapper">
+        <ul id="image_slider">
+          <li><img src="images/1.jpg"></li>
+          <li><img src="images/2.jpg"></li>
+          <li><img src="images/3.jpg"></li>
+          <li><img src="images/4.jpg"></li>
+        </ul>
+        <span class="nvgt" id="prev"></span>
+        <span class="nvgt" id="next"></span>
       </div>
-      <ul id="catli">
-        <li>
-          <h2>
-            Categories
-          </h2>
-        </li>
-        <li>
-          <a onclick = "changeImage();" id = "id">Action</a>
-        </li>
-        <li>
-          <a href="movie.html">Animation</a>
-        </li>
-        <li>
-          <a href="movie.html">Comedy</a>
-        </li>
-        <li>
-          <a href="movie.html">Documentary</a>
-        </li>
-        <li>
-          <a href="movie.html">Romance</a>
-        </li>
-        <li>
-          <a href="movie.html">Sports</a>
-        </li>
-        <li>
-          <a href="movie.html">Others</a>
-        </li>
-      </ul>
-    </div>
-    <div class="right">
-      <table>
-        <tr class="movie">
-          <td class="item"><img id = "imageChange" src = "img3.jpg"></td>
-          <td class="item"><img src = "img3.jpg"></td>
-          <td class="item"><img src = "img3.jpg"></td>
-          <td class="item"><img src = "img3.jpg"></td>
-        </tr>
-        <tr class="movie">
-          <td class="item"><img src = "img3.jpg"></td>
-          <td class="item"><img src = "img3.jpg"></td>
-          <td class="item"><img src = "img3.jpg"></td>
-          <td class="item"><img src = "img3.jpg"></td>
-        </tr>
-        <tr class="movie">
-          <td class="item"><img src = "img3.jpg"></td>
-          <td class="item"><img src = "img3.jpg"></td>
-          <td class="item"><img src = "img3.jpg"></td>
-          <td class="item"><img src = "img3.jpg"></td>
-        </tr>
-        <tr class="movie">
-          <td class="item"><img src = "img3.jpg"></td>
-          <td class="item"><img src = "img3.jpg"></td>
-          <td class="item"><img src = "img3.jpg"></td>
-          <td class="item"><img src = "img3.jpg"></td>
-        </tr>
-      </table>
     </div>
   </body>
-  </html>

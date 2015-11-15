@@ -1,29 +1,30 @@
 function getDate(){
-  var x = new Date(document.lastModified);
+  var x = document.lastModified;
   document.getElementById("lastModified").innerHTML = x;
 }
 
-function changeImage(){
-  var button = document.getElementById("id");
-  document.getElementById("imageChange").src = "img2.jpg";
-}
+// function changeImage(){
+//   var button = document.getElementById("id");
+//   document.getElementById("imageChange").src = "img2.jpg";
+// }
 
-function signin(){
-  var text = document.getElementById("sign");
-  if(text.innerHTML == "Sign In"){
-    text.innerHTML = "Sign Up";
-  }
-  else if(text.innerHTML == "Sign Up"){
-    text.innerHTML = "Sign In";
-  }
-}
+// function signin(){
+//   var text = document.getElementById("sign");
+//   if(text.innerHTML == "Sign In"){
+//     text.innerHTML = "Sign Up";
+//   }
+//   else if(text.innerHTML == "Sign Up"){
+//     text.innerHTML = "Sign In";
+//   }
+// }
 
 $(window).load(function(){
   window.resizeTo(1245, 800);
 });
 
 $(document).ready(function(){
-  $(":password").hover(function(){
+  // sign up passoorc check function
+$(":password").hover(function(){
     $(":password").attr('type','text');
   },function(){
     $("#pwd").attr('type','password');
@@ -31,6 +32,7 @@ $(document).ready(function(){
   }
 );
 
+// the register button clicked will first do validation and then will do an ajax call to register.php and save data into DB.
 $("#register").click(function(){
   var name=$("#usr").val();
   var email = $("#email").val();
@@ -87,6 +89,23 @@ $("#register").click(function(){
     });
   }
 });
+
+// login and check if user name && password are correct
+$("#login").click(function(){
+  var name1=$("#usrname").val();
+  var pwd1=$("#pwd").val();
+  $.post("login.php", {
+        name:name1,
+        pwd:pwd1
+      }, function(data){
+        if (data == 'Success') {
+          $("form")[0].reset();
+          // this will jump to the index html
+          window.location.replace("index.html");
+        }
+        alert(data);
+      });
+});
 });
 
 $(document).ready(function () { //toggle the component with class accordion_body 
@@ -116,6 +135,32 @@ $(document).ready(function () { //toggle the component with class inner_accordio
           $(this).children(".plusminus1").text('-'); } 
         }); 
 }); 
+
+$(document).ready(function($) {
+  $('#accordion').find('.accordion-toggle').click(function(){
+
+    //Expand or collapse this panel
+    $(this).next().slideToggle('400');
+
+    //Hide the other panels
+    $(".accordion-content").not($(this).next()).slideUp('400');
+
+
+  });
+});
+
+$(document).ready(function($) {
+  $('#accordion').find('.inner-accordion-toggle').click(function(){
+
+    //Expand or collapse this panel
+    $(this).next().slideToggle('400');
+
+    //Hide the other panels
+    $(".inner-accordion-content").not($(this).next()).slideUp('400');
+
+  });
+});
+
 //Silder
 var ul;
 var li_items;
@@ -169,7 +214,7 @@ function slideTo(imageToGo){
     step:function(delta){
       ul.style.left = parseInt(currentPostion + direction * delta * imageWidth * numOfImageToGo) + 'px';
     },
-    callback:function(){currentImage = imageToGo;}  
+    callback:function(){currentImage = imageToGo;}
   };
   animate(opts);
 }
@@ -177,19 +222,19 @@ function slideTo(imageToGo){
 function onClickPrev(){
   if (currentImage == 0){
     slideTo(imageNumber - 1);
-  }     
+  }
   else{
     slideTo(currentImage - 1);
-  }   
+  }
 }
 
 function onClickNext(){
   if (currentImage == imageNumber - 1){
     slideTo(0);
-  }   
+  }
   else{
     slideTo(currentImage + 1);
-  }   
+  }
 }
 
 window.onload = init;

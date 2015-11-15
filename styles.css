@@ -160,10 +160,11 @@ form .glyphicon-search{
 }
 
 .box{
-  width: 90%;
+  width: 40%;
   height: auto;
-  margin-left: auto;
-  margin-right: auto;
+  float: right;
+  margin-left: 5%;
+  margin-right: 5%;
   background: rgba(255,255,255,1.0);
   color: #000;
   box-shadow: inset 0 0 15px #000000;
@@ -176,14 +177,15 @@ form .glyphicon-search{
  font-size: 2em;
 }
 
-#accordion{
+.accordion_container{
   display: block;
+  width: 100%;
   padding-top: 1em;
-  padding-left: 5em;
-  padding-right: 5em;
-  padding-bottom: 5em;
+  padding-left: 3em;
+  padding-right: 3em;
+  padding-bottom: 3em;
 }
-.accordion-toggle {
+.accordion_head {
   cursor: pointer;
   font-weight: bold;
   font-size: 1.5em;
@@ -194,20 +196,19 @@ form .glyphicon-search{
   margin:0px;
   padding:.5em;
 }
-.accordion-content {
+.accordion_body{
   display: none;
   background-color: rgb(213, 209, 205);
   box-shadow: inset 0px 0px 0px 4px #333333;
   margin: 0px;
   
 }
-.accordion-content.default {display: block;}
-.accordion-content.default ul{
+.accordion_body ul{
   list-style: none;
   padding: 1em;
 }
 
-.inner-accordion-toggle {
+.inner_accordion_head  {
   cursor: pointer;
   font-weight: bold;
   font-size: 1.2em;
@@ -219,7 +220,7 @@ form .glyphicon-search{
   padding:.5em;
 }
 
-.inner-accordion-content {
+.inner_accordion_body {
   display: none;
   background-color: rgb(213, 209, 205);
   color:#333333;
@@ -239,6 +240,9 @@ form .glyphicon-search{
   margin: 1em;
 }
 
+.plusminus,.plusminus1{
+  float: right;
+}
 .cbtn{
   background-color: rgba(255,255,255,0.5);
   color:#333333;

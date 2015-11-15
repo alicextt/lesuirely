@@ -23,15 +23,15 @@
     </header>
     <div class="box">
       <legend>Checkout</legend>
-      <div id="accordion">
+      <div class="accordion_container">
 
-        <h4 class="accordion-toggle"> + Customer</h4>
-        <div class="accordion-content default">
+        <div class="accordion_head">Customer<span class="plusminus">+</span></div>
+        <div class="accordion_body" style="display: none;"> 
           <div class ="form1">
           <ul>
             <li>
-                <h4 class="inner-accordion-toggle"> + Returning Customer</h4>
-                <div class="inner-accordion-content">
+                <div class="inner_accordion_head">Returning Customer<span class="plusminus1">+</span></div>
+                <div class="inner_accordion_body" style="display: none;">
                   <p>Sign-in for easy checkout.</p>
                   <form accept-charset="UTF-8" action="#" method="post">
                     <div class="form-group">
@@ -51,8 +51,8 @@
             </li>
 
             <li>
-                <h4 class="inner-accordion-toggle"> + Guest and New Customer</h4>
-                <div class="inner-accordion-content">
+                <div class="inner_accordion_head">Guest and New Customer<span class="plusminus1">+</span></div>
+                <div class="inner_accordion_body" style="display: none;">
                   <p>Please enter your email address.</p>
                   <form accept-charset="UTF-8" action="#" method="post">
                     <div class="form-group">
@@ -66,8 +66,8 @@
         </div>
       </div>
 
-        <h4 class="accordion-toggle"> + Shipping</h4>
-        <div class="accordion-content">
+        <div class="accordion_head">Shipping<span class="plusminus">+</span></div>
+        <div class="accordion_body" style="display: none;">
           <div class="form1">
           <form accept-charset="UTF-8" action="#" method="post">
           <div class="form-group">
@@ -183,8 +183,8 @@
          </div>
         </div>
 
-        <h4 class="accordion-toggle"> + Gift Options</h4>
-        <div class="accordion-content">
+        <div class="accordion_head">Gift Options<span class="plusminus">+</span></div>
+        <div class="accordion_body" style="display: none;">
           <div class="form1">
           <div class="form-group">
              <label for="usr">Gift Wrap? </label>
@@ -198,8 +198,8 @@
           </div>
         </div>
 
-        <h4 class="accordion-toggle"> + Payment and Promotions</h4>
-        <div class="accordion-content">
+        <div class="accordion_head">Payment and Promotions<span class="plusminus">+</span></div>
+        <div class="accordion_body" style="display: none;">
         <div class="form1">
           <div class="form-group">
             <label for="num">Enter Your 10-digit Gift Card Number (if any):</label>
@@ -212,14 +212,20 @@
           </div>
         </div>
 
-        <h4 class="accordion-toggle"> + Place Order</h4>
-        <div class="accordion-content">
+        <div class="accordion_head">Place Order<span class="plusminus">+</span></div>
+        <div class="accordion_body" style="display: none;">
         <p>Yet to Decide</p>
         </div>
 
       </div>
 
   </div>
+  </div>
+
+  <!--CART-->
+  <div class="box">
+      <legend>Cart</legend>
+    
   </div>
 </body>
 </html>

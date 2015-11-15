@@ -89,32 +89,33 @@ $("#register").click(function(){
 });
 });
 
-$(document).ready(function($) {
-    $('#accordion').find('.accordion-toggle').click(function(){
+$(document).ready(function () { //toggle the component with class accordion_body 
+  $(".accordion_head").click(function () { 
+    if ($('.accordion_body').is(':visible')) {
+     $(".accordion_body").slideUp(300); $(".plusminus").text('+');
+      } 
+      if ($(this).next(".accordion_body").is(':visible')) { 
+        $(this).next(".accordion_body").slideUp(300); 
+        $(this).children(".plusminus").text('+'); } 
+        else { 
+          $(this).next(".accordion_body").slideDown(300); 
+          $(this).children(".plusminus").text('-'); } 
+        }); 
+}); 
 
-      //Expand or collapse this panel
-      $(this).next().slideToggle('400');
-
-      //Hide the other panels
-      $(".accordion-content").not($(this).next()).slideUp('400');
-    
-
-    });
-  });
-
-$(document).ready(function($) {
-    $('#accordion').find('.inner-accordion-toggle').click(function(){
-
-      //Expand or collapse this panel
-      $(this).next().slideToggle('400');
-
-      //Hide the other panels
-      $(".inner-accordion-content").not($(this).next()).slideUp('400');
-
-    });
-  });
-
-
+$(document).ready(function () { //toggle the component with class inner_accordion_body 
+  $(".inner_accordion_head").click(function () { 
+    if ($('.inner_accordion_body').is(':visible')) {
+     $(".inner_accordion_body").slideUp(300); $(".plusminus1").text('+');
+      } 
+      if ($(this).next(".inner_accordion_body").is(':visible')) { 
+        $(this).next(".inner_accordion_body").slideUp(300); 
+        $(this).children(".plusminus1").text('+'); } 
+        else { 
+          $(this).next(".inner_accordion_body").slideDown(300); 
+          $(this).children(".plusminus1").text('-'); } 
+        }); 
+}); 
 //Silder
 var ul;
 var li_items;

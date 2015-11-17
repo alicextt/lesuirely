@@ -1,22 +1,27 @@
 <?php
-$connection = mysql_connect("localhost", "root", "root"); // Establishing connection with server..
-$db = mysql_select_db("Leisurely", $connection); // Selecting Database.
+ini_set('display_errors', 'On');
+
+$connection = mysqli_connect("localhost", "root", "root", "Leisurely"); // Establishing connection with server..
+if(mysqli_connect_errno()){
+  echo "Failed to connect to Mysql";
+}
+
 $name=$_POST['name']; // Fetching Values from URL.
 $password= sha1($_POST['pwd']); // Password Encryption, If you like you can also leave sha1.
 
-$result = mysql_query("SELECT * FROM usr WHERE name='$name'");
-$data = mysql_num_rows($result);
-console.log($data);
+$result = mysqli_query($connection, "SELECT * FROM usr WHERE name='$name'");
+$data = mysqli_num_rows($result);
+
 if(($data)==0){
   echo "User name incorrect!";
 }else{
-  $result = mysql_query("SELECT * FROM usr WHERE name='$name' and password='$password'");
-  $data = mysql_num_rows($result);
+  $result = mysqli_query($connection, "SELECT * FROM usr WHERE name='$name' and password='$password'");
+  $data = mysqli_num_rows($result);
 if(($data)==1){
   echo "Success";
 }else{
   echo "Password incorrect!";
 }
 }
-mysql_close ($connection);
+mysqli_close ($connection);
 ?>

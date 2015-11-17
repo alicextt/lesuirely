@@ -1,6 +1,10 @@
 <?php
-$connection = mysql_connect("localhost", "root", "root"); // Establishing connection with server..
-$db = mysql_select_db("Leisurely", $connection); // Selecting Database.
+ini_set('display_errors', 'On');
+
+$connection = mysqli_connect("localhost", "root", "root", "Leisurely"); // Establishing connection with server..
+if(mysqli_connect_errno()){
+  echo "Failed to connect to Mysql";
+}
 $name=$_POST['name1']; // Fetching Values from URL.
 $email=$_POST['email1'];
 $password= sha1($_POST['password1']); // Password Encryption, If you like you can also leave sha1.
@@ -9,11 +13,10 @@ $email = filter_var($email, FILTER_SANITIZE_EMAIL); // Sanitizing email(Remove u
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
   echo "Invalid Email.......";
 }else{
-  $result = mysql_query("SELECT * FROM usr WHERE name='$name'");
-  $data = mysql_num_rows($result);
-  console.log($data);
+  $result = mysqli_query($connection, "SELECT * FROM usr WHERE name='$name'");
+  $data = mysqli_num_rows($result);
   if(($data)==0){
-    $query = mysql_query("insert into usr(name, email, password) values ('$name', '$email', '$password')"); // Insert query
+    $query = mysqli_query($connection, "insert into usr(name, email, password) values ('$name', '$email', '$password')"); // Insert query
     if($query){
       echo "Success";
     }else
@@ -24,5 +27,5 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
     echo "This user name is already registered, Please try another user name...";
   }
 }
-mysql_close ($connection);
+mysqli_close ($connection);
 ?>

@@ -13,6 +13,8 @@ The port number is 8888, this can be changed on the setting of MAMP.
 
 Turn error on: go to bin/php/php-latest/ conf/ php.ini
 
+Change php version to 5.5
+
 This blog is used for jquery with mysql validation and sign up:
 http://www.formget.com/jquery-registration-form/
 

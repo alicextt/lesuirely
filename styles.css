@@ -139,7 +139,7 @@ form .glyphicon-search{
 }
 
 .checkout{
-  margin: 0;
+  margin: 0px;
   width: 100%;
   background-image: url("header.jpg");
   /*position: fixed;*/
@@ -217,12 +217,13 @@ form .glyphicon-search{
   display: none;
   background-color: rgb(213, 209, 205);
   color:#333333;
-  margin: 0px;
+  margin: 1px;
+  padding-left: 1em;
 }
 
 .inner-accordion-content.default {display: block;}
 .form1, .inner-accordion-content form{
-  width:60%;
+  width:75%;
   color:#333333;
   margin-left: 1em;
   padding-top: 1em;

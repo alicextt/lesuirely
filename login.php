@@ -1,5 +1,6 @@
 <?php
 ini_set('display_errors', 'On');
+session_start();
 
 $connection = mysqli_connect("localhost", "root", "root", "Leisurely"); // Establishing connection with server..
 if(mysqli_connect_errno()){
@@ -18,6 +19,7 @@ if(($data)==0){
   $result = mysqli_query($connection, "SELECT * FROM usr WHERE name='$name' and password='$password'");
   $data = mysqli_num_rows($result);
 if(($data)==1){
+  $_SESSION['user']=$name;
   echo "Success";
 }else{
   echo "Password incorrect!";

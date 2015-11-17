@@ -83,9 +83,9 @@ $("#register").click(function(){
       if (data == 'Success') {
         $("form")[0].reset();
         // this will jump to the index html
-        window.location.replace("index.html");
+        window.location.replace("login.html");
       }
-      alert(data);
+      // alert(data);
     });
   }
 });
@@ -101,40 +101,40 @@ $("#login").click(function(){
         if (data == 'Success') {
           $("form")[0].reset();
           // this will jump to the index html
-          window.location.replace("index.html");
+          window.location.replace("index.php");
         }
-        alert(data);
+        // alert(data);
       });
 });
 });
 
-$(document).ready(function () { //toggle the component with class accordion_body 
-  $(".accordion_head").click(function () { 
+$(document).ready(function () { //toggle the component with class accordion_body
+  $(".accordion_head").click(function () {
     if ($('.accordion_body').is(':visible')) {
      $(".accordion_body").slideUp(300); $(".plusminus").text('+');
-      } 
-      if ($(this).next(".accordion_body").is(':visible')) { 
-        $(this).next(".accordion_body").slideUp(300); 
-        $(this).children(".plusminus").text('+'); } 
-        else { 
-          $(this).next(".accordion_body").slideDown(300); 
-          $(this).children(".plusminus").text('-'); } 
-        }); 
-}); 
+      }
+      if ($(this).next(".accordion_body").is(':visible')) {
+        $(this).next(".accordion_body").slideUp(300);
+        $(this).children(".plusminus").text('+'); }
+        else {
+          $(this).next(".accordion_body").slideDown(300);
+          $(this).children(".plusminus").text('-'); }
+        });
+});
 
-$(document).ready(function () { //toggle the component with class inner_accordion_body 
-  $(".inner_accordion_head").click(function () { 
+$(document).ready(function () { //toggle the component with class inner_accordion_body
+  $(".inner_accordion_head").click(function () {
     if ($('.inner_accordion_body').is(':visible')) {
      $(".inner_accordion_body").slideUp(300); $(".plusminus1").text('+');
-      } 
-      if ($(this).next(".inner_accordion_body").is(':visible')) { 
-        $(this).next(".inner_accordion_body").slideUp(300); 
-        $(this).children(".plusminus1").text('+'); } 
-        else { 
-          $(this).next(".inner_accordion_body").slideDown(300); 
-          $(this).children(".plusminus1").text('-'); } 
-        }); 
-}); 
+      }
+      if ($(this).next(".inner_accordion_body").is(':visible')) {
+        $(this).next(".inner_accordion_body").slideUp(300);
+        $(this).children(".plusminus1").text('+'); }
+        else {
+          $(this).next(".inner_accordion_body").slideDown(300);
+          $(this).children(".plusminus1").text('-'); }
+        });
+});
 
 $(document).ready(function($) {
   $('#accordion').find('.accordion-toggle').click(function(){

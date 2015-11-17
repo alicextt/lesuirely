@@ -270,7 +270,7 @@ form .glyphicon-search{
 .card input{
   width:80px;
   float: left;
-  margin-right:15px; 
+  margin-right:15px;
 }
 
 .pay img{
@@ -279,9 +279,14 @@ form .glyphicon-search{
   padding: 0px;
   margin: 0px;
 }
+.vuser{
+  padding-top: 135px;
+  /*font-weight: bold;*/
+  padding-left: 50px;
+}
 /*Slideshow*/
 .slide{
-  padding-top:140px;
+  padding-top:5px;
   vertical-align: center;
 }
 .slider_wrapper{

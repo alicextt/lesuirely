@@ -1,5 +1,7 @@
+<?php
+session_start();
+?>
 <!DocType html>
-
 <html>
 <head>
   <title>
@@ -22,7 +24,7 @@
   <header class="container">
     <div class="horizontal">
       <ul>
-        <li><a href="index.html"><img src="logo.png" alt="leisurely" height="110"
+        <li><a href="index.php"><img src="logo.png" alt="leisurely" height="110"
           width="125"></li></a>
           <li><a href="movie.html">Movies</a></li>
           <li><a href="#">Books</a></li>
@@ -42,6 +44,14 @@
         </ul>
       </div>
     </header>
+    <div class="vuser">
+      <?php
+      if($_SESSION['user']){
+        $user= $_SESSION['user'];
+          echo "<h1>$user, Welcome Back!</h1>";
+      }
+       ?>
+    </div>
     <div class="slide">
       <div class="slider_wrapper">
         <ul id="image_slider">

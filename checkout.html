@@ -3,7 +3,7 @@
 <html>
 <head>
   <title>
-    Checkout
+    Leisurely | Checkout
   </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,6 +27,7 @@
       <div class="accordion_container">
 
         <div class="accordion_head">Customer<span class="plusminus">+</span></div>
+
         <div class="accordion_body"> 
           <div class ="form1">
           <ul>
@@ -180,11 +181,15 @@
           <div class="radio">
                 <label><input type="radio" name="optradio1">1 business day - $22.00</label>
           </div>  
+          <div class="radio">
+              <label><input type="radio" name="optradio">2 business days - $17.00</label>
+          </div>
+          <div class="radio">
+                <label><input type="radio" name="optradio">1 business day - $22.00</label>
+          </div>
             </div>
-          </form>
+          </div>
          </div>
-        </div>
-
 
         <div class="accordion_head">Gift Options<span class="plusminus">+</span></div>
         <div class="accordion_body">
@@ -201,19 +206,37 @@
           </div>
         </div>
 
-        <!-- <div class="accordion_head">Payment and Promotions<span class="plusminus">+</span></div>
+        <div class="accordion_head">Payment<span class="plusminus">+</span></div>
         <div class="accordion_body">
         <div class="form1">
           <div class="form-group">
-            <label for="num">Enter Your 10-digit Gift Card Number (if any):</label>
-            <input type="number" class="form-control" id="num"/>
+            <label>Name on Card:</label>
+            <input type="text" class="form-control"/>
           </div>
           <div class="form-group">
-            <label for="num">Enter PROMO Code for additional discounts (if any):</label>
+            <label for="num">Credit/Debit Card Number:</label>
             <input type="number" class="form-control" id="num"/>
           </div>
+          <div class="card">
+          <div class="form-group">
+            <label>CVV:</label>
+            <input type="text" class="form-control"/>
           </div>
-        </div> -->
+          <div class="form-group">
+            <label>Valid Thru (MM/YYYY):</label>
+            <input type="text" class="form-control"/>
+          </div>
+        </div>
+         <div class="pay">
+          <p>Accepted Cards:</p>
+          <img src="card.png" alt="Accepted Cards">
+          </div>
+          <!-- <div class="form-group">
+            <label for="num">Enter PROMO Code for additional discounts (if any):</label>
+            <input type="number" class="form-control" id="num"/>
+          </div> -->
+          </div>
+        </div>
 
         <div class="accordion_head">Place Order<span class="plusminus">+</span></div>
         <div class="accordion_body">
@@ -233,6 +256,7 @@
   <div class="box">
     <fieldset>
       <legend>Cart</legend>
+
     </fieldset>
   </div>
 </body>

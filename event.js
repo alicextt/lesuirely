@@ -3,36 +3,11 @@ function getDate(){
   document.getElementById("lastModified").innerHTML = x;
 }
 
-// function changeImage(){
-//   var button = document.getElementById("id");
-//   document.getElementById("imageChange").src = "img2.jpg";
-// }
-
-// function signin(){
-//   var text = document.getElementById("sign");
-//   if(text.innerHTML == "Sign In"){
-//     text.innerHTML = "Sign Up";
-//   }
-//   else if(text.innerHTML == "Sign Up"){
-//     text.innerHTML = "Sign In";
-//   }
-// }
-
 $(window).load(function(){
   window.resizeTo(1245, 800);
 });
 
-$(document).ready(function(){
-  // sign up passoorc check function
-$(":password").hover(function(){
-    $(":password").attr('type','text');
-  },function(){
-    $("#pwd").attr('type','password');
-    $("#cpwd").attr('type','password');
-  }
-);
-
-// the register button clicked will first do validation and then will do an ajax call to register.php and save data into DB.
+//**************** used in signUp.html . the register button clicked will first do validation and then will do an ajax call to register.php and save data into DB.
 $("#register").click(function(){
   var name=$("#usr").val();
   var email = $("#email").val();
@@ -90,6 +65,17 @@ $("#register").click(function(){
   }
 });
 
+$(document).ready(function(){
+  // sign up passoorc check function
+$(":password").hover(function(){
+    $(":password").attr('type','text');
+  },function(){
+    $("#pwd").attr('type','password');
+    $("#cpwd").attr('type','password');
+  }
+);
+
+//********************** button in login.html. call to login.php to validate data.
 // login and check if user name && password are correct
 $("#login").click(function(){
   var name1=$("#usrname").val();
@@ -122,6 +108,8 @@ $(document).ready(function () { //toggle the component with class accordion_body
         });
 });
 
+
+// **************** slider related function in index.php
 $(document).ready(function () { //toggle the component with class inner_accordion_body
   $(".inner_accordion_head").click(function () {
     if ($('.inner_accordion_body').is(':visible')) {

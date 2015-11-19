@@ -24,7 +24,7 @@
       <ul>
         <li><a href="index.php"><img src="logo.png" alt="leisurely" height="110"
           width="125"></li></a>
-          <li><a href="movie.html">Movies</a></li>
+          <li><a href="movie.php">Movies</a></li>
           <li><a href="#">Books</a></li>
           <li>
             <form accept-charset="utf-8" class="nav-search" method="GET" name="site-search" action="search.php">
@@ -54,50 +54,57 @@
             <a onclick = "changeImage();" id = "id">Action</a>
           </li>
           <li>
-            <a href="movie.html">Animation</a>
+            <a href="movie.php">Sci-Fi</a>
           </li>
           <li>
-            <a href="movie.html">Comedy</a>
+            <a href="movie.php">Comedy</a>
           </li>
           <li>
-            <a href="movie.html">Documentary</a>
+            <a href="movie.php">Drama</a>
           </li>
           <li>
-            <a href="movie.html">Romance</a>
+            <a href="movie.php">Adventure</a>
           </li>
           <li>
-            <a href="movie.html">Sports</a>
+            <a href="movie.php">Thriller</a>
           </li>
           <li>
-            <a href="movie.html">Others</a>
+            <a href="movie.php">All Categories</a>
           </li>
         </ul>
       </div>
       <div class="right">
         <table>
+          <?php
+          ini_set('display_errors', 'On');
+
+          include("func.php");
+          $itempage=1;
+          $jsonData=getMovies($itempage);
+          $json = json_decode($jsonData);
+          ?>
           <tr class="movie">
-            <td class="item"><img id = "imageChange" src = "img3.jpg"></td>
-            <td class="item"><img src = "img3.jpg"></td>
-            <td class="item"><img src = "img3.jpg"></td>
-            <td class="item"><img src = "img3.jpg"></td>
-          </tr>
-          <tr class="movie">
-            <td class="item"><img src = "img3.jpg"></td>
-            <td class="item"><img src = "img3.jpg"></td>
-            <td class="item"><img src = "img3.jpg"></td>
-            <td class="item"><img src = "img3.jpg"></td>
-          </tr>
-          <tr class="movie">
-            <td class="item"><img src = "img3.jpg"></td>
-            <td class="item"><img src = "img3.jpg"></td>
-            <td class="item"><img src = "img3.jpg"></td>
-            <td class="item"><img src = "img3.jpg"></td>
-          </tr>
-          <tr class="movie">
-            <td class="item"><img src = "img3.jpg"></td>
-            <td class="item"><img src = "img3.jpg"></td>
-            <td class="item"><img src = "img3.jpg"></td>
-            <td class="item"><img src = "img3.jpg"></td>
+            <?php
+              $count=0;
+               for($i=0;$i<count($json);$i++){
+                 $data= $json[$i];
+                 if($count<5){
+                   $count++;
+                   ?>
+                 <td class="item"><div class="center"><img src = "<?=$data->imgurl?>"><h4><a name="<?=$data->id?>"><?=$data->title?> <span>(<?=$data->year?>)</span></a></h4></div></td>
+               <?php
+              }
+               else{
+                 $count=0;
+                 $i--;
+                 ?>
+               </tr>
+               <tr class="movie">
+                 <?php
+               }
+               }
+            ?>
+
           </tr>
         </table>
       </div>

@@ -132,10 +132,20 @@ form .glyphicon-search{
 }
 
 .item img{
-  height: 200px;
-  width: 200px;
+  height: 249px;
+  width: 180px;
+  margin-top: 25px;
   padding-right: 15px;
   padding-bottom: 10px;
+}
+
+td a:link{
+  color:#136CB2;
+
+}
+
+.center{
+  text-align: center;
 }
 
 .checkout{

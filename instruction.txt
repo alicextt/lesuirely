@@ -32,6 +32,19 @@ password varchar(255) NOT NULL,
 PRIMARY KEY (id)
 )
 
+3. movie:
+create table movie(
+ id int not null AUTO_INCREMENT,
+ imgurl varchar(255) not null,
+ title varchar(255) not null,
+ year int not null,
+ description varchar(255),
+ tags varchar(55),
+ stars varchar (255),
+ link varchar(255),
+ primary key(id)
+)
+
 For shopping cart:
 https://codegeekz.com/free-jquery-shopping-cart-plugins/
 http://livedocs.digicrafts.com.hk/examples/JSAJAXPayPalCart/

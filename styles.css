@@ -101,6 +101,11 @@ form .glyphicon-search{
   margin: 40px;
 }
 
+#form{
+  margin:auto;
+  width: 80%;
+}
+
 .center{
   text-align: center;
 }

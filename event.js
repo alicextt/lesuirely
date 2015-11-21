@@ -5,7 +5,6 @@ function getDate(){
 
 $(window).load(function(){
   window.resizeTo(1245, 800);
-});
 
 //**************** used in signUp.html . the register button clicked will first do validation and then will do an ajax call to register.php and save data into DB.
 $("#register").click(function(){
@@ -64,6 +63,7 @@ $("#register").click(function(){
     });
   }
 });
+});
 
 $(document).ready(function(){
   // sign up passoorc check function
@@ -78,6 +78,8 @@ $(":password").hover(function(){
 //********************** button in login.html. call to login.php to validate data.
 // login and check if user name && password are correct
 $("#login").click(function(){
+  $("#usrerror").text('');
+  $("#pwderror").text('');
   var name1=$("#usrname").val();
   var pwd1=$("#pwd").val();
   $.post("login.php", {
@@ -90,6 +92,11 @@ $("#login").click(function(){
           window.location.replace("index.php");
         }
         // alert(data);
+        else if (data =='User name incorrect!') {
+          $("#usrerror").text('User name incorrect!');
+        }else{
+          $("#pwderror").text('Password incorrect!');
+        }
       });
 });
 });

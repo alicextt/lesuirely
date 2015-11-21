@@ -1,11 +1,9 @@
-<?php
-session_start();
-?>
 <!DocType html>
+
 <html>
 <head>
   <title>
-    Leisurely | Homepage
+    Movies
   </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,7 +17,7 @@ session_start();
   <link href="styles.css" rel="stylesheet">
 </head>
 <body onload="getDate()">
-    <!-- header-->
+  <!-- header-->
   <noscript> Browser does not support JAVASCRIPT</noscript>
   <header class="container">
     <div class="horizontal">
@@ -44,24 +42,71 @@ session_start();
         </ul>
       </div>
     </header>
-    <div class="vuser">
-      <?php
-      if($_SESSION['user']){
-        $user= $_SESSION['user'];
-          echo "<h1>$user, Welcome Back!</h1>";
-      }
-       ?>
-    </div>
-    <div class="slide">
-      <div class="slider_wrapper">
-        <ul id="image_slider">
-          <li><img src="images/1.jpg"></li>
-          <li><img src="images/2.jpg"></li>
-          <li><img src="images/3.jpg"></li>
-          <li><img src="images/4.jpg"></li>
+    <div>
+      <div id="headerbar">
+        <ul id="catli">
+          <li>
+            <h2>
+              Categories
+            </h2>
+          </li>
+          <li>
+            <a href="book.php">Web</a>
+          </li>
+          <li>
+            <a href="book.php">computer-science</a>
+          </li>
+          <li>
+            <a href="book.php">classical-music</a>
+          </li>
+          <li>
+            <a href="book.php">agriculture</a>
+          </li>
+          <li>
+            <a href="book.php">crime</a>
+          </li>
+          <li>
+            <a href="book.php">cultural-studies</a>
+          </li>
+          <li>
+            <a href="book.php">All Categories</a>
+          </li>
         </ul>
-        <span class="nvgt" id="prev"></span>
-        <span class="nvgt" id="next"></span>
+      </div>
+      <div class="right">
+        <table>
+          <?php
+          ini_set('display_errors', 'On');
+
+          include("func.php");
+          $itempage=1;
+          $jsonData=getBooks($itempage);
+          $json = json_decode($jsonData);
+          ?>
+          <tr class="movie">
+            <?php
+              $count=0;
+               for($i=0;$i<count($json);$i++){
+                 $data= $json[$i];
+                 if($count<4){
+                   $count++;
+                   ?>
+                 <td class="item center"><img class="book" src = "<?=$data->imgurl?>"><h5><a name="<?=$data->id?>"><?=$data->title?></a></h5></td>
+               <?php
+              }
+               else{
+                 $count=0;
+                 $i--;
+                 ?>
+               </tr>
+               <tr class="movie">
+                 <?php
+               }
+               }
+            ?>
+
+          </tr>
+        </table>
       </div>
     </div>
     <div id="copycont">

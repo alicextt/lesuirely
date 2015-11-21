@@ -25,7 +25,7 @@
         <li><a href="index.php"><img src="logo.png" alt="leisurely" height="110"
           width="125"></li></a>
           <li><a href="movie.php">Movies</a></li>
-          <li><a href="#">Books</a></li>
+          <li><a href="book.php">Books</a></li>
           <li>
             <form accept-charset="utf-8" class="nav-search" method="GET" name="site-search" action="search.php">
               <div>

@@ -48,7 +48,7 @@ function getitembyid($category, $id){
   if(mysqli_connect_errno()){
     echo "Failed to connect to Mysql";
   }
-
+  mysqli_query($connection, 'SET CHARACTER SET utf8');
   $result = mysqli_query($connection, "SELECT * FROM $category WHERE id='$id'");
   $data = mysqli_fetch_assoc($result);
   return json_encode($data);

@@ -82,6 +82,11 @@ form .glyphicon-search{
   font-size: 1.5em;
 }
 
+#itemdetails p{
+  text-align: justify;
+  text-indent: 40px;
+}
+
 .nav-fill{
   border-top: 1px solid #bdbdbd;
   border-bottom: 1px solid #cdcdcd;
@@ -95,12 +100,58 @@ form .glyphicon-search{
   width:70%;
   padding-left: 190px;
   padding-top: 170px;
+  margin-bottom: 40px;
 }
 .right form{
   width: 70%;
   margin: 40px;
 }
 
+.narrow{
+  padding-left: 140px;
+  height: 600px;
+  width:90%;
+}
+.left{
+  margin-right:32px;
+  float:left;
+  width: 210px;
+}
+
+.left>img {
+    width: 210px;
+    height: 310px;
+}
+#itemdetails{
+  float:left;
+  width:600px;
+}
+select.btn.dropdowntoggle.btn-default{
+  width: 90px;
+}
+.rate{
+  background-image: url("images/star.png");
+  background-repeat: no-repeat;
+  height:66px;
+  width:66px;
+  font-weight: bold;
+  font-size: 15px;
+  padding-top: 21px;
+  padding-left: 15px;
+  margin-right: 10px;
+  font-family: tahoma;
+  float:left;
+}
+
+h1#title {
+    margin-top: 0;
+    font-size: 28px;
+    color: #382110;
+}
+
+.smallText{
+  line-height: 14px;
+}
 #form{
   margin:auto;
   width: 80%;

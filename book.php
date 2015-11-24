@@ -1,5 +1,7 @@
+<?php
+session_start();
+?>
 <!DocType html>
-
 <html>
 <head>
   <title>
@@ -85,24 +87,24 @@
           ?>
           <tr class="movie">
             <?php
-              $count=0;
-               for($i=0;$i<count($json);$i++){
-                 $data= $json[$i];
-                 if($count<4){
-                   $count++;
-                   ?>
-                 <td class="item center"><img class="book" src = "<?=$data->imgurl?>"><h5><a name="<?=$data->id?>"><?=$data->title?></a></h5></td>
-               <?php
+            $count=0;
+            for($i=0;$i<count($json);$i++){
+              $data= $json[$i];
+              if($count<4){
+                $count++;
+                ?>
+                <td class="item center"><img class="book" src = "<?=$data->imgurl?>"><h5><a name="<?=$data->id?>" href="itemdetail.php?id=<?=$data->id?>&cat=book"><?=$data->title?></a></h5></td>
+                <?php
               }
-               else{
-                 $count=0;
-                 $i--;
-                 ?>
-               </tr>
-               <tr class="movie">
-                 <?php
-               }
-               }
+              else{
+                $count=0;
+                $i--;
+                ?>
+              </tr>
+              <tr class="movie">
+                <?php
+              }
+            }
             ?>
 
           </tr>
@@ -111,11 +113,11 @@
     </div>
     <div id="copycont">
       <footer>
-          <p class="center"> Copyright@2015, designed by <a class="yellow">Leisurely Admin | Privacy Policy</a></p>
-          <p class="center">  Site Last Modified:
-            <span id="lastModified"/> </p>
-            <noscript> Browser does not support JAVASCRIPT</noscript>
-      </footer>
-    </div>
-  </body>
-  </html>
+        <p class="center"> Copyright@2015, designed by <a class="yellow">Leisurely Admin | Privacy Policy</a></p>
+        <p class="center">  Site Last Modified:
+          <span id="lastModified"/> </p>
+          <noscript> Browser does not support JAVASCRIPT</noscript>
+        </footer>
+      </div>
+    </body>
+    </html>

@@ -42,4 +42,15 @@ while($row = mysqli_fetch_assoc($result)) {
   $itempage+=40;
   return json_encode($encode);
 }
+
+function getitembyid($category, $id){
+  $connection = mysqli_connect("localhost", "root", "root", "Leisurely"); // Establishing connection with server..
+  if(mysqli_connect_errno()){
+    echo "Failed to connect to Mysql";
+  }
+
+  $result = mysqli_query($connection, "SELECT * FROM $category WHERE id='$id'");
+  $data = mysqli_fetch_assoc($result);
+  return json_encode($data);
+}
  ?>

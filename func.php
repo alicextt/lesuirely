@@ -53,4 +53,25 @@ function getitembyid($category, $id){
   $data = mysqli_fetch_assoc($result);
   return json_encode($data);
 }
+
+class pitem{
+  // purchase type either buy or rent
+  var $ptype;
+  // item type, either book or movie
+  var $ctype;
+  // unit price;
+  var $uprice;
+  // purchase quantity
+  var $quantity;
+  // item name
+  var $title;
+
+  public function __construct($ptype, $ctype, $uprice, $quantity, $title){
+    $this->ptype =$ptype;
+    $this->ctype =$ctype;
+    $this->uprice =$uprice;
+    $this->quantity =$quantity;
+    $this->title =$title;
+  }
+}
  ?>

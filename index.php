@@ -1,5 +1,7 @@
 <?php
 session_start();
+ini_set('display_errors', 'On');
+
 ?>
 <!DocType html>
 <html>
@@ -46,7 +48,8 @@ session_start();
     </header>
     <div class="vuser">
       <?php
-      if($_SESSION['user']){
+      require_once('func.php');
+      if(isset($_SESSION['user'])){
         $user= $_SESSION['user'];
           echo "<h1>$user, Welcome Back!</h1>";
       }

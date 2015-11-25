@@ -97,7 +97,6 @@ form .glyphicon-search{
 }
 
 .right {
-  width:70%;
   padding-left: 190px;
   padding-top: 170px;
   margin-bottom: 40px;
@@ -171,6 +170,7 @@ h1#title {
 .book{
   margin-right: 50px;
 }
+
 
 #headerbar{
   position: fixed;

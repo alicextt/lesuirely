@@ -1,12 +1,14 @@
 <?php
 session_start();
 ini_set('display_errors', 'On');
+include("func.php");
+
 ?>
 <!DocType html>
 <html>
 <head>
   <title>
-    Movies
+    <?=$_GET['cat']?>
   </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,14 +44,21 @@ ini_set('display_errors', 'On');
           </li>
           <li><a id = "signup" href = "signup.html">Join Today</a></li>
           <li><a id = "sign" href="login.html">Sign In</a></li>
-          <li><a href="checkout.html"><img src="cart.png" alt="Lesuirely" height="50" width="50"></a></li>
+          <li><a href="checkout.html"><img src="cart.png" alt="Lesuirely" height="50" width="50"><span id="cart"><?php
+          $items = unserialize($_SESSION['items']);
+          $quantity=0;
+          if($items){
+          foreach($items as $key ){
+            $quantity+=$key->quantity;
+          }
+        }
+          echo $quantity;
+          ?></span></a></li>
         </ul>
       </div>
     </header>
     <div class="right narrow">
       <?php
-      // print_r($_SESSION);
-      include("func.php");
       $data= getitembyid($_GET['cat'],$_GET['id']);
       $json = json_decode($data);
       ?>
@@ -102,6 +111,12 @@ ini_set('display_errors', 'On');
           <h4>Overview</h4>
           <p><?=$json->description?></p>
           <hr>
+          <?php
+          if(isset($_GET['ad'])){
+          $addq= $_GET['ad'];
+        }
+          if(empty($addq)){
+          ?>
           <div class="price">
             <table class="table table-striped">
               <tr>
@@ -111,8 +126,8 @@ ini_set('display_errors', 'On');
                 <th>Buy</th>
               </tr>
               <tr>
-                <td>Buy</td>
-                <td>$ <?=$json->price?></td>
+                <td name="type">Buy</td>
+                <td name="price">$ <?=$json->price?></td>
                 <td><select class="btn dropdowntoggle btn-default">
                   <option value="1" selected="">1</option>
                   <option value="2">2</option>
@@ -123,8 +138,8 @@ ini_set('display_errors', 'On');
                 <td><button class="btn btn-info">Add to cart </button></td>
               </tr>
               <tr>
-                <td>Rent</td>
-                <td>$ <?=round($json->price/3,2)?></td>
+                <td name="type">Rent</td>
+                <td name="price">$ <?=round($json->price/3,2)?></td>
                 <td><select class="btn dropdowntoggle btn-default">
                   <option value="1" selected="">1 Week</option>
                   <option value="2">2 Week</option>
@@ -135,6 +150,13 @@ ini_set('display_errors', 'On');
               </tr>
             </table>
           </div>
+          <?php }else{ ?>
+            <div class="center">
+            <h4> You have added <span><?=$addq?></span> items into the cart !</h4>
+            <button class="btn btn-success" id="continuesh"> Continue shopping</button>
+            <button class="btn btn-success" id="detailcheckout"> Checkout</button>
+          </div>
+            <?php } ?>
         </div>
       </div>
       <div id="copycont">

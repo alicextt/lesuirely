@@ -76,8 +76,9 @@ class pitem{
 }
 
 function getCartItemQuantity(){
-  $items = unserialize($_SESSION['items']);
   $quantity=0;
+  if(!empty($_SESSION['items'])){
+  $items = unserialize($_SESSION['items']);
   if($items){
   foreach($items as $key ){
     if($key->ptype=='Buy'){
@@ -86,6 +87,7 @@ function getCartItemQuantity(){
     $quantity+=1;
   }
   }
+}
 }
 return $quantity;
 }

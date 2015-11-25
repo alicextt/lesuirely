@@ -1,5 +1,8 @@
-<?php
+<<?php
 session_start();
+ini_set('display_errors', 'On');
+include("func.php");
+
 ?>
 <!DocType html>
 <html>
@@ -40,8 +43,10 @@ session_start();
           </li>
           <li><a id = "signup" href = "signup.html">Join Today</a></li>
           <li><a id = "sign" href="login.html">Sign In</a></li>
-          <li><a href="checkout.html"><img src="cart.png" alt="Lesuirely" height="50" width="50"></a></li>
-        </ul>
+          <li><a href="checkout.html"><img src="cart.png" alt="Lesuirely" height="50" width="50"><span id="cart"><?php
+          echo getCartItemQuantity();
+          ?></span></a></li>
+                </ul>
       </div>
     </header>
     <div>
@@ -78,9 +83,6 @@ session_start();
       <div class="right">
         <table>
           <?php
-          ini_set('display_errors', 'On');
-
-          include("func.php");
           $itempage=1;
           $jsonData=getBooks($itempage);
           $json = json_decode($jsonData);

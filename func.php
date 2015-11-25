@@ -74,4 +74,19 @@ class pitem{
     $this->title =$title;
   }
 }
+
+function getCartItemQuantity(){
+  $items = unserialize($_SESSION['items']);
+  $quantity=0;
+  if($items){
+  foreach($items as $key ){
+    if($key->ptype=='Buy'){
+    $quantity+=$key->quantity;
+  }else{
+    $quantity+=1;
+  }
+  }
+}
+return $quantity;
+}
  ?>

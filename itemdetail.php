@@ -45,14 +45,7 @@ include("func.php");
           <li><a id = "signup" href = "signup.html">Join Today</a></li>
           <li><a id = "sign" href="login.html">Sign In</a></li>
           <li><a href="checkout.html"><img src="cart.png" alt="Lesuirely" height="50" width="50"><span id="cart"><?php
-          $items = unserialize($_SESSION['items']);
-          $quantity=0;
-          if($items){
-          foreach($items as $key ){
-            $quantity+=$key->quantity;
-          }
-        }
-          echo $quantity;
+          echo getCartItemQuantity();
           ?></span></a></li>
         </ul>
       </div>

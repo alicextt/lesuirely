@@ -120,7 +120,7 @@ include("func.php");
             <?php
             $max =getMaxid('book');
             for($i=1;$i<$max/40;$i++){
-              if($i==$itempage){
+              if($i==$itempage-1){
                 echo "<li class='active'><a href='book.php?page=$i'>$i</a></li>";
               }else{
                 echo "<li><a href='book.php?page=$i'>$i</a></li>";

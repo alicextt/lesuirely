@@ -78,12 +78,17 @@ include("func.php");
         </ul>
       </div>
       <div class="right">
+        <?php
+        $itempage=1;
+        if(!empty($_GET['page'])){
+        $itempage=(int)$_GET['page'];
+       }
+        $jsonData=getMovies($itempage);
+        $json = json_decode($jsonData);
+
+        ?>
+
         <table>
-          <?php
-          $itempage=1;
-          $jsonData=getMovies($itempage);
-          $json = json_decode($jsonData);
-          ?>
           <tr class="movie">
             <?php
             $count=0;
@@ -108,6 +113,20 @@ include("func.php");
 
           </tr>
         </table>
+        <div id="changePage" class="center">
+          <ul class="pagination">
+            <?php
+            $max =getMaxid('movie');
+            for($i=1;$i<$max/50;$i++){
+              if($i==$itempage){
+                echo "<li class='active'><a href='movie.php?page=$i'>$i</a></li>";
+              }else{
+                echo "<li><a href='movie.php?page=$i'>$i</a></li>";
+              }
+            }
+             ?>
+          </ul>
+        </div>
       </div>
     </div>
     <div id="copycont">

@@ -1,4 +1,4 @@
-<<?php
+<?php
 session_start();
 ini_set('display_errors', 'On');
 include("func.php");
@@ -84,8 +84,12 @@ include("func.php");
         <table>
           <?php
           $itempage=1;
+          if(!empty($_GET['page'])){
+          $itempage=(int)$_GET['page'];
+         }
           $jsonData=getBooks($itempage);
           $json = json_decode($jsonData);
+
           ?>
           <tr class="movie">
             <?php
@@ -111,6 +115,20 @@ include("func.php");
 
           </tr>
         </table>
+        <div id="changePage" class="center">
+          <ul class="pagination">
+            <?php
+            $max =getMaxid('book');
+            for($i=1;$i<$max/40;$i++){
+              if($i==$itempage){
+                echo "<li class='active'><a href='book.php?page=$i'>$i</a></li>";
+              }else{
+                echo "<li><a href='book.php?page=$i'>$i</a></li>";
+              }
+            }
+             ?>
+          </ul>
+        </div>
       </div>
     </div>
     <div id="copycont">

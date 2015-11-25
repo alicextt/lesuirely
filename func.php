@@ -7,10 +7,13 @@ function getMovies(&$itempage){
     echo "Failed to connect to Mysql";
     exit();
   }
+  $min = ($itempage-1)*50;
+  $max = $itempage*50;
+  mysqli_query($connection, 'SET CHARACTER SET utf8');
   $stmt = "SELECT id, imgurl, title, year
    FROM     movie
-   WHERE    id>=$itempage
-   AND      id<$itempage+50";
+   WHERE    id>$min
+   AND      id<=$max";
    $result = $connection->query($stmt);
 
    $encode = array();
@@ -18,8 +21,22 @@ function getMovies(&$itempage){
 while($row = mysqli_fetch_assoc($result)) {
    $encode[] = $row;
 }
-  $itempage+=50;
+  $itempage+=1;
   return json_encode($encode);
+}
+
+function getMaxid($table){
+  $connection = new mysqli("localhost", "root", "root", "Leisurely"); // Establishing connection with server..
+  if($connection->connect_errno){
+    echo "Failed to connect to Mysql";
+    exit();
+  }
+  mysqli_query($connection, 'SET CHARACTER SET utf8');
+
+  $stmt = "SELECT id from $table order by id desc limit 1";
+  $result = $connection->query($stmt);
+  $row = mysqli_fetch_row($result);
+  return $row[0];
 }
 
 function getBooks(&$itempage){
@@ -28,10 +45,12 @@ function getBooks(&$itempage){
     echo "Failed to connect to Mysql";
     exit();
   }
+  mysqli_query($connection, 'SET CHARACTER SET utf8');
+
   $stmt = "SELECT id, imgurl, title
    FROM     book
-   WHERE    id>=$itempage
-   AND      id<$itempage+40";
+   WHERE    id>($itempage-1)*40
+   AND      id<=$itempage*40";
    $result = $connection->query($stmt);
 
    $encode = array();
@@ -39,7 +58,7 @@ function getBooks(&$itempage){
 while($row = mysqli_fetch_assoc($result)) {
    $encode[] = $row;
 }
-  $itempage+=40;
+    $itempage+=1;
   return json_encode($encode);
 }
 

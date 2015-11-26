@@ -1,4 +1,4 @@
-<!-- Pooja,Tingting,Allan,Shubham -->
+<!-- ********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************-->
 <?php
 ini_set('display_errors', 'On');
 session_start();

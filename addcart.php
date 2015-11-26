@@ -1,4 +1,4 @@
-<!-- Pooja,Allan,Tingting,Shubham -->
+<!-- ********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************-->
 <?php
 
 require_once('func.php');

@@ -18,12 +18,12 @@ if(($data)==0){
 }else{
   $result = mysqli_query($connection, "SELECT * FROM usr WHERE name='$name' and password='$password'");
   $data = mysqli_num_rows($result);
-if(($data)==1){
-  $_SESSION['user']=$name;
-  echo "Success";
-}else{
-  echo "Password incorrect!";
-}
+	if(($data)==1){
+	  $_SESSION['user']=$name;
+	  echo "Success";
+	}else{
+	  echo "Password incorrect!";
+	}
 }
 mysqli_close ($connection);
 ?>

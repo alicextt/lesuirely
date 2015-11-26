@@ -1,4 +1,4 @@
-//1. set ul width 
+//1. set ul width
 //2. image when click prev/next button
 var ul;
 var li_items;
@@ -21,7 +21,7 @@ function init(){
   /*
   prev.onclick = function(){slide(-1);};
   next.onclick = function(){slide(1);};*/
-  setInterval(onClickNext, 5000);
+  setInterval(onClickNext, 10000);
   prev.onclick = function(){ onClickPrev();};
   next.onclick = function(){ onClickNext();};
 }
@@ -56,7 +56,7 @@ function slideTo(imageToGo){
     step:function(delta){
       ul.style.left = parseInt(currentPostion + direction * delta * imageWidth * numOfImageToGo) + 'px';
     },
-    callback:function(){currentImage = imageToGo;}  
+    callback:function(){currentImage = imageToGo;}
   };
   animate(opts);
 }
@@ -64,19 +64,19 @@ function slideTo(imageToGo){
 function onClickPrev(){
   if (currentImage == 0){
     slideTo(imageNumber - 1);
-  }     
+  }
   else{
     slideTo(currentImage - 1);
-  }   
+  }
 }
 
 function onClickNext(){
   if (currentImage == imageNumber - 1){
     slideTo(0);
-  }   
+  }
   else{
     slideTo(currentImage + 1);
-  }   
+  }
 }
 
 window.onload = init;

@@ -6,6 +6,103 @@ function getDate(){
 $(window).load(function(){
   window.resizeTo(1245, 800);
 
+$("#changes").click(function(){
+  var fname = $("#fname").val();
+  var lname = $("#lname").val();
+  var usr = $("#usr").val();
+  var email = $("#email").val();
+  var pwd = $("#pwd").val();
+  var cpwd = $("#cpwd").val();
+  var address1 = $("#address1").val();
+  var address2 = $("#address2").val();
+  var city = $("#city").val();
+  var state = $("#state").val();
+  var country = $("#country").val();
+  var zip = $("#zip").val();
+
+  var errorText = "";
+  var count = 0;
+
+  if(fname == ''){
+    errorText += "Please enter the first name \n";
+  }
+  else{
+    count++;
+  }
+  if(lname == ''){
+    errorText += "Please enter the last name \n";
+  }
+  else{
+    count++;
+  }
+  if(usr == ''){
+    errorText += "Please enter the user name \n";
+  }
+  else{
+    count++;
+  }
+  if(pwd == '' || cpwd == ''){
+    errorText += "Please enter the password \n";
+  }
+  else{
+    count++;
+  }
+  if(address1 == '' ){
+    errorText += "Please enter the address first line \n";
+  }
+  else{
+    count++;
+  }
+  if(city == ''){
+    errorText += "Please enter the city \n";
+  }
+  else{
+    count++;
+  }
+  if(state == ''){
+    errorText += "Please select the state \n";
+  }
+  else{
+    count++;
+  }
+  if(country == ''){
+    errorText += "Please enter the country \n";
+  }
+  else{
+    count++;
+  }
+  if(zip == ''){
+    errorText += "Please enter the zip code \n";
+  }
+  else{
+    count++;
+  }
+
+  if(count == 9){
+    if(pwd === cpwd){
+      //alert("yes");
+      $.post("info.php", {
+        fname1: fname,
+        lname1: lname,
+        name1: name,
+        email1: email,
+        password1: password
+      }, function(data) {
+        if (data == 'Success') {
+          $("form")[0].reset();
+          // this will jump to the index html
+          window.location.replace("login.html");
+        }
+        // alert(data);
+      });
+    }
+    else{
+      errorText = "Passwords do not match";
+    }
+  }
+
+});
+
 //**************** used in signUp.html . the register button clicked will first do validation and then will do an ajax call to register.php and save data into DB.
 $("#register").click(function(){
   
@@ -206,11 +303,11 @@ function init(){
   ul = document.getElementById('image_slider');
   li_items = ul.children;
   imageNumber = li_items.length;
-  imageWidth = li_items[0].children[0].clientWidth;
+  imageWidth = li_items[0].children[0].children[0].clientWidth;
   ul.style.width = parseInt(imageWidth * imageNumber) + 'px';
   prev = document.getElementById("prev");
   next = document.getElementById("next");
-  setInterval(onClickNext, 5000);
+  setInterval(onClickNext, 8000);
   prev.onclick = function(){ onClickPrev();};
   next.onclick = function(){ onClickNext();};
 }
@@ -267,6 +364,7 @@ function onClickNext(){
     slideTo(currentImage + 1);
   }
 }
+
 
 
 window.onload = init;

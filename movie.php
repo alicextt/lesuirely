@@ -1,6 +1,7 @@
 <?php
 session_start();
 ini_set('display_errors', 'On');
+include("func.php");
 ?>
 <!DocType html>
 <html>
@@ -39,8 +40,10 @@ ini_set('display_errors', 'On');
           </li>
           <li><a id = "signup" href = "signup.html">Join Today</a></li>
           <li><a id = "sign" href="login.html">Sign In</a></li>
-          <li><a href="checkout.html"><img src="cart.png" alt="Lesuirely" height="50" width="50"></a></li>
-        </ul>
+          <li><a href="checkout.html"><img src="cart.png" alt="Lesuirely" height="50" width="50"><span id="cart"><?php
+          echo getCartItemQuantity();
+          ?></span></a></li>
+          </ul>
       </div>
     </header>
     <div>
@@ -52,22 +55,22 @@ ini_set('display_errors', 'On');
             </h2>
           </li>
           <li>
-            <a onclick = "changeImage();" id = "id">Action</a>
+            <a href="movie.php?tag=action">Action</a>
           </li>
           <li>
-            <a href="movie.php">Sci-Fi</a>
+            <a href="movie.php?tag=sci-fi">Sci-Fi</a>
           </li>
           <li>
-            <a href="movie.php">Comedy</a>
+            <a href="movie.php?tag=comedy">Comedy</a>
           </li>
           <li>
-            <a href="movie.php">Drama</a>
+            <a href="movie.php?tag=drama">Drama</a>
           </li>
           <li>
-            <a href="movie.php">Adventure</a>
+            <a href="movie.php?tag=Adventure">Adventure</a>
           </li>
           <li>
-            <a href="movie.php">Thriller</a>
+            <a href="movie.php?tag=Thriller">Thriller</a>
           </li>
           <li>
             <a href="movie.php">All Categories</a>
@@ -75,15 +78,15 @@ ini_set('display_errors', 'On');
         </ul>
       </div>
       <div class="right">
-        <table>
-          <?php
-          ini_set('display_errors', 'On');
+        <?php
+        $itempage=1;
+        $tag='';
+        $people='';
+        $jsonData=getMovies($itempage, $tag, $people);
+        $json = json_decode($jsonData);
+        ?>
 
-          include("func.php");
-          $itempage=1;
-          $jsonData=getMovies($itempage);
-          $json = json_decode($jsonData);
-          ?>
+        <table>
           <tr class="movie">
             <?php
             $count=0;
@@ -108,12 +111,23 @@ ini_set('display_errors', 'On');
 
           </tr>
         </table>
+        <div id="changePage" class="center">
+          <ul class="pagination">
+            <?php
+            $max =getMaxid('movie', $tag, $people);
+            for($i=1;$i<$max/50+1;$i++){
+              if($i==$itempage-1){
+                echo "<li class='active'><a href='movie.php?page=$i&tag=$tag&people=$people'>$i</a></li>";
+              }else{
+                echo "<li><a href='movie.php?page=$i&tag=$tag&people=$people'>$i</a></li>";
+              }
+            }
+             ?>
+          </ul>
+        </div>
       </div>
     </div>
     <div id="copycont">
-      <?php
-      print_r($_SESSION);
-?>
       <footer>
         <p class="center"> Copyright@2015, designed by <a class="yellow">Leisurely Admin | Privacy Policy</a></p>
         <p class="center">  Site Last Modified:

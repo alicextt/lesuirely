@@ -1,5 +1,8 @@
 <?php
 session_start();
+ini_set('display_errors', 'On');
+include("func.php");
+
 ?>
 <!DocType html>
 <html>
@@ -40,8 +43,10 @@ session_start();
           </li>
           <li><a id = "signup" href = "signup.html">Join Today</a></li>
           <li><a id = "sign" href="login.html">Sign In</a></li>
-          <li><a href="checkout.html"><img src="cart.png" alt="Lesuirely" height="50" width="50"></a></li>
-        </ul>
+          <li><a href="checkout.html"><img src="cart.png" alt="Lesuirely" height="50" width="50"><span id="cart"><?php
+          echo getCartItemQuantity();
+          ?></span></a></li>
+                </ul>
       </div>
     </header>
     <div>
@@ -53,22 +58,22 @@ session_start();
             </h2>
           </li>
           <li>
-            <a href="book.php">Web</a>
+            <a href="book.php?tag=web">Web</a>
           </li>
           <li>
-            <a href="book.php">computer-science</a>
+            <a href="book.php?tag=computer-science">computer-science</a>
           </li>
           <li>
-            <a href="book.php">classical-music</a>
+            <a href="book.php?tag=music">classical-music</a>
           </li>
           <li>
-            <a href="book.php">agriculture</a>
+            <a href="book.php?tag=agriculture">agriculture</a>
           </li>
           <li>
-            <a href="book.php">crime</a>
+            <a href="book.php?tag=crime">crime</a>
           </li>
           <li>
-            <a href="book.php">cultural-studies</a>
+            <a href="book.php?tag=cultural">cultural-studies</a>
           </li>
           <li>
             <a href="book.php">All Categories</a>
@@ -78,12 +83,12 @@ session_start();
       <div class="right">
         <table>
           <?php
-          ini_set('display_errors', 'On');
-
-          include("func.php");
           $itempage=1;
-          $jsonData=getBooks($itempage);
+          $tag='';
+          $people='';
+          $jsonData=getBooks($itempage, $tag, $people);
           $json = json_decode($jsonData);
+
           ?>
           <tr class="movie">
             <?php
@@ -109,6 +114,20 @@ session_start();
 
           </tr>
         </table>
+        <div id="changePage" class="center">
+          <ul class="pagination">
+            <?php
+            $max =getMaxid('book', $tag, $people);
+            for($i=1;$i<$max/40+1;$i++){
+              if($i==$itempage-1){
+                echo "<li class='active'><a href='book.php?page=$i&tag=$tag&people=$people'>$i</a></li>";
+              }else{
+                echo "<li><a href='book.php?page=$i&tag=$tag&people=$people'>$i</a></li>";
+              }
+            }
+             ?>
+          </ul>
+        </div>
       </div>
     </div>
     <div id="copycont">

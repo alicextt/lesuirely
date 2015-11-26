@@ -20,11 +20,12 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
   $result = mysqli_query($connection, "SELECT * FROM usr WHERE name = '$name'");
   $data = mysqli_num_rows($result);
   if(($data)==0){
-    $query = mysqli_query($connection, "INSERT INTO usr(fname, lname, name, email, password) values ('$fname', '$lname', $name', '$email', '$password')"); // Insert query
+    $query = mysqli_query($connection, "INSERT INTO usr(fname, lname, name, email, password) values ('$fname', '$lname', '$name', '$email', '$password')"); // Insert query
     if($query){
       echo "Success";
     }else
     {
+	echo "INSERT INTO usr(fname, lname, name, email, password) values ('$fname', '$lname', $name', '$email', '$password')"; // Insert query
       echo "Error....!!";
     }
   }else{

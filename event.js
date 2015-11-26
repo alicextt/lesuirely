@@ -170,11 +170,11 @@ function init(){
   ul = document.getElementById('image_slider');
   li_items = ul.children;
   imageNumber = li_items.length;
-  imageWidth = li_items[0].children[0].clientWidth;
+  imageWidth = li_items[0].children[0].children[0].clientWidth;
   ul.style.width = parseInt(imageWidth * imageNumber) + 'px';
   prev = document.getElementById("prev");
   next = document.getElementById("next");
-  setInterval(onClickNext, 5000);
+  setInterval(onClickNext, 8000);
   prev.onclick = function(){ onClickPrev();};
   next.onclick = function(){ onClickNext();};
 }

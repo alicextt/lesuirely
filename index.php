@@ -59,10 +59,10 @@ include("func.php");
     <div class="slide">
       <div class="slider_wrapper">
         <ul id="image_slider">
-          <li><img src="images/1.jpg"></li>
-          <li><img src="images/2.jpg"></li>
-          <li><img src="images/3.jpg"></li>
-          <li><img src="images/4.jpg"></li>
+          <li><a href="itemdetail.php?id=1&cat=movie"><img src="images/1.jpg"></a></li>
+          <li><a href="itemdetail.php?id=39&cat=book"><img src="images/2.jpg"></a></li>
+          <li><a href="itemdetail.php?id=295&cat=movie"><img src="images/3.jpg"></a></li>
+          <li><a href="itemdetail.php?id=82&cat=book">  <img src="images/4.jpg"></a></li>
         </ul>
         <span class="nvgt" id="prev"></span>
         <span class="nvgt" id="next"></span>

@@ -8,11 +8,39 @@ $(window).load(function(){
 
 //**************** used in signUp.html . the register button clicked will first do validation and then will do an ajax call to register.php and save data into DB.
 $("#register").click(function(){
+  
+  var fname = $("#fname").val();
+  var lname = $("#lname").val();
   var name=$("#usr").val();
   var email = $("#email").val();
   var password = $("#pwd").val();
   var cpassword = $("#cpwd").val();
   var count=0;
+
+  if(fname == ''){
+    $("#fnameError").text('* Empty first name!');
+  }
+  else if (fname.match("/^[a-zA-Z ]*$/")) {
+    $("#fnameError").text('* Only letters and whitespace allowed!'); 
+  }
+  else{
+    $("#fnameError").text('');
+    count++;
+    //console.log(fname);
+  }
+
+  if(lname == ''){
+    $("#lnameError").text('* Empty last name!');
+  }
+  else if (lname.match("/^[a-zA-Z ]*$/")) {
+    $("#lnameError").text('* Only letters and whitespace allowed!'); 
+  }
+  else{
+    $("#lnameError").text('');
+    count++;
+    //console.log(lname);
+  }
+
   if(name == ''){
     $("#usrerror").text('* Empty user name !');
   }else if(!name.match(/^\w+$/)){
@@ -21,6 +49,7 @@ $("#register").click(function(){
   }else{
     $("#usrerror").text('');
     count++;
+    //console.log(name);
   }
 
   if(email == ''){
@@ -30,6 +59,7 @@ $("#register").click(function(){
   }else{
     $("#mailerror").text('');
     count++;
+    //console.log(email);
   }
 
   if(password == ''){
@@ -39,6 +69,7 @@ $("#register").click(function(){
   }else{
     $("#pwderror").text('');
     count++;
+    //console.log(password);
   }
 
   if(cpassword!=password){
@@ -46,10 +77,15 @@ $("#register").click(function(){
   }else{
     $("#cpwderror").text('');
     count++;
+    //console.log(cpassword);
   }
-  if(count==4)
+
+  if(count==6)
   {
+    //alert("yes");
     $.post("register.php", {
+      fname1: fname,
+      lname1: lname,
       name1: name,
       email1: email,
       password1: password
@@ -231,5 +267,6 @@ function onClickNext(){
     slideTo(currentImage + 1);
   }
 }
+
 
 window.onload = init;

@@ -53,4 +53,4 @@ function getitembyid($category, $id){
   $data = mysqli_fetch_assoc($result);
   return json_encode($data);
 }
- ?>
+?>

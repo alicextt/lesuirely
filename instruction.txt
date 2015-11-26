@@ -1,4 +1,4 @@
-For Git:
+﻿For Git:
 1. Use git pull before writing code.
 2. To commit code:
 git add —-all
@@ -48,3 +48,25 @@ create table movie(
 For shopping cart:
 https://codegeekz.com/free-jquery-shopping-cart-plugins/
 http://livedocs.digicrafts.com.hk/examples/JSAJAXPayPalCart/
+
+CREATE TABLE `addresses` (
+  `addressId` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `userId` float NOT NULL DEFAULT -1,
+  `line1` varchar(255) NOT NULL DEFAULT '',
+  `line2` varchar(255) NULL DEFAULT '',
+  `city` varchar(255) NOT NULL DEFAULT '',
+  `state` varchar(255) NOT NULL DEFAULT '',
+  `zip` float NOT NULL DEFAULT -1,
+  `default` boolean NULL,
+  PRIMARY KEY (`addressId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `payments` (
+  `paymentId` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `userId` float NOT NULL DEFAULT -1,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `cardnumber` float NOT NULL DEFAULT -1,
+  `cvv` float NOT NULL DEFAULT -1,
+  `date` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`paymentId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

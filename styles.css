@@ -8,7 +8,7 @@ body{
   margin: 0;
   width: inherit;
   background-image: url("book3.jpg");
-  position: fixed;
+  /*position: fixed;*/
 }
 
 input{
@@ -99,7 +99,7 @@ form .glyphicon-search{
 .right {
   width:70%;
   padding-left: 190px;
-  padding-top: 170px;
+  padding-top: 30px;
   margin-bottom: 40px;
 }
 .right form{
@@ -356,8 +356,8 @@ td a:link{
   margin: 0px;
 }
 .vuser{
-  padding-top: 135px;
-  /*font-weight: bold;*/
+  /*padding-top: 135px;
+  font-weight: bold;*/
   padding-left: 50px;
 }
 /*Slideshow*/
@@ -411,6 +411,7 @@ td a:link{
 #copycont{
   height: 70px;
   padding: 20px;
+  margin-top: 20px;
   line-height: 10px;
   font-family: "Trebuchet MS";
   font-size: 12px;

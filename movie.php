@@ -40,7 +40,7 @@ include("func.php");
           </li>
           <li><a id = "signup" href = "signup.html">Join Today</a></li>
           <li><a id = "sign" href="login.html">Sign In</a></li>
-          <li><a href="checkout.html"><img src="cart.png" alt="Lesuirely" height="50" width="50"><span id="cart"><?php
+          <li><a href="checkout.php"><img src="cart.png" alt="Lesuirely" height="50" width="50"><span id="cart"><?php
           echo getCartItemQuantity();
           ?></span></a></li>
           </ul>

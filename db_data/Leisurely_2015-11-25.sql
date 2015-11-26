@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.42)
 # Database: Leisurely
-# Generation Time: 2015-11-24 07:57:56 +0000
+# Generation Time: 2015-11-26 02:01:50 +0000
 # ************************************************************
 
 
@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS `book`;
 
 CREATE TABLE `book` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `tag` varchar(255) DEFAULT NULL,
+  `tags` varchar(255) DEFAULT NULL,
   `rate` decimal(10,2) DEFAULT NULL,
   `title` varchar(255) NOT NULL DEFAULT '',
   `author` varchar(255) DEFAULT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE `book` (
 LOCK TABLES `book` WRITE;
 /*!40000 ALTER TABLE `book` DISABLE KEYS */;
 
-INSERT INTO `book` (`id`, `tag`, `rate`, `title`, `author`, `imgurl`, `description`, `price`)
+INSERT INTO `book` (`id`, `tags`, `rate`, `title`, `author`, `imgurl`, `description`, `price`)
 VALUES
 	(1,'10th-century',4.05,'The Arabian Nights','Anonymous,Richard Francis Burton,A.S. Byatt','http://d.gr-assets.com/books/1388212809l/93101.jpg','Full of mischief, valor, ribaldry, and romance, ',16.89),
 	(2,'10th-century',4.34,'The Empty Throne (The Saxon Stories, #8)','Bernard Cornwell','http://d.gr-assets.com/books/1408716325l/21045103.jpg','This eighth entry in New York Times bestselling author Bernard Cornwell\'s epic Saxon Tales series brings to life the harrowing and turbulent tale of a nation torn apart by sectarian and religious strife, a political struggle dominated by dynastic rivalries, and the remarkable strength that elevates some characters above their time',3.18),

@@ -58,22 +58,22 @@ include("func.php");
             </h2>
           </li>
           <li>
-            <a href="book.php">Web</a>
+            <a href="book.php?tag=web">Web</a>
           </li>
           <li>
-            <a href="book.php">computer-science</a>
+            <a href="book.php?tag=computer-science">computer-science</a>
           </li>
           <li>
-            <a href="book.php">classical-music</a>
+            <a href="book.php?tag=music">classical-music</a>
           </li>
           <li>
-            <a href="book.php">agriculture</a>
+            <a href="book.php?tag=agriculture">agriculture</a>
           </li>
           <li>
-            <a href="book.php">crime</a>
+            <a href="book.php?tag=crime">crime</a>
           </li>
           <li>
-            <a href="book.php">cultural-studies</a>
+            <a href="book.php?tag=cultural">cultural-studies</a>
           </li>
           <li>
             <a href="book.php">All Categories</a>
@@ -84,10 +84,14 @@ include("func.php");
         <table>
           <?php
           $itempage=1;
+          $tag='';
+          if(!empty($_GET['tag'])){
+            $tag=$_GET['tag'];
+          }
           if(!empty($_GET['page'])){
           $itempage=(int)$_GET['page'];
          }
-          $jsonData=getBooks($itempage);
+          $jsonData=getBooks($itempage,$tag);
           $json = json_decode($jsonData);
 
           ?>
@@ -118,12 +122,12 @@ include("func.php");
         <div id="changePage" class="center">
           <ul class="pagination">
             <?php
-            $max =getMaxid('book');
-            for($i=1;$i<$max/40;$i++){
+            $max =getMaxid('book', $tag);
+            for($i=1;$i<$max/40+1;$i++){
               if($i==$itempage-1){
-                echo "<li class='active'><a href='book.php?page=$i'>$i</a></li>";
+                echo "<li class='active'><a href='book.php?page=$i&tag=$tag'>$i</a></li>";
               }else{
-                echo "<li><a href='book.php?page=$i'>$i</a></li>";
+                echo "<li><a href='book.php?page=$i&tag=$tag'>$i</a></li>";
               }
             }
              ?>

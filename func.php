@@ -1,31 +1,47 @@
 <?php
 ini_set('display_errors', 'On');
 
-function getMovies(&$itempage){
+function getMovies(&$itempage, $tag){
   $connection = new mysqli("localhost", "root", "root", "Leisurely"); // Establishing connection with server..
   if($connection->connect_errno){
     echo "Failed to connect to Mysql";
     exit();
   }
+  mysqli_query($connection, 'SET CHARACTER SET utf8');
+
+  if(empty($tag)){
   $min = ($itempage-1)*50;
   $max = $itempage*50;
-  mysqli_query($connection, 'SET CHARACTER SET utf8');
   $stmt = "SELECT id, imgurl, title, year
-   FROM     movie
-   WHERE    id>$min
-   AND      id<=$max";
-   $result = $connection->query($stmt);
+  FROM     movie
+  WHERE    id>$min
+  AND      id<=$max";
+  $result = $connection->query($stmt);
 
-   $encode = array();
+  $encode = array();
 
-while($row = mysqli_fetch_assoc($result)) {
-   $encode[] = $row;
-}
+  while($row = mysqli_fetch_assoc($result)) {
+    $encode[] = $row;
+  }
   $itempage+=1;
   return json_encode($encode);
+}else{
+  $num=($itempage-1)*50;
+  $stmt = "SELECT id, imgurl, title, year
+  FROM     movie
+  WHERE   tags like '%$tag%' order by id limit $num, 50";
+  $result = $connection->query($stmt);
+
+  $encode = array();
+  while($row = mysqli_fetch_assoc($result)) {
+    $encode[] = $row;
+  }
+  $itempage+=1;
+  return json_encode($encode);
+ }
 }
 
-function getMaxid($table){
+function getMaxid($table, $tag){
   $connection = new mysqli("localhost", "root", "root", "Leisurely"); // Establishing connection with server..
   if($connection->connect_errno){
     echo "Failed to connect to Mysql";
@@ -33,13 +49,13 @@ function getMaxid($table){
   }
   mysqli_query($connection, 'SET CHARACTER SET utf8');
 
-  $stmt = "SELECT id from $table order by id desc limit 1";
+  $stmt = "SELECT count(*) from $table where tags like '%$tag%' ";
   $result = $connection->query($stmt);
   $row = mysqli_fetch_row($result);
   return $row[0];
 }
 
-function getBooks(&$itempage){
+function getBooks(&$itempage, $tag){
   $connection = new mysqli("localhost", "root", "root", "Leisurely"); // Establishing connection with server..
   if($connection->connect_errno){
     echo "Failed to connect to Mysql";
@@ -47,19 +63,36 @@ function getBooks(&$itempage){
   }
   mysqli_query($connection, 'SET CHARACTER SET utf8');
 
+  if(empty($tag)){
+  $min = ($itempage-1)*40;
+  $max = $itempage*40;
   $stmt = "SELECT id, imgurl, title
-   FROM     book
-   WHERE    id>($itempage-1)*40
-   AND      id<=$itempage*40";
-   $result = $connection->query($stmt);
+  FROM     book
+  WHERE    id>$min
+  AND      id<=$max";
+  $result = $connection->query($stmt);
 
-   $encode = array();
+  $encode = array();
 
-while($row = mysqli_fetch_assoc($result)) {
-   $encode[] = $row;
-}
-    $itempage+=1;
+  while($row = mysqli_fetch_assoc($result)) {
+    $encode[] = $row;
+  }
+  $itempage+=1;
   return json_encode($encode);
+}else{
+  $num=($itempage-1)*40;
+  $stmt = "SELECT id, imgurl, title
+  FROM     book
+  WHERE   tags like '%$tag%' order by id limit $num, 40";
+  $result = $connection->query($stmt);
+
+  $encode = array();
+  while($row = mysqli_fetch_assoc($result)) {
+    $encode[] = $row;
+  }
+  $itempage+=1;
+  return json_encode($encode);
+ }
 }
 
 function getitembyid($category, $id){
@@ -97,17 +130,17 @@ class pitem{
 function getCartItemQuantity(){
   $quantity=0;
   if(!empty($_SESSION['items'])){
-  $items = unserialize($_SESSION['items']);
-  if($items){
-  foreach($items as $key ){
-    if($key->ptype=='Buy'){
-    $quantity+=$key->quantity;
-  }else{
-    $quantity+=1;
+    $items = unserialize($_SESSION['items']);
+    if($items){
+      foreach($items as $key ){
+        if($key->ptype=='Buy'){
+          $quantity+=$key->quantity;
+        }else{
+          $quantity+=1;
+        }
+      }
+    }
   }
-  }
+  return $quantity;
 }
-}
-return $quantity;
-}
- ?>
+?>

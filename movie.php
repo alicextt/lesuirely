@@ -55,22 +55,22 @@ include("func.php");
             </h2>
           </li>
           <li>
-            <a href="movie.php">Action</a>
+            <a href="movie.php?tag=action">Action</a>
           </li>
           <li>
-            <a href="movie.php">Sci-Fi</a>
+            <a href="movie.php?tag=sci-fi">Sci-Fi</a>
           </li>
           <li>
-            <a href="movie.php">Comedy</a>
+            <a href="movie.php?tag=comedy">Comedy</a>
           </li>
           <li>
-            <a href="movie.php">Drama</a>
+            <a href="movie.php?tag=drama">Drama</a>
           </li>
           <li>
-            <a href="movie.php">Adventure</a>
+            <a href="movie.php?tag=Adventure">Adventure</a>
           </li>
           <li>
-            <a href="movie.php">Thriller</a>
+            <a href="movie.php?tag=Thriller">Thriller</a>
           </li>
           <li>
             <a href="movie.php">All Categories</a>
@@ -80,10 +80,14 @@ include("func.php");
       <div class="right">
         <?php
         $itempage=1;
+        $tag='';
+        if(!empty($_GET['tag'])){
+          $tag=$_GET['tag'];
+        }
         if(!empty($_GET['page'])){
         $itempage=(int)$_GET['page'];
        }
-        $jsonData=getMovies($itempage);
+        $jsonData=getMovies($itempage, $tag);
         $json = json_decode($jsonData);
 
         ?>
@@ -116,12 +120,12 @@ include("func.php");
         <div id="changePage" class="center">
           <ul class="pagination">
             <?php
-            $max =getMaxid('movie');
-            for($i=1;$i<$max/50;$i++){
+            $max =getMaxid('movie', $tag);
+            for($i=1;$i<$max/50+1;$i++){
               if($i==$itempage-1){
-                echo "<li class='active'><a href='movie.php?page=$i'>$i</a></li>";
+                echo "<li class='active'><a href='movie.php?page=$i&tag=$tag'>$i</a></li>";
               }else{
-                echo "<li><a href='movie.php?page=$i'>$i</a></li>";
+                echo "<li><a href='movie.php?page=$i&tag=$tag'>$i</a></li>";
               }
             }
              ?>

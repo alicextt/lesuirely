@@ -40,8 +40,18 @@ include("func.php");
               </div>
             </form>
           </li>
-          <li><a id = "signup" href = "signup.html">Join Today</a></li>
-          <li><a id = "sign" href="login.html">Sign In</a></li>
+          <?php  if(isset($_SESSION['user'])){
+            ?>
+            <li><a id = "signup" href = "signup.html">Join Today</a></li>
+            <li><a id = "sign" href="login.html">Sign In</a></li>
+            <?php
+          }else{
+            ?>
+            <li><a id = "signup" href = "userIno.html">Info</a></li>
+            <li><a id = "sigout" href="logout.html">Logout</a></li>
+            <?php
+          }
+          ?>
           <li><a href="checkout.html"><img src="cart.png" alt="Lesuirely" height="50" width="50"><span id="cart"><?php
           echo getCartItemQuantity();
           ?></span></a></li>        </ul>
@@ -49,25 +59,25 @@ include("func.php");
     </header>
     <div class="vuser">
       <?php
-      require_once('func.php');
       if(isset($_SESSION['user'])){
         $user= $_SESSION['user'];
           echo "<h1>$user, Welcome Back!</h1>";
       }
        ?>
+       <div class="slide">
+         <div class="slider_wrapper">
+           <ul id="image_slider">
+             <li><a href="itemdetail.php?id=1&cat=movie"><img src="images/1.jpg"></a></li>
+             <li><a href="itemdetail.php?id=39&cat=book"><img src="images/2.jpg"></a></li>
+             <li><a href="itemdetail.php?id=295&cat=movie"><img src="images/3.jpg"></a></li>
+             <li><a href="itemdetail.php?id=82&cat=book">  <img src="images/4.jpg"></a></li>
+           </ul>
+           <span class="nvgt" id="prev"></span>
+           <span class="nvgt" id="next"></span>
+         </div>
+       </div>
     </div>
-    <div class="slide">
-      <div class="slider_wrapper">
-        <ul id="image_slider">
-          <li><a href="itemdetail.php?id=1&cat=movie"><img src="images/1.jpg"></a></li>
-          <li><a href="itemdetail.php?id=39&cat=book"><img src="images/2.jpg"></a></li>
-          <li><a href="itemdetail.php?id=295&cat=movie"><img src="images/3.jpg"></a></li>
-          <li><a href="itemdetail.php?id=82&cat=book">  <img src="images/4.jpg"></a></li>
-        </ul>
-        <span class="nvgt" id="prev"></span>
-        <span class="nvgt" id="next"></span>
-      </div>
-    </div>
+
     <div id="copycont">
       <footer>
           <p class="center"> Copyright@2015, designed by <a class="yellow">Leisurely Admin | Privacy Policy</a></p>

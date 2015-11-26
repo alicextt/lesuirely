@@ -1,5 +1,10 @@
-<!DocType html>
+<?php
+session_start();
+ini_set('display_errors', 'On');
+include("func.php");
+?>
 
+<!DocType html>
 <html>
 <head>
   <title>
@@ -28,7 +33,7 @@
 
         <div class="accordion_head">Customer<span class="plusminus">+</span></div>
 
-        <div class="accordion_body"> 
+        <div class="accordion_body">
           <div class ="form1">
           <ul>
             <li>
@@ -177,10 +182,10 @@
           </div>
           <div class="radio">
               <label><input type="radio" name="optradio1">2 business days - $17.00</label>
-          </div>  
+          </div>
           <div class="radio">
                 <label><input type="radio" name="optradio1">1 business day - $22.00</label>
-          </div>  
+          </div>
           <div class="radio">
               <label><input type="radio" name="optradio">2 business days - $17.00</label>
           </div>

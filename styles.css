@@ -8,7 +8,8 @@ body{
   margin: 0;
   width: inherit;
   background-image: url("book3.jpg");
-  /*position: fixed;*/
+  position: fixed;
+  z-index: 1;
 }
 
 input{
@@ -102,7 +103,7 @@ form .glyphicon-search{
 
 .right {
   padding-left: 190px;
-  padding-top: 30px;
+  padding-top: 170px;
   margin-bottom: 40px;
 }
 .right form{
@@ -360,14 +361,15 @@ td a:link{
   margin: 0px;
 }
 .vuser{
-  /*padding-top: 135px;
-  font-weight: bold;*/
+  padding-top: 135px;
+  font-weight: bold;
   padding-left: 50px;
 }
 /*Slideshow*/
 .slide{
   padding-top:5px;
   vertical-align: center;
+  margin-bottom: 15px;
 }
 .slider_wrapper{
   overflow: hidden;

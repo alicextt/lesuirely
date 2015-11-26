@@ -10,6 +10,7 @@ $fname = $_POST['fname1'];
 $lname = $_POST['lname1'];
 $name = $_POST['name1']; // Fetching Values from URL.
 $email=$_POST['email1'];
+//Pooja,Allan,Shubham,Tingting
 $password= sha1($_POST['password1']); // Password Encryption, If you like you can also leave sha1.
 
 // Check if e-mail address syntax is valid or not

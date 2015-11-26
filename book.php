@@ -85,13 +85,8 @@ include("func.php");
           <?php
           $itempage=1;
           $tag='';
-          if(!empty($_GET['tag'])){
-            $tag=$_GET['tag'];
-          }
-          if(!empty($_GET['page'])){
-          $itempage=(int)$_GET['page'];
-         }
-          $jsonData=getBooks($itempage,$tag);
+          $people='';
+          $jsonData=getBooks($itempage, $tag, $people);
           $json = json_decode($jsonData);
 
           ?>
@@ -122,12 +117,12 @@ include("func.php");
         <div id="changePage" class="center">
           <ul class="pagination">
             <?php
-            $max =getMaxid('book', $tag);
+            $max =getMaxid('book', $tag, $people);
             for($i=1;$i<$max/40+1;$i++){
               if($i==$itempage-1){
-                echo "<li class='active'><a href='book.php?page=$i&tag=$tag'>$i</a></li>";
+                echo "<li class='active'><a href='book.php?page=$i&tag=$tag&people=$people'>$i</a></li>";
               }else{
-                echo "<li><a href='book.php?page=$i&tag=$tag'>$i</a></li>";
+                echo "<li><a href='book.php?page=$i&tag=$tag&people=$people'>$i</a></li>";
               }
             }
              ?>

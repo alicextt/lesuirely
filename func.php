@@ -1,98 +1,105 @@
 <?php
 ini_set('display_errors', 'On');
 
-function getMovies(&$itempage, $tag){
+function getData($stmt){
   $connection = new mysqli("localhost", "root", "root", "Leisurely"); // Establishing connection with server..
   if($connection->connect_errno){
     echo "Failed to connect to Mysql";
     exit();
   }
   mysqli_query($connection, 'SET CHARACTER SET utf8');
-
-  if(empty($tag)){
-  $min = ($itempage-1)*50;
-  $max = $itempage*50;
-  $stmt = "SELECT id, imgurl, title, year
-  FROM     movie
-  WHERE    id>$min
-  AND      id<=$max";
   $result = $connection->query($stmt);
-
-  $encode = array();
-
-  while($row = mysqli_fetch_assoc($result)) {
-    $encode[] = $row;
-  }
-  $itempage+=1;
-  return json_encode($encode);
-}else{
-  $num=($itempage-1)*50;
-  $stmt = "SELECT id, imgurl, title, year
-  FROM     movie
-  WHERE   tags like '%$tag%' order by id limit $num, 50";
-  $result = $connection->query($stmt);
-
   $encode = array();
   while($row = mysqli_fetch_assoc($result)) {
     $encode[] = $row;
   }
-  $itempage+=1;
   return json_encode($encode);
- }
 }
 
-function getMaxid($table, $tag){
+function getMovies(&$itempage, &$tag, &$people){
+  if(!empty($_GET['tag'])){
+    $tag=$_GET['tag'];
+  }
+  if(!empty($_GET['people'])){
+    $people=$_GET['people'];
+  }
+  if(!empty($_GET['page'])){
+    $itempage=(int)$_GET['page'];
+  }
+  if(empty($tag) && empty($people)){
+    $min = ($itempage-1)*50;
+    $max = $itempage*50;
+    $stmt = "SELECT id, imgurl, title, year
+    FROM     movie
+    WHERE    id>$min
+    AND      id<=$max";
+  }else if(empty($people)){
+    $num=($itempage-1)*50;
+    $stmt = "SELECT id, imgurl, title, year
+    FROM     movie
+    WHERE   tags like '%$tag%' order by id limit $num, 50";
+  }else{
+    $num=($itempage-1)*50;
+    $stmt = "SELECT id, imgurl, title, year
+    FROM     movie
+    WHERE   stars like '%$people%' order by id limit $num, 50";
+  }
+  $itempage+=1;
+  return getData($stmt);
+}
+
+function getMaxid($table, $tag, $people){
   $connection = new mysqli("localhost", "root", "root", "Leisurely"); // Establishing connection with server..
   if($connection->connect_errno){
     echo "Failed to connect to Mysql";
     exit();
   }
   mysqli_query($connection, 'SET CHARACTER SET utf8');
-
-  $stmt = "SELECT count(*) from $table where tags like '%$tag%' ";
+  if(!empty($tag)){
+    $stmt = "SELECT count(*) from $table where tags like '%$tag%' ";
+  }else{
+    if($table=='book'){
+      $stmt = "SELECT count(*) from $table where author like '%$people%' ";
+    }else{
+      $stmt = "SELECT count(*) from $table where stars like '%$people%' ";
+    }
+  }
   $result = $connection->query($stmt);
   $row = mysqli_fetch_row($result);
   return $row[0];
 }
 
-function getBooks(&$itempage, $tag){
-  $connection = new mysqli("localhost", "root", "root", "Leisurely"); // Establishing connection with server..
-  if($connection->connect_errno){
-    echo "Failed to connect to Mysql";
-    exit();
+function getBooks(&$itempage, &$tag, &$people){
+  if(!empty($_GET['tag'])){
+    $tag=$_GET['tag'];
   }
-  mysqli_query($connection, 'SET CHARACTER SET utf8');
-
-  if(empty($tag)){
-  $min = ($itempage-1)*40;
-  $max = $itempage*40;
-  $stmt = "SELECT id, imgurl, title
-  FROM     book
-  WHERE    id>$min
-  AND      id<=$max";
-  $result = $connection->query($stmt);
-
-  $encode = array();
-
-  while($row = mysqli_fetch_assoc($result)) {
-    $encode[] = $row;
+  if(!empty($_GET['people'])){
+    $people=$_GET['people'];
   }
-  $itempage+=1;
-  return json_encode($encode);
-}else{
-  $num=($itempage-1)*40;
-  $stmt = "SELECT id, imgurl, title
-  FROM     book
-  WHERE   tags like '%$tag%' order by id limit $num, 40";
-  $result = $connection->query($stmt);
+  if(!empty($_GET['page'])){
+    $itempage=(int)$_GET['page'];
+  }
 
-  $encode = array();
-  while($row = mysqli_fetch_assoc($result)) {
-    $encode[] = $row;
+  if(empty($tag) && empty($people)){
+    $min = ($itempage-1)*40;
+    $max = $itempage*40;
+    $stmt = "SELECT id, imgurl, title
+    FROM     book
+    WHERE    id>$min
+    AND      id<=$max";
+  }else if(empty($people)){
+    $num=($itempage-1)*40;
+    $stmt = "SELECT id, imgurl, title
+    FROM     book
+    WHERE   tags like '%$tag%' order by id limit $num, 40";
+  }else{
+    $num=($itempage-1)*50;
+    $stmt = "SELECT id, imgurl, title
+    FROM     book
+    WHERE   author like '%$people%' order by id limit $num, 40";
   }
   $itempage+=1;
-  return json_encode($encode);
- }
+  return getData($stmt);
 }
 
 function getitembyid($category, $id){

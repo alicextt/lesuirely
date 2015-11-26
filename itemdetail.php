@@ -73,7 +73,7 @@ include("func.php");
                 $authorarray=explode(',',$authors);
                 foreach ($authorarray as $key) {
                   ?>
-                  <a class="authorName" itemprop="url" href="search.php?author=<?=$key?>"><span itemprop="name"><?=$key?></span></a>
+                  <a class="authorName" itemprop="url" href="book.php?people=<?=$key?>"><span itemprop="name"><?=$key?></span></a>
                   <?php
                 } ?>
               </span>
@@ -91,7 +91,7 @@ include("func.php");
                   $stararray=explode(',',$stars);
                   foreach ($stararray as $key) {
                     ?>
-                    <a class="authorName" itemprop="url" href="search.php?actors=<?=$key?>"><span itemprop="name"><?=$key?></span></a>
+                    <a class="authorName" itemprop="url" href="movie.php?people=<?=$key?>"><span itemprop="name"><?=$key?></span></a>
                     <?php
                   } ?>
               </span>

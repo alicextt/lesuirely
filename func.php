@@ -153,6 +153,11 @@ function getCartItemQuantity(){
   return $quantity;
 }
 
-
+function getPurchasedItem(){
+  if(!empty($_SESSION['items'])){
+    $items = unserialize($_SESSION['items']);
+    }
+  return $items;
+}
 
 ?>

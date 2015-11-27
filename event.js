@@ -169,6 +169,8 @@ var currentImage = 0;
 
 function init(){
   ul = document.getElementById('image_slider');
+  if(!ul)
+    return;
   li_items = ul.children;
   imageNumber = li_items.length;
   imageWidth = li_items[0].children[0].children[0].clientWidth;

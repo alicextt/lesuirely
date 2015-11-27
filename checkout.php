@@ -259,10 +259,40 @@ include("func.php");
   </div>
 
   <!--CART-->
-  <div class="box">
+  <div class="box" id="cartbox">
     <fieldset>
       <legend>Cart</legend>
-
+      <?php
+      $data= getPurchasedItem();
+      ?>
+      <table class="table table-striped">
+        <tr>
+          <th class="col-md-1">Type</th>
+          <th class="col-md-1">Product</th>
+          <th class="col-md-3">Name</th>
+          <th class="col-md-2">Unit Price</th>
+          <th class="col-md-3">Qty</th>
+          <th class="col-md-2">Total Price</th>
+        </tr>
+        <?php
+        foreach($data as $key){
+          $price=$key->uprice;
+          $qty=$key->quantity;
+          $price=str_replace('$','', $price);
+          $tprice = (float)$price * (int)$qty;
+        ?>
+        <tr>
+          <td name="ptype"><?=$key->ptype ?></td>
+          <td name="ctype"><?=$key->ctype?></td>
+          <td name="title" id='purchasetitle'><?=$key->title?></td>
+          <td name="price"><?=$key->uprice?></td>
+          <td name="qty" id="purchaseqty" class="center"><div class="cartqty"><p><?=$key->quantity?></p><button class="btn btn-default">+</button><button class="btn btn-default">-</button></div></td>
+          <td name="tprice">$ <?=$tprice?></td>
+        </tr>
+        <?php
+        }
+        ?>
+      </table>
     </fieldset>
   </div>
 </body>

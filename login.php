@@ -1,5 +1,5 @@
-<!-- ********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************-->
 <?php
+//<!-- ********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************-->
 ini_set('display_errors', 'On');
 session_start();
 

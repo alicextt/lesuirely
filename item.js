@@ -7,6 +7,7 @@ $(document).ready(function(){
     var quantity=tr.find('select option:selected').val();
     var img=$(".left img").attr('src');
     $.post('addcart.php',{
+      id:$('#itemid').text(),
       ptype: ptype,
       ctype: $('title').text(),
       uprice: tr.find("[name='price']").text(),
@@ -50,6 +51,18 @@ $(document).ready(function(){
         console.log("update cart successfully");
       });
     }
+  });
+
+  $('#deletion .btn.btn-danger').click(function(){
+    var tr=$(this).parent().parent().parent();
+    var id=tr.find('.itemid').text();
+    var ctype=tr.find('[name="ctype"]').text().trim();
+    $.post("updateCart.php", {
+      category: ctype,
+      id:id,
+    }, function(data){
+      console.log("delete item from cart successfully");
+    });
   });
 
 });

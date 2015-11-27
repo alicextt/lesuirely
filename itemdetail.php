@@ -62,6 +62,7 @@ include("func.php");
       <div id="itemdetails">
         <div class="rate"><?=$json->rate?></div>
         <h1 id="title"><?=$json->title?></h1>
+        <span id="itemid" hidden><?=$_GET['id']?></span>
         <?php
         if($_GET['cat']=='book'){
           ?>

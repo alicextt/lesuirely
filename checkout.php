@@ -298,7 +298,18 @@ include("func.php");
             echo ' items';
           }
           ?></p>
-            <button class="btn btn-default chqty">-</button><button class="btn btn-default chqty">+</button></div></td>
+          <?php
+          if($qty==0){
+            echo '<button class="btn btn-default chqty disabled">-</button>';
+          }else{
+            echo '<button class="btn btn-default chqty">-</button>';
+          }
+          ?>
+            <button class="btn btn-default chqty">+</button>
+
+          </div>
+          <div id="deletion"><span class="itemid" hidden><?=$key->id?></span><button class="btn btn-danger">delete</button>
+          </div></td>
           <td name="tprice">$ <?=$tprice?></td>
         </tr>
         <?php

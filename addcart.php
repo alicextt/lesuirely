@@ -4,7 +4,7 @@
 session_start();
 require_once('func.php');
 
-$newItem=new pitem($_POST['ptype'],$_POST['ctype'], $_POST['uprice'],$_POST['quantity'], $_POST['title'], $_POST['img']);
+$newItem=new pitem($_POST['id'], $_POST['ptype'],$_POST['ctype'], $_POST['uprice'],$_POST['quantity'], $_POST['title'], $_POST['img']);
 
 $items=array();
 if(isset($_SESSION['items'])&& (!empty($_SESSION['items']))){

@@ -233,11 +233,20 @@ td>img{
   padding:10px;
 }
 
-#purchaseqty button{
+.cartqty>button{
   width:50px;
   margin: 0 5px;
   font-size: 18px;
   padding: 0 15px;
+}
+
+#deletion{
+  margin:15px;
+}
+
+#deletion>button{
+  font-size: 15px;
+  padding: 0 20px;
 }
 
 .box{

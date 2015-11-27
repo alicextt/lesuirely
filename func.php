@@ -130,7 +130,11 @@ class pitem{
   // img url;
   var $img;
 
-  public function __construct($ptype, $ctype, $uprice, $quantity, $title, $img){
+  //item id
+  var $id;
+
+  public function __construct($id, $ptype, $ctype, $uprice, $quantity, $title, $img){
+    $this->id=$id;
     $this->ptype =$ptype;
     $this->ctype =$ctype;
     $this->uprice =$uprice;

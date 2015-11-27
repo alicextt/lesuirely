@@ -211,10 +211,9 @@ td a:link{
 
 }
 
-.center{
-  text-align: center;
+td>img{
+  margin-top: 10px;
 }
-
 .checkout{
   margin: 0px;
   width: 100%;
@@ -231,20 +230,20 @@ td a:link{
 #cartbox{
   width:52%;
   margin-left: 30px;
+  padding:10px;
 }
 
 #purchaseqty button{
-  width:40px;
+  width:50px;
   margin: 0 5px;
+  font-size: 18px;
+  padding: 0 15px;
 }
-.cartqty p{
-  float:left;
-}
+
 .box{
   width: 40%;
   height: auto;
   float: right;
-  /*margin-left: 5%;*/
   margin-right: 30px;
   background: rgba(255,255,255,1.0);
   color: #000;

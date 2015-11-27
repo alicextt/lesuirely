@@ -1,5 +1,6 @@
-<!-- ********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************-->
 <?php
+//********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************
+
 ini_set('display_errors', 'On');
 
 function getData($stmt){
@@ -126,13 +127,16 @@ class pitem{
   var $quantity;
   // item name
   var $title;
+  // img url;
+  var $img;
 
-  public function __construct($ptype, $ctype, $uprice, $quantity, $title){
+  public function __construct($ptype, $ctype, $uprice, $quantity, $title, $img){
     $this->ptype =$ptype;
     $this->ctype =$ctype;
     $this->uprice =$uprice;
     $this->quantity =$quantity;
     $this->title =$title;
+    $this->img = $img;
   }
 }
 
@@ -154,6 +158,7 @@ function getCartItemQuantity(){
 }
 
 function getPurchasedItem(){
+  $items='';
   if(!empty($_SESSION['items'])){
     $items = unserialize($_SESSION['items']);
     }

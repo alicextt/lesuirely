@@ -169,4 +169,19 @@ function getPurchasedItem(){
   return $items;
 }
 
+function searchMovie(&$search, &$itempage){
+  if(!empty($_GET['search'])){
+    $search=$_GET['search'];
+  }
+  if(!empty($_GET['page'])){
+    $itempage=(int)$_GET['page'];
+  }
+  $num=($itempage-1)*50;
+  $stmt = "select * from movie
+  where title like '%$search%' or year like '%$search%'
+  or description like '%$search%' or tags like '%$search%' or stars like '%$search%' order by id limit $num, 50";
+  $itempage+=1;
+  return getData($stmt);
+}
+
 ?>

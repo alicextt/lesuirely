@@ -31,18 +31,25 @@ $(document).ready(function(){
   });
 
   $('.btn.btn-default.chqty').click(function(){
+    var qty=$(this).parent().find('span');
+    var t=parseInt(qty.text());
+    var x= $(this).parent().parent().parent().find('[name="title"] p').text();
     if ($(this).text()=='+'){
-      var qty=$(this).parent().find('span');
-      var t=parseInt(qty.text())+1;
-      var x= $(this).parent().parent().parent().find('[name="title"] p').text();
+      $(this).siblings().prop('disabled',false);
       $.post("updateCart.php", {
         title: x,
-        qty:t,
+        qty:t+1,
       }, function(data){
         console.log("update cart successfully");
       });
-    }else{
-      
+    }else if(t>0){
+      $.post("updateCart.php", {
+        title: x,
+        qty:t-1,
+      }, function(data){
+        console.log("update cart successfully");
+      });
     }
   });
+
 });

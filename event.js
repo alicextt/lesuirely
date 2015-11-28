@@ -7,6 +7,202 @@ function getDate(){
 $(window).load(function(){
   window.resizeTo(1245, 800);
 
+$("#changes").click(function(){
+  var fname = $("#fname").val();
+  var lname = $("#lname").val();
+  var usr = $("#usr").val();
+  var email = $("#email").val();
+  var pwd = $("#pwd").val();
+  var cpwd = $("#cpwd").val();
+  var address1 = $("#address1").val();
+  var address2 = $("#address2").val();
+  var city = $("#city").val();
+  var state = $("#state").val();
+  var country = $("#country").val();
+  var zip = $("#zip").val();
+
+  var errorText = "";
+  var count = 0;
+
+  if(fname == ''){
+    errorText += "Please enter the first name \n";
+  }
+  else{
+    count++;
+  }
+  if(lname == ''){
+    errorText += "Please enter the last name \n";
+  }
+  else{
+    count++;
+  }
+  if(usr == ''){
+    errorText += "Please enter the user name \n";
+  }
+  else{
+    count++;
+  }
+  if(pwd == '' || cpwd == ''){
+    errorText += "Please enter the password \n";
+  }
+  else{
+    count++;
+  }
+  if(address1 == '' ){
+    errorText += "Please enter the address first line \n";
+  }
+  else{
+    count++;
+  }
+  if(city == ''){
+    errorText += "Please enter the city \n";
+  }
+  else{
+    count++;
+  }
+  if(state == ''){
+    errorText += "Please select the state \n";
+  }
+  else{
+    count++;
+  }
+  if(country == ''){
+    errorText += "Please enter the country \n";
+  }
+  else{
+    count++;
+  }
+  if(zip == ''){
+    errorText += "Please enter the zip code \n";
+  }
+  else{
+    count++;
+  }
+
+  if(count == 9){
+    if(pwd === cpwd){
+      //alert("yes");
+      $.post("info.php", {
+        fname1: fname,
+        lname1: lname,
+        name1: name,
+        email1: email,
+        password1: password
+      }, function(data) {
+        if (data == 'Success') {
+          $("form")[0].reset();
+          // this will jump to the index html
+          window.location.replace("login.html");
+        }
+        // alert(data);
+      });
+    }
+    else{
+      errorText = "Passwords do not match";
+    }
+  }
+
+});
+//*******************Checkout**********************************************************************************************//
+$("#checkout").click(function(){
+  var fname = $("#fname").val();
+  var lname = $("#lname").val();
+  var usr = $("#usr").val();
+  var email = $("#email").val();
+  var pwd = $("#pwd").val();
+  var cpwd = $("#cpwd").val();
+  var address1 = $("#address1").val();
+  var address2 = $("#address2").val();
+  var city = $("#city").val();
+  var state = $("#state").val();
+  var country = $("#country").val();
+  var zip = $("#zip").val();
+  var phone = $("#phone").val();
+
+  // var fnerror = "";
+  // var lnerror = "";
+  // var adderror = "";
+  // var cityerror = "";
+  // var staterror = "";
+  // var phonerror = "";
+  var count = 0;
+
+  if(fname == /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/){
+    document.getElementById("fnerror").innerHTML = '<p>'+"Please enter the first name"+'</p>';
+    alert("Please enter the first name");
+  }
+  else{
+    count++;
+  }
+  if(lname == /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/){
+    document.getElementById("lnerror").innerHTML= '<p>'+"Please enter the last name"+'</p>';
+  }
+  else{
+    count++;
+  }
+  if(address1 == /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/ ){
+    document.getElementById("adderror").innerHTML= '<p>'+"Please enter the address first line"+'</p>';
+  }
+  else{
+    count++;
+  }
+  if(city == /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/){
+    document.getElementById("cityerror").innerHTML= '<p>'+"Please enter the city"+'</p>';
+  }
+  else{
+    count++;
+  }
+  if(state == ""){
+    document.getElementById("staterror").innerHTML='<p>'+"Please select the state"+'</p>';
+  }
+  else{
+    count++;
+  }
+  if(country == /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/){
+    document.getElementById("countryerror").innerHTML='<p>'+"Please enter the country"+'</p>';
+  }
+  else{
+    count++;
+  }
+  if(zip == '' || !IsNumeric(zip)){
+    document.getElementById("ziperror").innerHTML= '<p>'+"Please enter a valid zip code"+'</p>';
+  }
+  else{
+    count++;
+  }
+  if(phone == '' || !IsNumeric(zip)){
+    document.getElementById("phonerror").innerHTML= '<p>'+"Please enter a valid phone number"+'</p>';
+  }
+  else{
+    count++;
+  }
+
+  // if(count == 8){
+  //   if(pwd === cpwd){
+  //     //alert("yes");
+  //     $.post("info.php", {
+  //       fname1: fname,
+  //       lname1: lname,
+  //       name1: name,
+  //       email1: email,
+  //       password1: password
+  //     }, function(data) {
+  //       if (data == 'Success') {
+  //         $("form")[0].reset();
+  //         // this will jump to the index html
+  //         window.location.replace("login.html");
+  //       }
+  //       // alert(data);
+  //     });
+  //   }
+  //   else{
+  //     errorText = "Passwords do not match";
+  //   }
+  // }
+
+});
+
+//************************************End of Checkout************************************************//
 //**************** used in signUp.html . the register button clicked will first do validation and then will do an ajax call to register.php and save data into DB.
 $("#register").click(function(){
   var name=$("#usr").val();
@@ -169,6 +365,7 @@ var currentImage = 0;
 
 function init(){
   ul = document.getElementById('image_slider');
+  if(ul){
   li_items = ul.children;
   imageNumber = li_items.length;
   imageWidth = li_items[0].children[0].children[0].clientWidth;
@@ -177,7 +374,7 @@ function init(){
   next = document.getElementById("next");
   setInterval(onClickNext, 8000);
   prev.onclick = function(){ onClickPrev();};
-  next.onclick = function(){ onClickNext();};
+  next.onclick = function(){ onClickNext();};}
 }
 
 function animate(opts){

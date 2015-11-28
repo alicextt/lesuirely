@@ -6,6 +6,7 @@ include("func.php");
 ?>
 
 <!DocType html>
+
 <html>
 <head>
   <title>
@@ -34,7 +35,7 @@ include("func.php");
 
         <div class="accordion_head">Customer<span class="plusminus">+</span></div>
 
-        <div class="accordion_body">
+        <div class="accordion_body"> 
           <div class ="form1">
           <ul>
             <li>
@@ -67,7 +68,6 @@ include("func.php");
                     <label for="email">Email address</label>
                       <input type="text" class="form-control" id="email"/><div class="error" id="mailerror"></div>
                     </div>
-                  </form>
                 </div>
             </li>
           </ul>
@@ -77,14 +77,14 @@ include("func.php");
         <div class="accordion_head">Shipping<span class="plusminus">+</span></div>
         <div class="accordion_body">
           <div class="form1">
-          <form accept-charset="UTF-8" action="#" method="post">
+         <!--  <form accept-charset="UTF-8" action="#" method="post"> -->
           <div class="form-group">
             <label for="fname">First Name:</label>
-            <input type="text" class="form-control" id="fname"/><div class="error" id="nerror"></div>
+            <input type="text" class="form-control" id="fname"/><div class="error" id="fnerror"></div>
           </div>
           <div class="form-group">
             <label for="lname">Last Name:</label>
-            <input type="text" class="form-control" id="lname"/><div class="error" id="nerror"></div>
+            <input type="text" class="form-control" id="lname"/><div class="error" id="lnerror"></div>
           </div>
           <div class="form-group">
             <label>Company:</label>
@@ -92,15 +92,15 @@ include("func.php");
           </div>
           <div class="form-group">
             <label for="address">Address Line 1:</label>
-            <input type="text" class="form-control" id="address"/><div class="error" id="adderror"></div>
+            <input type="text" class="form-control" id="address1"/><div class="error" id="adderror"></div>
           </div>
           <div class="form-group">
             <label for="address">Address Line 2:</label>
-            <input type="text" class="form-control" id="address"/><div class="error" id="adderror"></div>
+            <input type="text" class="form-control" id="address2"/><div class="error" id="adderror"></div>
           </div>
           <div class="form-group">
             <label for="city">City:</label>
-            <input type="text" class="form-control" id="city"/><div class="error" id="nerror"></div>
+            <input type="text" class="form-control" id="city"/><div class="error" id="cityerror"></div>
           </div>
           <div class="form-group">
             <label for="usr">State:</label>
@@ -159,18 +159,18 @@ include("func.php");
                 <option value="WI">Wisconsin</option>
                 <option value="WY">Wyoming</option>
               </select>
-          </div>
+          </div><div class="error" id="staterror"></div>
           <div class="form-group">
             <label for="country">Country:</label>
-            <input type="text" class="form-control" id="country"/><div class="error" id="nerror"></div>
+            <input type="text" class="form-control" id="country"/><div class="error" id="countryerror"></div>
           </div>
           <div class="form-group">
             <label for="num">Zip Code:</label>
-            <input type="number" class="form-control" id="num"/><div class="error" id="numerror"></div>
+            <input type="number" class="form-control" id="zip"/><div class="error" id="ziperror"></div>
           </div>
           <div class="form-group">
             <label for="num">Phone:</label>
-            <input type="number" class="form-control" id="num"/><div class="error" id="numerror"></div>
+            <input type="number" class="form-control" id="phone"/><div class="error" id="phonerror"></div>
           </div>
 
            <div class="form-group">
@@ -183,16 +183,10 @@ include("func.php");
           </div>
           <div class="radio">
               <label><input type="radio" name="optradio1">2 business days - $17.00</label>
-          </div>
+          </div>  
           <div class="radio">
                 <label><input type="radio" name="optradio1">1 business day - $22.00</label>
-          </div>
-          <div class="radio">
-              <label><input type="radio" name="optradio">2 business days - $17.00</label>
-          </div>
-          <div class="radio">
-                <label><input type="radio" name="optradio">1 business day - $22.00</label>
-          </div>
+          </div>  
             </div>
           </div>
          </div>
@@ -249,8 +243,9 @@ include("func.php");
           <div class ="form1">
         <p>This will display all the details entered by user for verification and finally place an order</p>
         <div class="btn-left">
-                    <button class="cbtn" type="button" value="submit">Place Order</button>
+                    <button class="cbtn" type="button" id="checkout">Place Order</button>
         </div>
+        </form>
       </div>
         </div>
 

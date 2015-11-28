@@ -156,7 +156,7 @@ include("func.php");
       </div>
       <div id="copycont">
         <footer>
-          <p class="center"> Copyright@2015, designed by <a class="yellow">Leisurely Admin | Privacy Policy</a></p>
+          <p class="center"> Copyright&copy2015, designed by <a class="yellow">Leisurely Admin | Privacy Policy</a></p>
           <p class="center">  Site Last Modified:
             <span id="lastModified"/> </p>
             <noscript> Browser does not support JAVASCRIPT</noscript>

@@ -7,7 +7,7 @@ include("func.php");
 <!DocType html>
 <html>
 <head>
-  <title>Movies</title>
+  <title>Leisurely</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -46,8 +46,8 @@ include("func.php");
             <?php
           }else{
             ?>
-            <li><a id = "signup" href = "userIno.html">Info</a></li>
-            <li><a id = "sigout" href="logout.html">Logout</a></li>
+            <li><a id = "info" href = "userIno.html">Info</a></li>
+            <li><a id = "sigout" href="logout.php">Logout</a></li>
             <?php
           }
           ?>
@@ -57,26 +57,26 @@ include("func.php");
           </ul>
       </div>
     </header>
-    <div>
 
-      <div class="right">
+      <div class="vuser" id="searchbox">
         <?php
         $itempage=1;
         $search='';
-        $jsonData=searchMovie($search, $itempage);
+        $max=0;
+        $jsonData=searchMovie($search, $itempage, $max);
         $json = json_decode($jsonData);
         ?>
-
+        <h3> Movies from your key word: <?=$search?></h3>
         <table>
           <tr class="movie">
             <?php
             $count=0;
             for($i=0;$i<count($json);$i++){
               $data= $json[$i];
-              if($count<5){
+              if($count<4){
                 $count++;
                 ?>
-                <td class="item"><div class="center"><img src = "<?=$data->imgurl?>"><h4><a name="<?=$data->id?>" href="itemdetail.php?id=<?=$data->id?>&cat=movie"><?=$data->title?> <span>(<?=$data->year?>)</span></a></h4></div></td>
+                <td class="item center"><img class="book" src = "<?=$data->imgurl?>"><h5><a name="<?=$data->id?>" href="itemdetail.php?id=<?=$data->id?>&cat=movie"><?=$data->title?> <span>(<?=$data->year?>)</span></a></h5></td>
                 <?php
               }
               else{
@@ -89,28 +89,56 @@ include("func.php");
               }
             }
             ?>
-
+          </tr>
+        </table>
+        <hr>
+        <h3> Books from your key word: <?=$search?></h3>
+        <?php
+        $itempage=1;
+        $jsonData=searchBook($search, $itempage);
+        $books = json_decode($jsonData);
+        ?>
+        <table>
+          <tr class="movie">
+            <?php
+            $count=0;
+            for($i=0;$i<count($books);$i++){
+              $data= $books[$i];
+              if($count<4){
+                $count++;
+                ?>
+                <td class="item center"><img class="book" src = "<?=$data->imgurl?>"><h5><a name="<?=$data->id?>" href="itemdetail.php?id=<?=$data->id?>&cat=book"><?=$data->title?></a></h5></td>
+                <?php
+              }
+              else{
+                $count=0;
+                $i--;
+                ?>
+              </tr>
+              <tr class="movie">
+                <?php
+              }
+            }
+            ?>
           </tr>
         </table>
         <div id="changePage" class="center">
           <ul class="pagination">
             <?php
-            // $max =getMaxid('movie', $tag, $people);
-            // for($i=1;$i<$max/50+1;$i++){
-            //   if($i==$itempage-1){
-            //     echo "<li class='active'><a href='movie.php?page=$i&tag=$tag&people=$people'>$i</a></li>";
-            //   }else{
-            //     echo "<li><a href='movie.php?page=$i&tag=$tag&people=$people'>$i</a></li>";
-            //   }
-            // }
+            for($i=1;$i<$max/40+1;$i++){
+              if($i==$itempage-1){
+                echo "<li class='active'><a href='search.php?page=$i&search=$search'>$i</a></li>";
+              }else{
+                echo "<li><a href='search.php?page=$i&search=$search'>$i</a></li>";
+              }
+            }
              ?>
           </ul>
         </div>
       </div>
-    </div>
     <div id="copycont">
       <footer>
-        <p class="center"> Copyright@2015, designed by <a class="yellow">Leisurely Admin | Privacy Policy</a></p>
+        <p class="center"> Copyright&copy2015, designed by <a class="yellow">Leisurely Admin | Privacy Policy</a></p>
         <p class="center">  Site Last Modified:
           <span id="lastModified"/> </p>
           <noscript> Browser does not support JAVASCRIPT</noscript>

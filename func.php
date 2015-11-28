@@ -71,6 +71,32 @@ function getMaxid($table, $tag, $people){
   return $row[0];
 }
 
+function getSearchMaxid($search){
+  $connection = new mysqli("localhost", "root", "root", "Leisurely"); // Establishing connection with server..
+  if($connection->connect_errno){
+    echo "Failed to connect to Mysql";
+    exit();
+  }
+  mysqli_query($connection, 'SET CHARACTER SET utf8');
+  $stmt = "select count(*) from movie
+  where title like '%$search%' or year like '%$search%'
+  or description like '%$search%' or tags like '%$search%' or stars like '%$search%'";
+  $result = $connection->query($stmt);
+  $row = mysqli_fetch_row($result);
+  $max=$row[0];
+
+  $stmt = "select count(*) from book where title like '%$search%'
+  or description like '%$search%' or tags like '%$search%' or author like '%$search%'";
+  $result = $connection->query($stmt);
+  $row = mysqli_fetch_row($result);
+
+  if($max<$row[0])
+  {
+    $max=$row[0];
+  }
+  return $max;
+}
+
 function getBooks(&$itempage, &$tag, &$people){
   if(!empty($_GET['tag'])){
     $tag=$_GET['tag'];
@@ -169,18 +195,28 @@ function getPurchasedItem(){
   return $items;
 }
 
-function searchMovie(&$search, &$itempage){
+function searchMovie(&$search, &$itempage, &$maxid){
   if(!empty($_GET['search'])){
     $search=$_GET['search'];
   }
   if(!empty($_GET['page'])){
     $itempage=(int)$_GET['page'];
   }
-  $num=($itempage-1)*50;
+  $num=($itempage-1)*40;
   $stmt = "select * from movie
   where title like '%$search%' or year like '%$search%'
-  or description like '%$search%' or tags like '%$search%' or stars like '%$search%' order by id limit $num, 50";
+  or description like '%$search%' or tags like '%$search%' or stars like '%$search%' order by id limit $num, 40";
   $itempage+=1;
+
+  $maxid=getSearchMaxid($search);
+
+  return getData($stmt);
+}
+
+function searchBook(&$search, &$itempage){
+  $num=($itempage-1)*40;
+  $stmt = "select * from book where title like '%$search%'
+  or description like '%$search%' or tags like '%$search%' or author like '%$search%' order by id limit $num, 40";
   return getData($stmt);
 }
 

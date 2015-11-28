@@ -48,14 +48,15 @@ include("func.php");
             <?php
           }else{
             ?>
-            <li><a id = "signup" href = "userIno.html">Info</a></li>
-            <li><a id = "sigout" href="logout.html">Logout</a></li>
+            <li><a id = "signup" href = "userInfo.html">Info</a></li>
+            <li><a id = "sigout" href="logout.php">Logout</a></li>
             <?php
           }
           ?>
           <li><a href="checkout.php"><img src="cart.png" alt="Lesuirely" height="50" width="50"><span id="cart"><?php
           echo getCartItemQuantity();
-          ?></span></a></li>        </ul>
+          ?></span></a></li>
+        </ul>
       </div>
     </header>
     <div class="vuser">
@@ -81,7 +82,7 @@ include("func.php");
 
     <div id="copycont">
       <footer>
-          <p class="center"> Copyright@2015, designed by <a class="yellow">Leisurely Admin | Privacy Policy</a></p>
+          <p class="center"> Copyright&copy2015, designed by <a class="yellow">Leisurely Admin | Privacy Policy</a></p>
           <p class="center">  Site Last Modified:
             <span id="lastModified"/> </p>
             <noscript> Browser does not support JAVASCRIPT</noscript>

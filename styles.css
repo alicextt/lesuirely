@@ -173,10 +173,19 @@ h1#title {
   float:left;
 }
 
+.movie td{
+  width:280px;
+}
+
 .book{
   margin-right: 50px;
 }
 
+#searchbox {
+    width: 90%;
+    margin: auto;
+    padding-left: 0;
+}
 
 #headerbar{
   position: fixed;
@@ -211,6 +220,10 @@ td a:link{
 
 }
 
+td h5{
+  margin: 0 15px;
+}
+
 td>img{
   margin-top: 10px;
 }
@@ -220,6 +233,9 @@ td>img{
   background-image: url("header.jpg");
   /*position: fixed;*/
 }
+
+
+.voffset150 { margin-top: 150px; }
 
 .checkout img{
   vertical-align: center;
@@ -379,6 +395,7 @@ td>img{
   padding-top: 135px;
   font-weight: bold;
   padding-left: 50px;
+  min-height: 500px;
 }
 /*Slideshow*/
 .slide{

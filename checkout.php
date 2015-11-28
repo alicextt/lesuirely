@@ -278,11 +278,13 @@ include("func.php");
         </tr>
         <?php
         if(is_array($data)){
+          $totalprice=0;
         foreach($data as $key){
           $price=$key->uprice;
           $qty=$key->quantity;
           $price=str_replace('$','', $price);
           $tprice = (float)$price * (int)$qty;
+          $totalprice+=$tprice;
         ?>
         <tr>
           <td name="ptype"><?=$key->ptype ?></td>
@@ -314,9 +316,15 @@ include("func.php");
         </tr>
         <?php
         }
+        ?>
+          <tr>
+              <td colspan="100%" id="catli"><h4>Total:&nbsp&nbsp&nbsp$ <?=$totalprice?></h4></td>
+          </tr>
+        <?php
       }
         ?>
       </table>
+
     </fieldset>
   </div>
 </body>

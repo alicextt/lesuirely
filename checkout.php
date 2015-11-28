@@ -20,13 +20,15 @@ include("func.php");
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
   <script src = "event.js" type = "text/javascript"></script>
+  <script src = "item.js" type = "text/javascript"></script>
+
   <link href="styles.css" rel="stylesheet">
 </head>
 <body class = "checkout">
   <!-- header-->
   <noscript> Browser does not support JAVASCRIPT</noscript>
   <header class="checkout">
-    <img src = "logo.png" alt="logo" height="150" width="150">
+    <a href="index.php" ><img src = "logo.png" alt="logo" height="150" width="150"></a>
     </header>
     <div class="box">
       <fieldset>
@@ -254,9 +256,69 @@ include("func.php");
   </div>
 
   <!--CART-->
-  <div class="box">
+  <div class="box" id="cartbox">
     <fieldset>
       <legend>Cart</legend>
+      <?php
+      $data= getPurchasedItem();
+      ?>
+      <table class="table table-striped">
+        <tr>
+          <th class="col-md-1">Type</th>
+          <th class="col-md-1">Product</th>
+          <th class="col-md-3 center">Name</th>
+          <th class="col-md-1 center">Price</th>
+          <th class="col-md-3 center">Unit Qty</th>
+          <th class="col-md-2">Total Price</th>
+        </tr>
+        <?php
+        if(is_array($data)){
+          $totalprice=0;
+        foreach($data as $key){
+          $price=$key->uprice;
+          $qty=$key->quantity;
+          $price=str_replace('$','', $price);
+          $tprice = (float)$price * (int)$qty;
+          $totalprice+=$tprice;
+        ?>
+        <tr>
+          <td name="ptype"><?=$key->ptype ?></td>
+          <td name="ctype"><?=$key->ctype?></td>
+          <td name="title" id='purchasetitle' class='center'><p><?=$key->title?></p><img src=<?=$key->img?> width=100 height=150></td>
+          <td name="price"><?=$key->uprice?></td>
+          <td name="qty" id="purchaseqty" class="center"><div class="cartqty">
+          <p>  <?php
+            echo '<span>'.$qty.'</span>';
+            if ($key->ptype=='Rent') {
+             echo ' weeks';
+          }else{
+            echo ' items';
+          }
+          ?></p>
+          <?php
+          if($qty==0){
+            echo '<button class="btn btn-default chqty disabled">-</button>';
+          }else{
+            echo '<button class="btn btn-default chqty">-</button>';
+          }
+          ?>
+            <button class="btn btn-default chqty">+</button>
+
+          </div>
+          <div id="deletion"><span class="itemid" hidden><?=$key->id?></span><button class="btn btn-danger">delete</button>
+          </div></td>
+          <td name="tprice">$ <?=$tprice?></td>
+        </tr>
+        <?php
+        }
+        ?>
+          <tr>
+              <td colspan="100%" id="catli"><h4>Total:&nbsp&nbsp&nbsp$ <?=$totalprice?></h4></td>
+          </tr>
+        <?php
+      }
+        ?>
+      </table>
 
     </fieldset>
   </div>

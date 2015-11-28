@@ -1,16 +1,19 @@
-//<!-- ********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************-->
+// ********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************
 $(document).ready(function(){
 
   $('.btn.btn-info').click(function(){
     var tr=$(this).parent().parent();
     var ptype = tr.find("[name='type']").text();
     var quantity=tr.find('select option:selected').val();
+    var img=$(".left img").attr('src');
     $.post('addcart.php',{
+      id:$('#itemid').text(),
       ptype: ptype,
       ctype: $('title').text(),
       uprice: tr.find("[name='price']").text(),
       quantity: quantity,
       title: $('#title').text(),
+      img: img,
     }, function(data){
       var q=quantity;
       if(ptype=='Rent'){
@@ -25,7 +28,41 @@ $(document).ready(function(){
   });
 
   $('#detailcheckout').click(function(){
-    window.location.href="checkout.html";
+    window.location.href="checkout.php";
+  });
+
+  $('.btn.btn-default.chqty').click(function(){
+    var qty=$(this).parent().find('span');
+    var t=parseInt(qty.text());
+    var x= $(this).parent().parent().parent().find('[name="title"] p').text();
+    if ($(this).text()=='+'){
+      $(this).siblings().prop('disabled',false);
+      $.post("updateCart.php", {
+        title: x,
+        qty:t+1,
+      }, function(data){
+        console.log("update cart successfully");
+      });
+    }else if(t>0){
+      $.post("updateCart.php", {
+        title: x,
+        qty:t-1,
+      }, function(data){
+        console.log("update cart successfully");
+      });
+    }
+  });
+
+  $('#deletion .btn.btn-danger').click(function(){
+    var tr=$(this).parent().parent().parent();
+    var id=tr.find('.itemid').text();
+    var ctype=tr.find('[name="ctype"]').text().trim();
+    $.post("updateCart.php", {
+      category: ctype,
+      id:id,
+    }, function(data){
+      console.log("delete item from cart successfully");
+    });
   });
 
 });

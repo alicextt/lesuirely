@@ -36,16 +36,16 @@ ul.pagination {
   margin:auto;
 }
 
-.horizontal ul{
+.horizontal>ul{
   padding-left: 10px;
 }
-.horizontal ul li {
+.horizontal>ul>li {
   float: left;
   display: inline;
   padding: 3px;
 }
 
-.horizontal ul li a {
+.horizontal>ul>li>a {
   color: #fff;
   /*background: #1E38CF;*/
   display: block;
@@ -57,7 +57,21 @@ ul.pagination {
   line-height: 110px;
 }
 
-.horizontal ul li a:hover {
+li>.dropdown{
+  margin-top: auto;
+  height: 75px;
+  padding-top: 30%;
+  font-weight: bold;
+}
+
+.dropdown>a, .dropdown-menu a{
+    color: #fff;
+    display: block;
+    font-family: 'Comic sans MS';
+    font-size: 1.5em;
+}
+
+.horizontal>ul>li a:hover {
   color: #febd69;
   text-decoration: none;
 }
@@ -173,10 +187,19 @@ h1#title {
   float:left;
 }
 
+.movie td{
+  width:280px;
+}
+
 .book{
   margin-right: 50px;
 }
 
+#searchbox {
+    width: 90%;
+    margin: auto;
+    padding-left: 0;
+}
 
 #headerbar{
   position: fixed;
@@ -199,11 +222,6 @@ h1#title {
 }
 
 .item img{
-  /*height: 249px;
-  width: 180px;
-  margin-top: 25px;
-  padding-right: 15px;
-  padding-bottom: 10px;*/
   height: 249px;
 width: 180px;
 margin-top: 25px;
@@ -216,10 +234,13 @@ td a:link{
 
 }
 
-.center{
-  text-align: center;
+td h5{
+  margin: 0 15px;
 }
 
+td>img{
+  margin-top: 10px;
+}
 .checkout{
   margin: 0px;
   width: 100%;
@@ -227,19 +248,42 @@ td a:link{
   /*position: fixed;*/
 }
 
+
+.voffset150 { margin-top: 150px; }
+
 .checkout img{
   vertical-align: center;
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
+#cartbox{
+  width:52%;
+  margin-left: 30px;
+  padding:10px;
+}
+
+.cartqty>button{
+  width:50px;
+  margin: 0 5px;
+  font-size: 18px;
+  padding: 0 15px;
+}
+
+#deletion{
+  margin:15px;
+}
+
+#deletion>button{
+  font-size: 15px;
+  padding: 0 20px;
+}
 
 .box{
   width: 40%;
   height: auto;
   float: right;
-  margin-left: 5%;
-  margin-right: 5%;
+  margin-right: 30px;
   background: rgba(255,255,255,1.0);
   color: #000;
   box-shadow: inset 0 0 15px #000000;
@@ -365,6 +409,7 @@ td a:link{
   padding-top: 135px;
   font-weight: bold;
   padding-left: 50px;
+  min-height: 500px;
 }
 /*Slideshow*/
 .slide{

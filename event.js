@@ -365,7 +365,8 @@ var currentImage = 0;
 
 function init(){
   ul = document.getElementById('image_slider');
-  if(ul){
+  if(!ul)
+    return;
   li_items = ul.children;
   imageNumber = li_items.length;
   imageWidth = li_items[0].children[0].children[0].clientWidth;
@@ -374,7 +375,7 @@ function init(){
   next = document.getElementById("next");
   setInterval(onClickNext, 8000);
   prev.onclick = function(){ onClickPrev();};
-  next.onclick = function(){ onClickNext();};}
+  next.onclick = function(){ onClickNext();};
 }
 
 function animate(opts){

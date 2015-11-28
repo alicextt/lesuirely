@@ -1,6 +1,8 @@
 <!-- ********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************-->
 <?php
 session_start();
+session_unset();
+session_destroy();
 ini_set('display_errors', 'On');
 include("func.php");
 ?>
@@ -8,7 +10,7 @@ include("func.php");
 <html>
 <head>
   <title>
-    Leisurely | Homepage
+    Leisurely | Logout page
   </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,16 +50,7 @@ include("func.php");
             <?php
           }else{
             ?>
-            <li>
-            <div class="dropdown">
-              <a data-toggle="dropdown">Your Account
-                <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="userInfo.html">Your account</a></li>
-                  <li><a href="#">Your orders</a></li>
-                </ul>
-              </div>
-            </li>
+            <li><a id = "signup" href = "userInfo.html">Info</a></li>
             <li><a id = "sigout" href="logout.php">Logout</a></li>
             <?php
           }
@@ -66,36 +59,21 @@ include("func.php");
           echo getCartItemQuantity();
           ?></span></a></li>
         </ul>
+      </header>
+      <div class="vuser">
+        <center>
+          <h1 class="row voffset150">
+            GOODBYE! We hope to see you again!
+          </h1>
+        </center>
       </div>
-    </header>
-    <div class="vuser">
-      <?php
-      if(isset($_SESSION['user'])){
-        $user= $_SESSION['user'];
-        echo "<h1>$user, Welcome Back!</h1>";
-      }
-      ?>
-      <div class="slide">
-        <div class="slider_wrapper">
-          <ul id="image_slider">
-            <li><a href="itemdetail.php?id=1&cat=movie"><img src="images/1.jpg"></a></li>
-            <li><a href="itemdetail.php?id=39&cat=book"><img src="images/2.jpg"></a></li>
-            <li><a href="itemdetail.php?id=295&cat=movie"><img src="images/3.jpg"></a></li>
-            <li><a href="itemdetail.php?id=82&cat=book">  <img src="images/4.jpg"></a></li>
-          </ul>
-          <span class="nvgt" id="prev"></span>
-          <span class="nvgt" id="next"></span>
+      <div id="copycont">
+        <footer>
+          <p class="center"> Copyright&copy2015, designed by <a class="yellow">Leisurely Admin | Privacy Policy</a></p>
+          <p class="center">  Site Last Modified:
+            <span id="lastModified"/> </p>
+            <noscript> Browser does not support JAVASCRIPT</noscript>
+          </footer>
         </div>
-      </div>
-    </div>
-
-    <div id="copycont">
-      <footer>
-        <p class="center"> Copyright&copy2015, designed by <a class="yellow">Leisurely Admin | Privacy Policy</a></p>
-        <p class="center">  Site Last Modified:
-          <span id="lastModified"/> </p>
-          <noscript> Browser does not support JAVASCRIPT</noscript>
-        </footer>
-      </div>
-    </body>
-    </html>
+      </body>
+      </html>

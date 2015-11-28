@@ -39,22 +39,31 @@ include("func.php");
               </div>
             </form>
           </li>
-          <<?php  if(!isset($_SESSION['user'])){
+          <?php  if(!isset($_SESSION['user'])){
             ?>
             <li><a id = "signup" href = "signup.html">Join Today</a></li>
             <li><a id = "sign" href="login.html">Sign In</a></li>
             <?php
           }else{
             ?>
-            <li><a id = "signup" href = "userIno.html">Info</a></li>
-            <li><a id = "sigout" href="logout.html">Logout</a></li>
+            <li>
+            <div class="dropdown">
+              <a data-toggle="dropdown">Your Account
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="userInfo.html">Your account</a></li>
+                  <li><a href="#">Your orders</a></li>
+                </ul>
+              </div>
+            </li>
+            <li><a id = "sigout" href="logout.php">Logout</a></li>
             <?php
           }
           ?>
           <li><a href="checkout.php"><img src="cart.png" alt="Lesuirely" height="50" width="50"><span id="cart"><?php
           echo getCartItemQuantity();
           ?></span></a></li>
-          </ul>
+        </ul>
       </div>
     </header>
     <div>
@@ -140,7 +149,7 @@ include("func.php");
     </div>
     <div id="copycont">
       <footer>
-        <p class="center"> Copyright@2015, designed by <a class="yellow">Leisurely Admin | Privacy Policy</a></p>
+        <p class="center"> Copyright&copy2015, designed by <a class="yellow">Leisurely Admin | Privacy Policy</a></p>
         <p class="center">  Site Last Modified:
           <span id="lastModified"/> </p>
           <noscript> Browser does not support JAVASCRIPT</noscript>

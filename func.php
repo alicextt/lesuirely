@@ -1,5 +1,6 @@
-<!-- ********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************-->
 <?php
+//********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************
+
 ini_set('display_errors', 'On');
 
 function getData($stmt){
@@ -70,6 +71,32 @@ function getMaxid($table, $tag, $people){
   return $row[0];
 }
 
+function getSearchMaxid($search){
+  $connection = new mysqli("localhost", "root", "root", "Leisurely"); // Establishing connection with server..
+  if($connection->connect_errno){
+    echo "Failed to connect to Mysql";
+    exit();
+  }
+  mysqli_query($connection, 'SET CHARACTER SET utf8');
+  $stmt = "select count(*) from movie
+  where title like '%$search%' or year like '%$search%'
+  or description like '%$search%' or tags like '%$search%' or stars like '%$search%'";
+  $result = $connection->query($stmt);
+  $row = mysqli_fetch_row($result);
+  $max=$row[0];
+
+  $stmt = "select count(*) from book where title like '%$search%'
+  or description like '%$search%' or tags like '%$search%' or author like '%$search%'";
+  $result = $connection->query($stmt);
+  $row = mysqli_fetch_row($result);
+
+  if($max<$row[0])
+  {
+    $max=$row[0];
+  }
+  return $max;
+}
+
 function getBooks(&$itempage, &$tag, &$people){
   if(!empty($_GET['tag'])){
     $tag=$_GET['tag'];
@@ -126,13 +153,20 @@ class pitem{
   var $quantity;
   // item name
   var $title;
+  // img url;
+  var $img;
 
-  public function __construct($ptype, $ctype, $uprice, $quantity, $title){
+  //item id
+  var $id;
+
+  public function __construct($id, $ptype, $ctype, $uprice, $quantity, $title, $img){
+    $this->id=$id;
     $this->ptype =$ptype;
     $this->ctype =$ctype;
     $this->uprice =$uprice;
     $this->quantity =$quantity;
     $this->title =$title;
+    $this->img = $img;
   }
 }
 
@@ -153,6 +187,37 @@ function getCartItemQuantity(){
   return $quantity;
 }
 
+function getPurchasedItem(){
+  $items='';
+  if(!empty($_SESSION['items'])){
+    $items = unserialize($_SESSION['items']);
+    }
+  return $items;
+}
 
+function searchMovie(&$search, &$itempage, &$maxid){
+  if(!empty($_GET['search'])){
+    $search=$_GET['search'];
+  }
+  if(!empty($_GET['page'])){
+    $itempage=(int)$_GET['page'];
+  }
+  $num=($itempage-1)*40;
+  $stmt = "select * from movie
+  where title like '%$search%' or year like '%$search%'
+  or description like '%$search%' or tags like '%$search%' or stars like '%$search%' order by id limit $num, 40";
+  $itempage+=1;
+
+  $maxid=getSearchMaxid($search);
+
+  return getData($stmt);
+}
+
+function searchBook(&$search, &$itempage){
+  $num=($itempage-1)*40;
+  $stmt = "select * from book where title like '%$search%'
+  or description like '%$search%' or tags like '%$search%' or author like '%$search%' order by id limit $num, 40";
+  return getData($stmt);
+}
 
 ?>

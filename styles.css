@@ -36,16 +36,16 @@ ul.pagination {
   margin:auto;
 }
 
-.horizontal ul{
+.horizontal>ul{
   padding-left: 10px;
 }
-.horizontal ul li {
+.horizontal>ul>li {
   float: left;
   display: inline;
   padding: 3px;
 }
 
-.horizontal ul li a {
+.horizontal>ul>li>a {
   color: #fff;
   /*background: #1E38CF;*/
   display: block;
@@ -57,7 +57,21 @@ ul.pagination {
   line-height: 110px;
 }
 
-.horizontal ul li a:hover {
+li>.dropdown{
+  margin-top: auto;
+  height: 75px;
+  padding-top: 30%;
+  font-weight: bold;
+}
+
+.dropdown>a, .dropdown-menu a{
+    color: #fff;
+    display: block;
+    font-family: 'Comic sans MS';
+    font-size: 1.5em;
+}
+
+.horizontal>ul>li a:hover {
   color: #febd69;
   text-decoration: none;
 }

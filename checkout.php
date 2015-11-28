@@ -37,7 +37,7 @@ include("func.php");
 
         <div class="accordion_head">Customer<span class="plusminus">+</span></div>
 
-        <div class="accordion_body"> 
+        <div class="accordion_body">
           <div class ="form1">
           <ul>
             <li>
@@ -185,10 +185,10 @@ include("func.php");
           </div>
           <div class="radio">
               <label><input type="radio" name="optradio1">2 business days - $17.00</label>
-          </div>  
+          </div>
           <div class="radio">
                 <label><input type="radio" name="optradio1">1 business day - $22.00</label>
-          </div>  
+          </div>
             </div>
           </div>
          </div>
@@ -267,7 +267,7 @@ include("func.php");
           <th class="col-md-1">Type</th>
           <th class="col-md-1">Product</th>
           <th class="col-md-3 center">Name</th>
-          <th class="col-md-1 center">Price</th>
+          <th class="col-md-2 center">Price</th>
           <th class="col-md-3 center">Unit Qty</th>
           <th class="col-md-2">Total Price</th>
         </tr>

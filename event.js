@@ -205,11 +205,37 @@ $("#checkout").click(function(){
 //************************************End of Checkout************************************************//
 //**************** used in signUp.html . the register button clicked will first do validation and then will do an ajax call to register.php and save data into DB.
 $("#register").click(function(){
+  var fname = $("#fname").val();
+  var lname = $("#lname").val();
   var name=$("#usr").val();
   var email = $("#email").val();
   var password = $("#pwd").val();
   var cpassword = $("#cpwd").val();
   var count=0;
+  if(fname == ''){
+    $("#fnameError").text('* Empty first name!');
+  }
+  else if (fname.match("/^[a-zA-Z ]*$/")) {
+    $("#fnameError").text('* Only letters and whitespace allowed!');
+  }
+  else{
+    $("#fnameError").text('');
+    count++;
+    //console.log(fname);
+  }
+
+  if(lname == ''){
+    $("#lnameError").text('* Empty last name!');
+  }
+  else if (lname.match("/^[a-zA-Z ]*$/")) {
+    $("#lnameError").text('* Only letters and whitespace allowed!');
+  }
+ else{
+   $("#lnameError").text('');
+    count++;
+    //console.log(lname);
+  }
+
   if(name == ''){
     $("#usrerror").text('* Empty user name !');
   }else if(!name.match(/^\w+$/)){
@@ -244,19 +270,25 @@ $("#register").click(function(){
     $("#cpwderror").text('');
     count++;
   }
-  if(count==4)
+  if(count==6)
   {
     $.post("register.php", {
+      fname1:fname,
+      lname1:lname,
       name1: name,
       email1: email,
       password1: password
     }, function(data) {
       if (data == 'Success') {
-        $("form")[0].reset();
         // this will jump to the index html
+        console.log('insert user'+name+" successfully");
         window.location.replace("login.html");
       }
-      // alert(data);
+      else if(data=='User name taken'){
+          $("#usrerror").text('* This user name has already been take !');
+      }else{
+        alert('An sql error has occured');
+      }
     });
   }
 });

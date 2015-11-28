@@ -51,6 +51,7 @@ $(document).ready(function(){
         console.log("update cart successfully");
       });
     }
+    window.location.reload();
   });
 
   $('#deletion .btn.btn-danger').click(function(){
@@ -63,6 +64,7 @@ $(document).ready(function(){
     }, function(data){
       console.log("delete item from cart successfully");
     });
+    window.location.reload();
   });
 
 });

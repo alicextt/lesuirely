@@ -21,7 +21,7 @@ include("func.php");
 
   <link href="styles.css" rel="stylesheet">
 </head>
-<body onload="getDate()">
+<body onload="getDate(); editInfoClick();">
     <!-- header-->
   <noscript> Browser does not support JAVASCRIPT</noscript>
   <header class="container">
@@ -48,7 +48,7 @@ include("func.php");
             <?php
           }else{
             ?>
-            <li><a id = "signup" href = "userIno.html">Info</a></li>
+            <li><a id = "signup" href = "userInfo.html">Info</a></li>
             <li><a id = "sigout" href="logout.html">Logout</a></li>
             <?php
           }

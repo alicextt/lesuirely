@@ -15,7 +15,7 @@
   <script src = "event.js" text = "text/javascript" language = "javascript"></script>
   <link href="styles.css" rel="stylesheet">
 </head>
-<body onload="getDate()">
+<body onload="getDate(); ">
     <!-- header-->
   <noscript> Browser does not support JAVASCRIPT</noscript>
   <header class="container">
@@ -46,44 +46,49 @@
       <legend>View/Edit Personal Info</legend>
     <form accept-charset="UTF-8" action="#" method="post">
           <div class = "error" id = "userInfoError"></div>
+          <div class="error" id="passerror"></div>
           <div class="userinfo">
-            <label for="fname">First Name: *</label>
-            <input type="text" class="form-control" id="fname"/><!-- <div class="error" id="fnameError"> --></div>
+            <label for="fname">First Name:</label>
+            <input type="text" class="form-control" id="fname"/><div class="error" id="fnameError"></div>
           </div>
           <div class="userinfo">
-            <label for="lname">Last Name: *</label>
-            <input type="text" class="form-control" id="lname"/><!-- <div class="error" id="lnameError"> --></div>
+            <label for="lname">Last Name:</label>
+            <input type="text" class="form-control" id="lname"/><div class="error" id="lnameError"></div>
           </div>
           <div class="userinfo">
-            <label for="usr">User Name: *</label>
-            <input type="text" class="form-control" id="usr"/><!-- <div class="error" id="usrerror"> --></div>
+            <label for="usr">User Name:</label>
+            <input type="text" class="form-control" id="usr"/><div class="error" id="usrerror"></div>
           </div>
           <div class="userinfo">
-            <label for="email">Email: *</label>
-            <input type="text" class="form-control" id="email"/><!-- <div class="error" id="mailerror"> --></div>
+            <label for="email">Email:</label>
+            <input type="text" class="form-control" id="email"/><div class="error" id="mailerror"></div>
           </div>
           <div class="userinfo">
-            <label for="pwd">Password: *</label>
-            <input type="password" class="form-control" id="pwd"/><!-- <div class="error" id="pwderror"> --></div>
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" id="pwd"/><div class="error" id="pwderror"></div>
           </div>
           <div class="userinfo">
-            <label for="cpwd">Confirm Password: *</label>
-            <input type="password" class="form-control" id="cpwd"/><!-- <div class="error" id="cpwderror"> --></div>
+            <label for="cpwd">Confirm Password:</label>
+            <input type="password" class="form-control" id="cpwd"/><div class="error" id="cpwderror"></div>
           </div>
           <div class="userinfo">
-            <label for="address">Address Line 1: *</label>
-            <input type="text" class="form-control" id="address1"/><!-- <div class="error" id="adderror"> --></div>
+            <label for="cpwd">Phone number:</label>
+            <input type="number" class="form-control" id="phone"/><div class="error" id="phoneerror"></div>
+          </div>
+          <div class="userinfo">
+            <label for="address">Address Line 1:</label>
+            <input type="text" class="form-control" id="address1"/><div class="error" id="adderror1"></div>
           </div>
           <div class="userinfo">
             <label for="address">Address Line 2:</label>
-            <input type="text" class="form-control" id="address2"/><!-- <div class="error" id="adderror"> --></div>
+            <input type="text" class="form-control" id="address2"/><div class="error" id="adderror2"></div>
           </div>
           <div class="userinfo">
-            <label for="city">City: *</label>
-            <input type="text" class="form-control" id="city"/><!-- <div class="error" id="nerror"> --></div>
+            <label for="city">City:</label>
+            <input type="text" class="form-control" id="city"/><div class="error" id="cityerror"></div>
           </div>
           <div class="userinfo">
-            <label for="usr">State: *</label>
+            <label for="usr">State:</label>
             <!-- <input type="text" class="form-control" id="usr"/><div class="error" id="usrerror"></div> -->
             <select class="form-control" id="state">
                 <option value=" ">Select a State</option>
@@ -139,17 +144,18 @@
                 <option value="WI">Wisconsin</option>
                 <option value="WY">Wyoming</option>
               </select>
+              <div class="error" id="stateerror">
           </div>
           <div class="userinfo">
-            <label for="country">Country: *</label>
-            <input type="text" class="form-control" id="country"/><!-- <div class="error" id="nerror"> --></div>
+            <label for="country">Country:</label>
+            <input type="text" class="form-control" id="country"/><div class="error" id="countryerror"></div>
           </div>
           <div class="userinfo">
-            <label for="num">Zip Code: *</label>
-            <input type="number" class="form-control" id="zip"/><!-- <div class="error" id="numerror"> --></div>
+            <label for="num">Zip Code:</label>
+            <input type="number" class="form-control" id="zip"/><div class="error" id="ziperror"></div>
           </div>
           <div class="center">
-        <button class="btn btn-warning" type="button" id="changes">Confirm Changes</button>
+        <button class="btn btn-warning" type="button" id="changes" onclick = "editInfoClick">Confirm Changes</button>
       </div>
     </form>
 </div>

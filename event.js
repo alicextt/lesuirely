@@ -6,13 +6,14 @@ function getDate(){
 $(window).load(function(){
   window.resizeTo(1245, 800);
 
-$("#changes").click(function(){
+function editInfoClick(){
   var fname = $("#fname").val();
   var lname = $("#lname").val();
   var usr = $("#usr").val();
   var email = $("#email").val();
   var pwd = $("#pwd").val();
   var cpwd = $("#cpwd").val();
+  var phone = $("#phone").val();
   var address1 = $("#address1").val();
   var address2 = $("#address2").val();
   var city = $("#city").val();
@@ -20,84 +21,108 @@ $("#changes").click(function(){
   var country = $("#country").val();
   var zip = $("#zip").val();
 
-  var errorText = "";
   var count = 0;
 
   if(fname == ''){
-    errorText += "Please enter the first name \n";
+    $("#fnameError").text("* Empty first name!");  
   }
   else{
     count++;
   }
+
   if(lname == ''){
-    errorText += "Please enter the last name \n";
+    $("#lnameerror").text("* Empty last name");
   }
   else{
     count++;
   }
+  
   if(usr == ''){
-    errorText += "Please enter the user name \n";
+    $("#usrerror").text("* Empty email address");
   }
   else{
     count++;
   }
-  if(pwd == '' || cpwd == ''){
-    errorText += "Please enter the password \n";
+  
+  if(pwd == ''){
+    $("#pwderror").text("* Empty password");
   }
   else{
     count++;
   }
+  
+  if(cpwd == ''){
+    $("#cpwderror").text("* Confirm your password");
+  }
+  else{
+    count++;
+  }
+
+  if(phone = ''){
+    $("#phoneerror").text("* Enter phone number");
+  }
+  else{
+    count++;
+  }
+
   if(address1 == '' ){
-    errorText += "Please enter the address first line \n";
+    $("#adderror1").text("* Empty address1");
   }
   else{
     count++;
   }
   if(city == ''){
-    errorText += "Please enter the city \n";
+    $("#cityerror").text("* Empty city name");
   }
   else{
     count++;
   }
   if(state == ''){
-    errorText += "Please select the state \n";
+    $("#stateerror").text("* Empty state");
   }
   else{
     count++;
   }
   if(country == ''){
-    errorText += "Please enter the country \n";
+    $("#countryerror").text("* Empty country");
   }
   else{
     count++;
   }
   if(zip == ''){
-    errorText += "Please enter the zip code \n";
+    $("#ziperror").text("* Empty zip code");
   }
   else{
     count++;
   }
 
-  if(count == 9){
+  if(count == 11){
     if(pwd === cpwd){
       //alert("yes");
       $.post("info.php", {
-        fname1: fname,
-        lname1: lname,
-        name1: name,
-        email1: email,
-        password1: password
+        firstname: fname,
+        lastname: lname,
+        username: usr,
+        emailaddress: email,
+        password: pwd,
+        phonenumber: phone,
+        addressfirst: address1,
+        addresssecond: address2,
+        city1: city,
+        state1: state,
+        country1: country,
+        zipcode: zip
       }, function(data) {
         if (data == 'Success') {
           $("form")[0].reset();
           // this will jump to the index html
-          window.location.replace("login.html");
+          //window.location.replace("login.html");
         }
         // alert(data);
       });
     }
     else{
-      errorText = "Passwords do not match";
+      $("#passerror").text("passwords do not match");
     }
   }
 
@@ -190,7 +215,7 @@ $("#register").click(function(){
       if (data == 'Success') {
         $("form")[0].reset();
         // this will jump to the index html
-        window.location.replace("login.html");
+        window.location.replace("index.php");
       }
       // alert(data);
     });

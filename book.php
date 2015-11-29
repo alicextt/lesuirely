@@ -54,8 +54,8 @@ include("func.php");
               <a data-toggle="dropdown">Your Account
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="userInfo.html">Your account</a></li>
-                  <li><a href="#">Your orders</a></li>
+                  <li><a href="userInfo.php">Your account</a></li>
+                  <li><a href="order.php">Your orders</a></li>
                 </ul>
               </div>
             </li>

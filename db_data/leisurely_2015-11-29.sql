@@ -1251,7 +1251,7 @@ CREATE TABLE `usr` (
 LOCK TABLES `usr` WRITE;
 /*!40000 ALTER TABLE `usr` DISABLE KEYS */;
 
-INSERT INTO `usr` (`id`, `fname`, `lname`, `name`, `email`, `password`)
+INSERT INTO `usr` (`id`, `name`, `email`, `password`,`fname`, `lname`)
 VALUES
 	(1,'joe','joe@scu.edu','3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d','Joe','Doe'),
 	(2,'alex','alex@scu.edu','3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d','Alex','funny'),

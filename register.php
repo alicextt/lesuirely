@@ -1,4 +1,5 @@
 <?php
+//-- ********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************
 ini_set('display_errors', 'On');
 
 $connection = mysqli_connect("localhost", "root", "root", "Leisurely"); // Establishing connection with server..
@@ -10,6 +11,7 @@ $fname = $_POST['fname1'];
 $lname = $_POST['lname1'];
 $name = $_POST['name1']; // Fetching Values from URL.
 $email=$_POST['email1'];
+
 $password= sha1($_POST['password1']); // Password Encryption, If you like you can also leave sha1.
 
 // Check if e-mail address syntax is valid or not
@@ -25,11 +27,11 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
       echo "Success";
     }else
     {
-	echo "INSERT INTO usr(fname, lname, name, email, password) values ('$fname', '$lname', $name', '$email', '$password')"; // Insert query
+	  echo "INSERT INTO usr(fname, lname, name, email, password) values ('$fname', '$lname', $name', '$email', '$password')"; // Insert query
       echo "Error....!!";
     }
   }else{
-    echo "This user name is already registered, Please try another user name...";
+    echo "User name taken";
   }
 }
 mysqli_close ($connection);

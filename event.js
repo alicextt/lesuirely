@@ -1,3 +1,4 @@
+//<!-- ********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************-->
 function getDate(){
   var x = document.lastModified;
   document.getElementById("lastModified").innerHTML = x;
@@ -141,10 +142,109 @@ function editInfoClick(){
 
 
 };
+});
+//*******************Checkout**********************************************************************************************//
+$("#checkout").click(function(){
+  var fname = $("#fname").val();
+  var lname = $("#lname").val();
+  var usr = $("#usr").val();
+  var email = $("#email").val();
+  var pwd = $("#pwd").val();
+  var cpwd = $("#cpwd").val();
+  var address1 = $("#address1").val();
+  var address2 = $("#address2").val();
+  var city = $("#city").val();
+  var state = $("#state").val();
+  var country = $("#country").val();
+  var zip = $("#zip").val();
+  var phone = $("#phone").val();
 
+  // var fnerror = "";
+  // var lnerror = "";
+  // var adderror = "";
+  // var cityerror = "";
+  // var staterror = "";
+  // var phonerror = "";
+  var count = 0;
+
+  if(fname == /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/){
+    document.getElementById("fnerror").innerHTML = '<p>'+"Please enter the first name"+'</p>';
+    alert("Please enter the first name");
+  }
+  else{
+    count++;
+  }
+  if(lname == /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/){
+    document.getElementById("lnerror").innerHTML= '<p>'+"Please enter the last name"+'</p>';
+  }
+  else{
+    count++;
+  }
+  if(address1 == /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/ ){
+    document.getElementById("adderror").innerHTML= '<p>'+"Please enter the address first line"+'</p>';
+  }
+  else{
+    count++;
+  }
+  if(city == /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/){
+    document.getElementById("cityerror").innerHTML= '<p>'+"Please enter the city"+'</p>';
+  }
+  else{
+    count++;
+  }
+  if(state == ""){
+    document.getElementById("staterror").innerHTML='<p>'+"Please select the state"+'</p>';
+  }
+  else{
+    count++;
+  }
+  if(country == /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/){
+    document.getElementById("countryerror").innerHTML='<p>'+"Please enter the country"+'</p>';
+  }
+  else{
+    count++;
+  }
+  if(zip == '' || !IsNumeric(zip)){
+    document.getElementById("ziperror").innerHTML= '<p>'+"Please enter a valid zip code"+'</p>';
+  }
+  else{
+    count++;
+  }
+  if(phone == '' || !IsNumeric(zip)){
+    document.getElementById("phonerror").innerHTML= '<p>'+"Please enter a valid phone number"+'</p>';
+  }
+  else{
+    count++;
+  }
+
+  // if(count == 8){
+  //   if(pwd === cpwd){
+  //     //alert("yes");
+  //     $.post("info.php", {
+  //       fname1: fname,
+  //       lname1: lname,
+  //       name1: name,
+  //       email1: email,
+  //       password1: password
+  //     }, function(data) {
+  //       if (data == 'Success') {
+  //         $("form")[0].reset();
+  //         // this will jump to the index html
+  //         window.location.replace("login.html");
+  //       }
+  //       // alert(data);
+  //     });
+  //   }
+  //   else{
+  //     errorText = "Passwords do not match";
+  //   }
+  // }
+
+});
+
+//************************************End of Checkout************************************************//
 //**************** used in signUp.html . the register button clicked will first do validation and then will do an ajax call to register.php and save data into DB.
 $("#register").click(function(){
-  
   var fname = $("#fname").val();
   var lname = $("#lname").val();
   var name=$("#usr").val();
@@ -152,12 +252,11 @@ $("#register").click(function(){
   var password = $("#pwd").val();
   var cpassword = $("#cpwd").val();
   var count=0;
-
   if(fname == ''){
     $("#fnameError").text('* Empty first name!');
   }
   else if (fname.match("/^[a-zA-Z ]*$/")) {
-    $("#fnameError").text('* Only letters and whitespace allowed!'); 
+    $("#fnameError").text('* Only letters and whitespace allowed!');
   }
   else{
     $("#fnameError").text('');
@@ -169,10 +268,10 @@ $("#register").click(function(){
     $("#lnameError").text('* Empty last name!');
   }
   else if (lname.match("/^[a-zA-Z ]*$/")) {
-    $("#lnameError").text('* Only letters and whitespace allowed!'); 
+    $("#lnameError").text('* Only letters and whitespace allowed!');
   }
-  else{
-    $("#lnameError").text('');
+ else{
+   $("#lnameError").text('');
     count++;
     //console.log(lname);
   }
@@ -185,7 +284,6 @@ $("#register").click(function(){
   }else{
     $("#usrerror").text('');
     count++;
-    //console.log(name);
   }
 
   if(email == ''){
@@ -195,7 +293,6 @@ $("#register").click(function(){
   }else{
     $("#mailerror").text('');
     count++;
-    //console.log(email);
   }
 
   if(password == ''){
@@ -205,7 +302,6 @@ $("#register").click(function(){
   }else{
     $("#pwderror").text('');
     count++;
-    //console.log(password);
   }
 
   if(cpassword!=password){
@@ -213,26 +309,28 @@ $("#register").click(function(){
   }else{
     $("#cpwderror").text('');
     count++;
-    //console.log(cpassword);
   }
-
   if(count==6)
   {
-    //alert("yes");
     $.post("register.php", {
-      fname1: fname,
-      lname1: lname,
+      fname1:fname,
+      lname1:lname,
       name1: name,
       email1: email,
       password1: password
     }, function(data) {
       if (data == 'Success') {
-        $("form")[0].reset();
         // this will jump to the index html
 
         window.location.replace("index.php");
+        console.log('insert user'+name+" successfully");
+        window.location.replace("login.html");
       }
-      // alert(data);
+      else if(data=='User name taken'){
+          $("#usrerror").text('* This user name has already been take !');
+      }else{
+        alert('An sql error has occured');
+      }
     });
   }
 });
@@ -341,6 +439,8 @@ var currentImage = 0;
 
 function init(){
   ul = document.getElementById('image_slider');
+  if(!ul)
+    return;
   li_items = ul.children;
   imageNumber = li_items.length;
   imageWidth = li_items[0].children[0].children[0].clientWidth;
@@ -404,7 +504,5 @@ function onClickNext(){
     slideTo(currentImage + 1);
   }
 }
-
-
 
 window.onload = init;

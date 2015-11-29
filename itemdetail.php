@@ -1,3 +1,4 @@
+<!-- ********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************-->
 <?php
 session_start();
 ini_set('display_errors', 'On');
@@ -42,9 +43,28 @@ include("func.php");
               </div>
             </form>
           </li>
-          <li><a id = "signup" href = "signup.html">Join Today</a></li>
-          <li><a id = "sign" href="login.html">Sign In</a></li>
-          <li><a href="checkout.html"><img src="cart.png" alt="Lesuirely" height="50" width="50"><span id="cart"><?php
+          <?php  if(!isset($_SESSION['user'])){
+            ?>
+            <li><a id = "signup" href = "signup.html">Join Today</a></li>
+            <li><a id = "sign" href="login.html">Sign In</a></li>
+            <?php
+          }else{
+            ?>
+            <li>
+            <div class="dropdown">
+              <a data-toggle="dropdown">Your Account
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="userInfo.html">Your account</a></li>
+                  <li><a href="#">Your orders</a></li>
+                </ul>
+              </div>
+            </li>
+            <li><a id = "sigout" href="logout.php">Logout</a></li>
+            <?php
+          }
+          ?>
+          <li><a href="checkout.php"><img src="cart.png" alt="Lesuirely" height="50" width="50"><span id="cart"><?php
           echo getCartItemQuantity();
           ?></span></a></li>
         </ul>
@@ -61,6 +81,7 @@ include("func.php");
       <div id="itemdetails">
         <div class="rate"><?=$json->rate?></div>
         <h1 id="title"><?=$json->title?></h1>
+        <span id="itemid" hidden><?=$_GET['id']?></span>
         <?php
         if($_GET['cat']=='book'){
           ?>
@@ -154,7 +175,7 @@ include("func.php");
       </div>
       <div id="copycont">
         <footer>
-          <p class="center"> Copyright@2015, designed by <a class="yellow">Leisurely Admin | Privacy Policy</a></p>
+          <p class="center"> Copyright&copy2015, designed by <a class="yellow">Leisurely Admin | Privacy Policy</a></p>
           <p class="center">  Site Last Modified:
             <span id="lastModified"/> </p>
             <noscript> Browser does not support JAVASCRIPT</noscript>

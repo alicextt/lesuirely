@@ -23,6 +23,8 @@ include("func.php");
 </head>
 <body onload="getDate(); editInfoClick();">
     <!-- header-->
+<body onload="getDate()">
+  <!-- header-->
   <noscript> Browser does not support JAVASCRIPT</noscript>
   <header class="container">
     <div class="horizontal">
@@ -50,42 +52,54 @@ include("func.php");
             ?>
             <li><a id = "signup" href = "userInfo.php">Info</a></li>
             <li><a id = "sigout" href="logout.html">Logout</a></li>
+            <li>
+            <div class="dropdown">
+              <a data-toggle="dropdown">Your Account
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="userInfo.html">Your account</a></li>
+                  <li><a href="#">Your orders</a></li>
+                </ul>
+              </div>
+            </li>
+            <li><a id = "sigout" href="logout.php">Logout</a></li>
             <?php
           }
           ?>
           <li><a href="checkout.php"><img src="cart.png" alt="Lesuirely" height="50" width="50"><span id="cart"><?php
           echo getCartItemQuantity();
-          ?></span></a></li>        </ul>
+          ?></span></a></li>
+        </ul>
       </div>
     </header>
     <div class="vuser">
       <?php
       if(isset($_SESSION['user'])){
         $user= $_SESSION['user'];
-          echo "<h1>$user, Welcome Back!</h1>";
+        echo "<h1>$user, Welcome Back!</h1>";
       }
-       ?>
-       <div class="slide">
-         <div class="slider_wrapper">
-           <ul id="image_slider">
-             <li><a href="itemdetail.php?id=1&cat=movie"><img src="images/1.jpg"></a></li>
-             <li><a href="itemdetail.php?id=39&cat=book"><img src="images/2.jpg"></a></li>
-             <li><a href="itemdetail.php?id=295&cat=movie"><img src="images/3.jpg"></a></li>
-             <li><a href="itemdetail.php?id=82&cat=book">  <img src="images/4.jpg"></a></li>
-           </ul>
-           <span class="nvgt" id="prev"></span>
-           <span class="nvgt" id="next"></span>
-         </div>
-       </div>
+      ?>
+      <div class="slide">
+        <div class="slider_wrapper">
+          <ul id="image_slider">
+            <li><a href="itemdetail.php?id=1&cat=movie"><img src="images/1.jpg"></a></li>
+            <li><a href="itemdetail.php?id=39&cat=book"><img src="images/2.jpg"></a></li>
+            <li><a href="itemdetail.php?id=295&cat=movie"><img src="images/3.jpg"></a></li>
+            <li><a href="itemdetail.php?id=82&cat=book">  <img src="images/4.jpg"></a></li>
+          </ul>
+          <span class="nvgt" id="prev"></span>
+          <span class="nvgt" id="next"></span>
+        </div>
+      </div>
     </div>
 
     <div id="copycont">
       <footer>
-          <p class="center"> Copyright@2015, designed by <a class="yellow">Leisurely Admin | Privacy Policy</a></p>
-          <p class="center">  Site Last Modified:
-            <span id="lastModified"/> </p>
-            <noscript> Browser does not support JAVASCRIPT</noscript>
-      </footer>
-    </div>
-  </body>
-  </html>
+        <p class="center"> Copyright&copy2015, designed by <a class="yellow">Leisurely Admin | Privacy Policy</a></p>
+        <p class="center">  Site Last Modified:
+          <span id="lastModified"/> </p>
+          <noscript> Browser does not support JAVASCRIPT</noscript>
+        </footer>
+      </div>
+    </body>
+    </html>

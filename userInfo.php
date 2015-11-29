@@ -1,4 +1,5 @@
 
+<!-- ********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************-->
 <!DocType html>
 
 <html>
@@ -36,8 +37,18 @@
               </div>
             </form>
           </li>
-          <li><a id = "signup" href = "signup.html">Join Today</a></li>
-          <li><a id = "sign" href="login.html">Sign In</a></li>
+          <?php  if(!isset($_SESSION['user'])){
+            ?>
+            <li><a id = "signup" href = "signup.html">Join Today</a></li>
+            <li><a id = "sign" href="login.html">Sign In</a></li>
+            <?php
+          }else{
+            ?>
+            <li><a id = "signup" href = "userIno.html">Info</a></li>
+            <li><a id = "sigout" href="logout.html">Logout</a></li>
+            <?php
+          }
+          ?>
           <li><a href="checkout.html"><img src="cart.png" alt="Lesuirely" height="50" width="50"></a></li>
         </ul>
       </div>

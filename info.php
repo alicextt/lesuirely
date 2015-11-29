@@ -60,3 +60,4 @@ else{
 
 mysqli_close($connection);
 ?>
+<!-- ********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************-->

@@ -238,11 +238,10 @@ function saveSession(){
     $stmt= "select id from sessions where id=$id";
     $result = $connection->query($stmt);
 
-    $access=time();
     if(mysqli_num_rows($result)==0){
       $stmt="insert into sessions(id, access, data) values ('$id', '$access', '$items')";
     }else{
-      $stmt = "update sessions set data = '$items' where id='$id'";
+      $stmt = "update sessions set data = '$items', access=now() where id='$id'";
     }
     $result = $connection->query($stmt);
     if(mysql_errno()){

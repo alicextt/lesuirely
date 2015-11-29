@@ -23,9 +23,6 @@ if(($data)==0){
   $data = mysqli_num_rows($result);
   $row = mysqli_fetch_assoc($result);
 	if(($data)==1){
-		$_SESSION['user']=$name;
-    	$_SESSION['id']= $row['id'];
-	  	echo "Success";
 	  $_SESSION['user']=$name;
     $_SESSION['id']= $row['id'];
     $id=$row['id'];

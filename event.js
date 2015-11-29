@@ -4,8 +4,6 @@ function getDate(){
   document.getElementById("lastModified").innerHTML = x;
 }
 
-// $(window).load(function(){
-//   window.resizeTo(1245, 800);
 
 function editInfoClick(){
   var fname = $("#fname").val();
@@ -25,7 +23,7 @@ function editInfoClick(){
   var count = 0;
 
   if(fname == ''){
-    $("#fnameError").text("* Empty first name!");  
+    $("#fnameError").text("* Empty first name!");
   }
   else{
     count++;
@@ -37,7 +35,7 @@ function editInfoClick(){
   else{
     count++;
   }
-  
+
   if(usr == ''){
     $("#usrerror").text("* Empty user name");
   }
@@ -51,14 +49,14 @@ function editInfoClick(){
   else{
     count++;
   }
-  
+
   if(pwd == ''){
     $("#pwderror").text("* Empty password");
   }
   else{
     count++;
   }
-  
+
   if(cpwd == ''){
     $("#cpwderror").text("* Confirm your password");
   }
@@ -86,14 +84,14 @@ function editInfoClick(){
   else{
     count++;
   }
-  
+
   if(state == ''){
     $("#stateerror").text("* Empty state");
   }
   else{
     count++;
   }
-  
+
   if(country == ''){
     $("#countryerror").text("* Empty country");
   }
@@ -110,7 +108,7 @@ function editInfoClick(){
 
   if(count == 12){
     if(pwd === cpwd){
-      
+
       $.post("info.php", {
         firstname: fname,
         lastname: lname,
@@ -138,11 +136,13 @@ function editInfoClick(){
     else{
       $("#passerror").text("passwords do not match");
     }
-  }
+  };
+}
 
 
-};
-});
+$(window).load(function(){
+  window.resizeTo(1245, 800);
+
 //*******************Checkout**********************************************************************************************//
 $("#checkout").click(function(){
   var fname = $("#fname").val();
@@ -270,8 +270,8 @@ $("#register").click(function(){
   else if (lname.match("/^[a-zA-Z ]*$/")) {
     $("#lnameError").text('* Only letters and whitespace allowed!');
   }
- else{
-   $("#lnameError").text('');
+  else{
+    $("#lnameError").text('');
     count++;
     //console.log(lname);
   }
@@ -327,18 +327,18 @@ $("#register").click(function(){
         window.location.replace("login.html");
       }
       else if(data=='User name taken'){
-          $("#usrerror").text('* This user name has already been take !');
+        $("#usrerror").text('* This user name has already been take !');
       }else{
         alert('An sql error has occured');
       }
     });
   }
 });
-// });
+});
 
 $(document).ready(function(){
   // sign up passoorc check function
-$(":password").hover(function(){
+  $(":password").hover(function(){
     $(":password").attr('type','text');
   },function(){
     $("#pwd").attr('type','password');
@@ -354,155 +354,155 @@ $("#login").click(function(){
   var name1=$("#usrname").val();
   var pwd1=$("#pwd").val();
   $.post("login.php", {
-        name:name1,
-        pwd:pwd1
-      }, function(data){
-        if (data == 'Success') {
-          $("form")[0].reset();
-          // this will jump to the index html
-          window.location.replace("index.php");
-        }
-        // alert(data);
-        else if (data =='User name incorrect!') {
-          $("#usrerror").text('User name incorrect!');
-        }else{
-          $("#pwderror").text('Password incorrect!');
-        }
-      });
+    name:name1,
+    pwd:pwd1
+  }, function(data){
+    if (data == 'Success') {
+      $("form")[0].reset();
+      // this will jump to the index html
+      window.location.replace("index.php");
+    }
+    // alert(data);
+    else if (data =='User name incorrect!') {
+      $("#usrerror").text('User name incorrect!');
+    }else{
+      $("#pwderror").text('Password incorrect!');
+    }
+  });
 });
 });
 
 $(document).ready(function () { //toggle the component with class accordion_body
   $(".accordion_head").click(function () {
     if ($('.accordion_body').is(':visible')) {
-     $(".accordion_body").slideUp(300); $(".plusminus").text('+');
-      }
-      if ($(this).next(".accordion_body").is(':visible')) {
-        $(this).next(".accordion_body").slideUp(300);
-        $(this).children(".plusminus").text('+'); }
-        else {
-          $(this).next(".accordion_body").slideDown(300);
-          $(this).children(".plusminus").text('-'); }
-        });
-});
-
-
-// **************** slider related function in index.php
-$(document).ready(function () { //toggle the component with class inner_accordion_body
-  $(".inner_accordion_head").click(function () {
-    if ($('.inner_accordion_body').is(':visible')) {
-     $(".inner_accordion_body").slideUp(300); $(".plusminus1").text('+');
-      }
-      if ($(this).next(".inner_accordion_body").is(':visible')) {
-        $(this).next(".inner_accordion_body").slideUp(300);
-        $(this).children(".plusminus1").text('+'); }
-        else {
-          $(this).next(".inner_accordion_body").slideDown(300);
-          $(this).children(".plusminus1").text('-'); }
-        });
-});
-
-$(document).ready(function($) {
-  $('#accordion').find('.accordion-toggle').click(function(){
-
-    //Expand or collapse this panel
-    $(this).next().slideToggle('400');
-
-    //Hide the other panels
-    $(".accordion-content").not($(this).next()).slideUp('400');
-
-
-  });
-});
-
-$(document).ready(function($) {
-  $('#accordion').find('.inner-accordion-toggle').click(function(){
-
-    //Expand or collapse this panel
-    $(this).next().slideToggle('400');
-
-    //Hide the other panels
-    $(".inner-accordion-content").not($(this).next()).slideUp('400');
-
-  });
-});
-
-//Silder
-var ul;
-var li_items;
-var imageNumber;
-var imageWidth;
-var prev, next;
-var currentPostion = 0;
-var currentImage = 0;
-
-
-function init(){
-  ul = document.getElementById('image_slider');
-  if(!ul)
-    return;
-  li_items = ul.children;
-  imageNumber = li_items.length;
-  imageWidth = li_items[0].children[0].children[0].clientWidth;
-  ul.style.width = parseInt(imageWidth * imageNumber) + 'px';
-  prev = document.getElementById("prev");
-  next = document.getElementById("next");
-  setInterval(onClickNext, 8000);
-  prev.onclick = function(){ onClickPrev();};
-  next.onclick = function(){ onClickNext();};
-}
-
-function animate(opts){
-  var start = new Date;
-  var id = setInterval(function(){
-    var timePassed = new Date - start;
-    var progress = timePassed / opts.duration;
-    if (progress > 1){
-      progress = 1;
+      $(".accordion_body").slideUp(300); $(".plusminus").text('+');
     }
-    var delta = opts.delta(progress);
-    opts.step(delta);
-    if (progress == 1){
-      clearInterval(id);
-      opts.callback();
-    }
-  }, opts.delay || 17);
-  //return id;
-}
+    if ($(this).next(".accordion_body").is(':visible')) {
+      $(this).next(".accordion_body").slideUp(300);
+      $(this).children(".plusminus").text('+'); }
+      else {
+        $(this).next(".accordion_body").slideDown(300);
+        $(this).children(".plusminus").text('-'); }
+      });
+    });
 
-function slideTo(imageToGo){
-  var direction;
-  var numOfImageToGo = Math.abs(imageToGo - currentImage);
 
-  direction = currentImage > imageToGo ? 1 : -1;
-  currentPostion = -1 * currentImage * imageWidth;
-  var opts = {
-    duration:1000,
-    delta:function(p){return p;},
-    step:function(delta){
-      ul.style.left = parseInt(currentPostion + direction * delta * imageWidth * numOfImageToGo) + 'px';
-    },
-    callback:function(){currentImage = imageToGo;}
-  };
-  animate(opts);
-}
+    // **************** slider related function in index.php
+    $(document).ready(function () { //toggle the component with class inner_accordion_body
+      $(".inner_accordion_head").click(function () {
+        if ($('.inner_accordion_body').is(':visible')) {
+          $(".inner_accordion_body").slideUp(300); $(".plusminus1").text('+');
+        }
+        if ($(this).next(".inner_accordion_body").is(':visible')) {
+          $(this).next(".inner_accordion_body").slideUp(300);
+          $(this).children(".plusminus1").text('+'); }
+          else {
+            $(this).next(".inner_accordion_body").slideDown(300);
+            $(this).children(".plusminus1").text('-'); }
+          });
+        });
 
-function onClickPrev(){
-  if (currentImage == 0){
-    slideTo(imageNumber - 1);
-  }
-  else{
-    slideTo(currentImage - 1);
-  }
-}
+        $(document).ready(function($) {
+          $('#accordion').find('.accordion-toggle').click(function(){
 
-function onClickNext(){
-  if (currentImage == imageNumber - 1){
-    slideTo(0);
-  }
-  else{
-    slideTo(currentImage + 1);
-  }
-}
+            //Expand or collapse this panel
+            $(this).next().slideToggle('400');
 
-window.onload = init;
+            //Hide the other panels
+            $(".accordion-content").not($(this).next()).slideUp('400');
+
+
+          });
+        });
+
+        $(document).ready(function($) {
+          $('#accordion').find('.inner-accordion-toggle').click(function(){
+
+            //Expand or collapse this panel
+            $(this).next().slideToggle('400');
+
+            //Hide the other panels
+            $(".inner-accordion-content").not($(this).next()).slideUp('400');
+
+          });
+        });
+
+        //Silder
+        var ul;
+        var li_items;
+        var imageNumber;
+        var imageWidth;
+        var prev, next;
+        var currentPostion = 0;
+        var currentImage = 0;
+
+
+        function init(){
+          ul = document.getElementById('image_slider');
+          if(!ul)
+          return;
+          li_items = ul.children;
+          imageNumber = li_items.length;
+          imageWidth = li_items[0].children[0].children[0].clientWidth;
+          ul.style.width = parseInt(imageWidth * imageNumber) + 'px';
+          prev = document.getElementById("prev");
+          next = document.getElementById("next");
+          setInterval(onClickNext, 8000);
+          prev.onclick = function(){ onClickPrev();};
+          next.onclick = function(){ onClickNext();};
+        }
+
+        function animate(opts){
+          var start = new Date;
+          var id = setInterval(function(){
+            var timePassed = new Date - start;
+            var progress = timePassed / opts.duration;
+            if (progress > 1){
+              progress = 1;
+            }
+            var delta = opts.delta(progress);
+            opts.step(delta);
+            if (progress == 1){
+              clearInterval(id);
+              opts.callback();
+            }
+          }, opts.delay || 17);
+          //return id;
+        }
+
+        function slideTo(imageToGo){
+          var direction;
+          var numOfImageToGo = Math.abs(imageToGo - currentImage);
+
+          direction = currentImage > imageToGo ? 1 : -1;
+          currentPostion = -1 * currentImage * imageWidth;
+          var opts = {
+            duration:1000,
+            delta:function(p){return p;},
+            step:function(delta){
+              ul.style.left = parseInt(currentPostion + direction * delta * imageWidth * numOfImageToGo) + 'px';
+            },
+            callback:function(){currentImage = imageToGo;}
+          };
+          animate(opts);
+        }
+
+        function onClickPrev(){
+          if (currentImage == 0){
+            slideTo(imageNumber - 1);
+          }
+          else{
+            slideTo(currentImage - 1);
+          }
+        }
+
+        function onClickNext(){
+          if (currentImage == imageNumber - 1){
+            slideTo(0);
+          }
+          else{
+            slideTo(currentImage + 1);
+          }
+        }
+
+        window.onload = init;

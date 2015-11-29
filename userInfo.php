@@ -1,5 +1,12 @@
 
 <!-- ********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************-->
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+ini_set('display_errors', 'On');
+include("func.php");
+?>
 <!DocType html>
 
 <html>
@@ -44,13 +51,24 @@
             <?php
           }else{
             ?>
-            <li><a id = "signup" href = "userIno.html">Info</a></li>
-            <li><a id = "sigout" href="logout.html">Logout</a></li>
+            <li>
+            <div class="dropdown">
+              <a data-toggle="dropdown">Your Account
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="userInfo.php">Your account</a></li>
+                  <li><a href="order.php">Your orders</a></li>
+                </ul>
+              </div>
+            </li>
+            <li><a id = "sigout" href="logout.php">Logout</a></li>
             <?php
           }
           ?>
-          <li><a href="checkout.html"><img src="cart.png" alt="Lesuirely" height="50" width="50"></a></li>
-        </ul>
+          <li><a href="checkout.php"><img src="cart.png" alt="Lesuirely" height="50" width="50"><span id="cart"><?php
+          echo getCartItemQuantity();
+          ?></span></a></li>
+                </ul>
       </div>
     </header>
     <div>

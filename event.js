@@ -3,8 +3,8 @@ function getDate(){
   document.getElementById("lastModified").innerHTML = x;
 }
 
-$(window).load(function(){
-  window.resizeTo(1245, 800);
+// $(window).load(function(){
+//   window.resizeTo(1245, 800);
 
 function editInfoClick(){
   var fname = $("#fname").val();
@@ -38,7 +38,14 @@ function editInfoClick(){
   }
   
   if(usr == ''){
-    $("#usrerror").text("* Empty email address");
+    $("#usrerror").text("* Empty user name");
+  }
+  else{
+    count++;
+  }
+
+  if(email == ''){
+    $("#mailerror").text("* Empty email address")
   }
   else{
     count++;
@@ -71,24 +78,28 @@ function editInfoClick(){
   else{
     count++;
   }
+
   if(city == ''){
     $("#cityerror").text("* Empty city name");
   }
   else{
     count++;
   }
+  
   if(state == ''){
     $("#stateerror").text("* Empty state");
   }
   else{
     count++;
   }
+  
   if(country == ''){
     $("#countryerror").text("* Empty country");
   }
   else{
     count++;
   }
+
   if(zip == ''){
     $("#ziperror").text("* Empty zip code");
   }
@@ -96,9 +107,9 @@ function editInfoClick(){
     count++;
   }
 
-  if(count == 11){
+  if(count == 12){
     if(pwd === cpwd){
-      //alert("yes");
+      
       $.post("info.php", {
         firstname: fname,
         lastname: lname,
@@ -115,10 +126,12 @@ function editInfoClick(){
       }, function(data) {
         if (data == 'Success') {
           $("form")[0].reset();
+          //alert("yes");
+
           // this will jump to the index html
-          //window.location.replace("login.html");
+          //window.location.replace("userInfo.php");
         }
-        // alert(data);
+        //alert(data);
       });
     }
     else{
@@ -126,7 +139,8 @@ function editInfoClick(){
     }
   }
 
-});
+
+};
 
 //**************** used in signUp.html . the register button clicked will first do validation and then will do an ajax call to register.php and save data into DB.
 $("#register").click(function(){
@@ -215,13 +229,14 @@ $("#register").click(function(){
       if (data == 'Success') {
         $("form")[0].reset();
         // this will jump to the index html
+
         window.location.replace("index.php");
       }
       // alert(data);
     });
   }
 });
-});
+// });
 
 $(document).ready(function(){
   // sign up passoorc check function

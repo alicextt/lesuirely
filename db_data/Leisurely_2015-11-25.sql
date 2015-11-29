@@ -11,6 +11,7 @@
 # ************************************************************
 
 
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -22,6 +23,8 @@
 
 # Dump of table book
 # ------------------------------------------------------------
+
+UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `book`;
 
@@ -1102,6 +1105,8 @@ DROP TABLE IF EXISTS `usr`;
 
 CREATE TABLE `usr` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
+  `fname` varchar(255) NOT NULL DEFAULT '',
+  `lname` varchar(255) NOT NULL DEFAULT '',
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -1111,14 +1116,62 @@ CREATE TABLE `usr` (
 LOCK TABLES `usr` WRITE;
 /*!40000 ALTER TABLE `usr` DISABLE KEYS */;
 
-INSERT INTO `usr` (`id`, `name`, `email`, `password`)
+INSERT INTO `usr` (`id`, `fname`, `lname`, `name`, `email`, `password`)
 VALUES
-	(3,'txu','alice.xtt@gmail.com','3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d'),
-	(4,'joe','joe@scu.edu','3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d');
-
+	(1,'tingting','xu','txu','alice.xtt@gmail.com','3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d'),
+	(2,'joe','j','joe','joe@scu.edu','3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d'),
+	(3, 'shubham', 'banthia', 'sb', 'sbanthia@scu.edu', 'b1b3773a05c0ed0176787a4f1574ff0075f7521e');
 /*!40000 ALTER TABLE `usr` ENABLE KEYS */;
 UNLOCK TABLES;
 
+
+
+DROP TABLE IF EXISTS `address`;
+
+CREATE TABLE `address`(
+  `addressId` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL DEFAULT -1,
+  `address1` varchar(255) NOT NULL DEFAULT '',
+  `address2` varchar(255) NOT NULL DEFAULT '',
+  `city` varchar(255) NOT NULL DEFAULT '',
+  `state` varchar(255) NOT NULL DEFAULT '',
+  `country` varchar(255) NOT NULL DEFAULT '',
+  `zip` int(11) DEFAULT NULL,
+  `phone` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`addressId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `address` WRITE;
+
+INSERT INTO `address` (`addressId`, `userId`, `address1`, `address2`, `city`, `state`, `country`, `zip`, `phone`)
+VALUES 
+(1, 1, 'SCU', '', 'santa clara', 'CA', 'US', 95050, '1111111111'),
+(2, 2, 'home', 'street address', 'santa clara', 'CA', 'US', 95053, '9999999999');
+
+UNLOCK TABLES;
+
+
+DROP TABLE IF EXISTS `payment`;
+
+CREATE TABLE `payment`(
+  `paymentId` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL DEFAULT -1,
+  `cardType` varchar(255) NOT NULL DEFAULT '',
+  `nameOnCard` varchar(255) NOT NULL DEFAULT '',
+  `creditCardNumber` varchar(255) NOT NULL DEFAULT '',
+  `cvv` varchar(255) NOT NULL DEFAULT '',
+  `expiryDate` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`paymentId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `payment` WRITE;
+
+INSERT INTO `payment` (`paymentId`, `userId`, `cardType`, `nameOnCard`, `creditCardNumber`, `cvv`, `expiryDate`)
+VALUES 
+(1, 1, 'amex', 'tingting xu', '123456789', '000', '01/2016'),
+(2, 2, 'mastercard', 'joe j', '987654321', '999', '12/2016');
+
+UNLOCK TABLES;
 
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

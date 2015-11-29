@@ -48,7 +48,7 @@ include("func.php");
             <?php
           }else{
             ?>
-            <li><a id = "signup" href = "userInfo.html">Info</a></li>
+            <li><a id = "signup" href = "userInfo.php">Info</a></li>
             <li><a id = "sigout" href="logout.html">Logout</a></li>
             <?php
           }

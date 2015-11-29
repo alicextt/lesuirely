@@ -1,3 +1,4 @@
+
 <!DocType html>
 
 <html>
@@ -15,7 +16,7 @@
   <script src = "event.js" text = "text/javascript" language = "javascript"></script>
   <link href="styles.css" rel="stylesheet">
 </head>
-<body onload="getDate(); ">
+<body onload="getDate()">
     <!-- header-->
   <noscript> Browser does not support JAVASCRIPT</noscript>
   <header class="container">
@@ -155,7 +156,7 @@
             <input type="number" class="form-control" id="zip"/><div class="error" id="ziperror"></div>
           </div>
           <div class="center">
-        <button class="btn btn-warning" type="button" id="changes" onclick = "editInfoClick">Confirm Changes</button>
+        <button class="btn btn-warning" type="button" id="changes" onclick = "editInfoClick()">Confirm Changes</button>
       </div>
     </form>
 </div>

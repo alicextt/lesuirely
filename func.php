@@ -239,7 +239,7 @@ function saveSession(){
     $result = $connection->query($stmt);
 
     if(mysqli_num_rows($result)==0){
-      $stmt="insert into sessions(id, access, data) values ('$id', '$access', '$items')";
+      $stmt="insert into sessions(id, access, data) values ('$id', now(), '$items')";
     }else{
       $stmt = "update sessions set data = '$items', access=now() where id='$id'";
     }

@@ -80,22 +80,6 @@ $(document).ready(function(){
   });
 
 
-  $('#buyagain .btn.btn-danger').click(function(){
-    var x=$(this);
-    $.post('addcart.php',{
-      id: x.parent().find('#itemid').text(),
-      ptype: x.parent().parent().parent().find('[name="ptype"]').text(),
-      ctype: x.parent().parent().parent().find('[name="ctype"]').text(),
-      uprice: x.parent().parent().parent().find('.itemprice').text(),
-      quantity: 1,
-      title: x.parent().parent().parent().find('a').text(),
-      img: x.parent().parent().parent().find('img').attr('src'),
-    }, function(data){
-      window.location.href='checkout.php';
-    });
-  });
-
-
 
   $('#buyagain .btn.btn-danger').click(function(){
     var x=$(this);
@@ -103,7 +87,7 @@ $(document).ready(function(){
       id: x.parent().find('#itemid').text(),
       ptype: x.parent().parent().parent().find('[name="ptype"]').text(),
       ctype: x.parent().parent().parent().find('[name="ctype"]').text(),
-      uprice: x.parent().parent().parent().find('.itemprice').text(),
+      uprice: "$ "+x.parent().parent().parent().find('.itemprice').text(),
       quantity: 1,
       title: x.parent().parent().parent().find('a').text(),
       img: x.parent().parent().parent().find('img').attr('src'),

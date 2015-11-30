@@ -301,10 +301,11 @@ $("#order").click(function(){
   var val = document.getElementById("card");
   //alert(cvv);
   //alert(val.value);
-  if (val.value == "amex" && cvv == /^[0-9]{4}$/){
+  cvv = cvv.toString();
+  if (val.value == "amex" && cvv.length === 4){
     alert("valid 4-digit cvv");
   }
-  else if (val.value != " " && cvv == /^[0-9]{3}$/){
+  else if (val.value != " " && cvv.length === 3){
     alert("valid 3-digit cvv");
   }
   else if (!cvv){

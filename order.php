@@ -111,6 +111,7 @@ include("func.php");
                       <?=$key->city?><br>
                       Phone: <?=$key->phone?><br></p>
                     </div></a></th>
+                    <th class="col-md-2">Ship To<br> <?=$key->person?></th>
                     <th class="col-md-2">Status <br><?=$key->status?></th>
                     <th class="col-md-3 center" colspan="2">Order #: <?=$oid?></th>
                   </tr>

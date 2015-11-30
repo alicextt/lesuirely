@@ -52,7 +52,7 @@ include("func.php");
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="userInfo.php">Your account</a></li>
-                  <li><a href="#">Your orders</a></li>
+                  <li><a href="order.php">Your orders</a></li>
                 </ul>
               </div>
             </li>

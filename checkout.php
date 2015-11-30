@@ -307,7 +307,7 @@ include("func.php");
           <td name="ptype"><?=$key->ptype ?></td>
           <td name="ctype"><?=$key->ctype?></td>
           <td name="title" id='purchasetitle' class='center'><p><?=$key->title?></p><img src=<?=$key->img?> width=100 height=150></td>
-          <td name="price"><?=$key->uprice?></td>
+          <td name="price" class ="center"><?=$key->uprice?></td>
           <td name="qty" id="purchaseqty" class="center"><div class="cartqty">
           <p>  <?php
             echo '<span>'.$qty.'</span>';

@@ -97,6 +97,46 @@ li>.dropdown{
   border-radius: 5px;
 
 }
+
+/**********************order.php**************/
+div#orderbox {
+    width: 90%;
+     box-shadow: none;
+     float:none;
+     margin-left: auto;
+}
+
+div#orderbox td{
+  padding-top: 15px;
+}
+
+.red{
+  color: red;
+}
+
+
+.wrap {
+  position: absolute;
+  height: 150px;
+  width: 187px;
+  background-color: white;
+  border: 1px gray solid;
+  box-shadow: 0 0 5px grey;
+  display: none;
+}
+
+a:hover div.wrap{
+  display: block;
+}
+
+.wrap p{
+  color:black;
+  margin: 20px;
+  text-align: left;
+  font-weight: normal;
+}
+/**********************end of order.php**************/
+
 form .glyphicon-search{
   padding: 2px;
   font-size: 1.5em;
@@ -407,7 +447,6 @@ td>img{
 }
 .vuser{
   padding-top: 135px;
-  font-weight: bold;
   padding-left: 50px;
   min-height: 500px;
 }

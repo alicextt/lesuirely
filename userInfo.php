@@ -1,4 +1,12 @@
+
 <!-- ********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************-->
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+ini_set('display_errors', 'On');
+include("func.php");
+?>
 <!DocType html>
 
 <html>
@@ -43,13 +51,24 @@
             <?php
           }else{
             ?>
-            <li><a id = "signup" href = "userIno.html">Info</a></li>
-            <li><a id = "sigout" href="logout.html">Logout</a></li>
+            <li>
+            <div class="dropdown">
+              <a data-toggle="dropdown">Your Account
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="userInfo.php">Your account</a></li>
+                  <li><a href="order.php">Your orders</a></li>
+                </ul>
+              </div>
+            </li>
+            <li><a id = "sigout" href="logout.php">Logout</a></li>
             <?php
           }
           ?>
-          <li><a href="checkout.html"><img src="cart.png" alt="Lesuirely" height="50" width="50"></a></li>
-        </ul>
+          <li><a href="checkout.php"><img src="cart.png" alt="Lesuirely" height="50" width="50"><span id="cart"><?php
+          echo getCartItemQuantity();
+          ?></span></a></li>
+                </ul>
       </div>
     </header>
     <div>
@@ -57,44 +76,49 @@
       <legend>View/Edit Personal Info</legend>
     <form accept-charset="UTF-8" action="#" method="post">
           <div class = "error" id = "userInfoError"></div>
+          <div class="error" id="passerror"></div>
           <div class="userinfo">
-            <label for="fname">First Name: *</label>
-            <input type="text" class="form-control" id="fname"/><!-- <div class="error" id="fnameError"> --></div>
+            <label for="fname">First Name:</label>
+            <input type="text" class="form-control" id="fname"/><div class="error" id="fnameError"></div>
           </div>
           <div class="userinfo">
-            <label for="lname">Last Name: *</label>
-            <input type="text" class="form-control" id="lname"/><!-- <div class="error" id="lnameError"> --></div>
+            <label for="lname">Last Name:</label>
+            <input type="text" class="form-control" id="lname"/><div class="error" id="lnameError"></div>
           </div>
           <div class="userinfo">
-            <label for="usr">User Name: *</label>
-            <input type="text" class="form-control" id="usr"/><!-- <div class="error" id="usrerror"> --></div>
+            <label for="usr">User Name:</label>
+            <input type="text" class="form-control" id="usr"/><div class="error" id="usrerror"></div>
           </div>
           <div class="userinfo">
-            <label for="email">Email: *</label>
-            <input type="text" class="form-control" id="email"/><!-- <div class="error" id="mailerror"> --></div>
+            <label for="email">Email:</label>
+            <input type="text" class="form-control" id="email"/><div class="error" id="mailerror"></div>
           </div>
           <div class="userinfo">
-            <label for="pwd">Password: *</label>
-            <input type="password" class="form-control" id="pwd"/><!-- <div class="error" id="pwderror"> --></div>
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" id="pwd"/><div class="error" id="pwderror"></div>
           </div>
           <div class="userinfo">
-            <label for="cpwd">Confirm Password: *</label>
-            <input type="password" class="form-control" id="cpwd"/><!-- <div class="error" id="cpwderror"> --></div>
+            <label for="cpwd">Confirm Password:</label>
+            <input type="password" class="form-control" id="cpwd"/><div class="error" id="cpwderror"></div>
           </div>
           <div class="userinfo">
-            <label for="address">Address Line 1: *</label>
-            <input type="text" class="form-control" id="address1"/><!-- <div class="error" id="adderror"> --></div>
+            <label for="cpwd">Phone number:</label>
+            <input type="number" class="form-control" id="phone"/><div class="error" id="phoneerror"></div>
+          </div>
+          <div class="userinfo">
+            <label for="address">Address Line 1:</label>
+            <input type="text" class="form-control" id="address1"/><div class="error" id="adderror1"></div>
           </div>
           <div class="userinfo">
             <label for="address">Address Line 2:</label>
-            <input type="text" class="form-control" id="address2"/><!-- <div class="error" id="adderror"> --></div>
+            <input type="text" class="form-control" id="address2"/><div class="error" id="adderror2"></div>
           </div>
           <div class="userinfo">
-            <label for="city">City: *</label>
-            <input type="text" class="form-control" id="city"/><!-- <div class="error" id="nerror"> --></div>
+            <label for="city">City:</label>
+            <input type="text" class="form-control" id="city"/><div class="error" id="cityerror"></div>
           </div>
           <div class="userinfo">
-            <label for="usr">State: *</label>
+            <label for="usr">State:</label>
             <!-- <input type="text" class="form-control" id="usr"/><div class="error" id="usrerror"></div> -->
             <select class="form-control" id="state">
                 <option value=" ">Select a State</option>
@@ -150,17 +174,18 @@
                 <option value="WI">Wisconsin</option>
                 <option value="WY">Wyoming</option>
               </select>
+              <div class="error" id="stateerror">
           </div>
           <div class="userinfo">
-            <label for="country">Country: *</label>
-            <input type="text" class="form-control" id="country"/><!-- <div class="error" id="nerror"> --></div>
+            <label for="country">Country:</label>
+            <input type="text" class="form-control" id="country"/><div class="error" id="countryerror"></div>
           </div>
           <div class="userinfo">
-            <label for="num">Zip Code: *</label>
-            <input type="number" class="form-control" id="zip"/><!-- <div class="error" id="numerror"> --></div>
+            <label for="num">Zip Code:</label>
+            <input type="number" class="form-control" id="zip"/><div class="error" id="ziperror"></div>
           </div>
           <div class="center">
-        <button class="btn btn-warning" type="button" id="changes">Confirm Changes</button>
+        <button class="btn btn-warning" type="button" id="changes" onclick = "editInfoClick()">Confirm Changes</button>
       </div>
     </form>
 </div>

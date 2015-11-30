@@ -9,9 +9,7 @@ include("func.php");
 <!DocType html>
 <html>
 <head>
-  <title>
-    Leisurely | Homepage
-  </title>
+  <title>Leisurely | Orders</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -23,8 +21,6 @@ include("func.php");
 
   <link href="styles.css" rel="stylesheet">
 </head>
-<body onload="getDate(); editInfoClick();">
-    <!-- header-->
 <body onload="getDate()">
   <!-- header-->
   <noscript> Browser does not support JAVASCRIPT</noscript>
@@ -57,7 +53,7 @@ include("func.php");
               <a data-toggle="dropdown">Your Account
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="userInfo.php">Your account</a></li>
+                  <li><a href="userInfo.html">Your account</a></li>
                   <li><a href="order.php">Your orders</a></li>
                 </ul>
               </div>
@@ -69,30 +65,94 @@ include("func.php");
           <li><a href="checkout.php"><img src="cart.png" alt="Lesuirely" height="50" width="50"><span id="cart"><?php
           echo getCartItemQuantity();
           ?></span></a></li>
-        </ul>
+          </ul>
       </div>
     </header>
-    <div class="vuser">
-      <?php
-      if(isset($_SESSION['user'])){
-        $user= $_SESSION['user'];
-        echo "<h1>$user, Welcome Back!</h1>";
-      }
-      ?>
-      <div class="slide">
-        <div class="slider_wrapper">
-          <ul id="image_slider">
-            <li><a href="itemdetail.php?id=1&cat=movie"><img src="images/1.jpg"></a></li>
-            <li><a href="itemdetail.php?id=39&cat=book"><img src="images/2.jpg"></a></li>
-            <li><a href="itemdetail.php?id=295&cat=movie"><img src="images/3.jpg"></a></li>
-            <li><a href="itemdetail.php?id=82&cat=book">  <img src="images/4.jpg"></a></li>
+
+      <div class="vuser" id="searchbox">
+        <?php
+        if(isset($_SESSION['user'])){
+          $user= $_SESSION['user'];
+          echo "<h3>$user, here is your order details!</h3>";
+        }
+        ?>
+        <?php
+        $itempage=1;
+        $search='';
+        $max=0;
+        $jsonData=searchMovie($search, $itempage, $max);
+        $json = json_decode($jsonData);
+        ?>
+        <h3> Movies from your key word: <?=$search?></h3>
+        <table>
+          <tr class="movie">
+            <?php
+            $count=0;
+            for($i=0;$i<count($json);$i++){
+              $data= $json[$i];
+              if($count<4){
+                $count++;
+                ?>
+                <td class="item center"><img class="book" src = "<?=$data->imgurl?>"><h5><a name="<?=$data->id?>" href="itemdetail.php?id=<?=$data->id?>&cat=movie"><?=$data->title?> <span>(<?=$data->year?>)</span></a></h5></td>
+                <?php
+              }
+              else{
+                $count=0;
+                $i--;
+                ?>
+              </tr>
+              <tr class="movie">
+                <?php
+              }
+            }
+            ?>
+          </tr>
+        </table>
+        <hr>
+        <h3> Books from your key word: <?=$search?></h3>
+        <?php
+        $itempage=1;
+        $jsonData=searchBook($search, $itempage);
+        $books = json_decode($jsonData);
+        ?>
+        <table>
+          <tr class="movie">
+            <?php
+            $count=0;
+            for($i=0;$i<count($books);$i++){
+              $data= $books[$i];
+              if($count<4){
+                $count++;
+                ?>
+                <td class="item center"><img class="book" src = "<?=$data->imgurl?>"><h5><a name="<?=$data->id?>" href="itemdetail.php?id=<?=$data->id?>&cat=book"><?=$data->title?></a></h5></td>
+                <?php
+              }
+              else{
+                $count=0;
+                $i--;
+                ?>
+              </tr>
+              <tr class="movie">
+                <?php
+              }
+            }
+            ?>
+          </tr>
+        </table>
+        <div id="changePage" class="center">
+          <ul class="pagination">
+            <?php
+            for($i=1;$i<$max/40+1;$i++){
+              if($i==$itempage-1){
+                echo "<li class='active'><a href='search.php?page=$i&search=$search'>$i</a></li>";
+              }else{
+                echo "<li><a href='search.php?page=$i&search=$search'>$i</a></li>";
+              }
+            }
+             ?>
           </ul>
-          <span class="nvgt" id="prev"></span>
-          <span class="nvgt" id="next"></span>
         </div>
       </div>
-    </div>
-
     <div id="copycont">
       <footer>
         <p class="center"> Copyright&copy2015, designed by <a class="yellow">Leisurely Admin | Privacy Policy</a></p>

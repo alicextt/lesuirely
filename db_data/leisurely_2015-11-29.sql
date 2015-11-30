@@ -6,10 +6,9 @@
 # http://code.google.com/p/sequel-pro/
 #
 # Host: 127.0.0.1 (MySQL 5.5.42)
-# Database: Leisurely
-# Generation Time: 2015-11-26 02:01:50 +0000
+# Database: leisurely
+# Generation Time: 2015-11-29 23:38:08 +0000
 # ************************************************************
-
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -21,10 +20,38 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
-# Dump of table book
+# Dump of table address
 # ------------------------------------------------------------
 
+DROP TABLE IF EXISTS `address`;
+
+CREATE TABLE `address` (
+  `addressId` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL DEFAULT '-1',
+  `address1` varchar(255) NOT NULL DEFAULT '',
+  `address2` varchar(255) NOT NULL DEFAULT '',
+  `city` varchar(255) NOT NULL DEFAULT '',
+  `state` varchar(255) NOT NULL DEFAULT '',
+  `country` varchar(255) NOT NULL DEFAULT '',
+  `zip` int(11) DEFAULT NULL,
+  `phone` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`addressId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `address` WRITE;
+/*!40000 ALTER TABLE `address` DISABLE KEYS */;
+
+INSERT INTO `address` (`addressId`, `userId`, `address1`, `address2`, `city`, `state`, `country`, `zip`, `phone`)
+VALUES
+	(1,1,'SCU','','santa clara','CA','US',95050,'1111111111'),
+	(2,2,'home','street address','santa clara','CA','US',95053,'9999999999');
+
+/*!40000 ALTER TABLE `address` ENABLE KEYS */;
 UNLOCK TABLES;
+
+
+# Dump of table book
+# ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `book`;
 
@@ -1098,6 +1125,114 @@ VALUES
 UNLOCK TABLES;
 
 
+# Dump of table payment
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `payment`;
+
+CREATE TABLE `payment` (
+  `paymentId` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL DEFAULT '-1',
+  `nameOnCard` varchar(255) NOT NULL DEFAULT '',
+  `cardType` varchar(255) NOT NULL DEFAULT '',
+  `creditCardNumber` varchar(255) NOT NULL DEFAULT '',
+  `cvv` varchar(255) NOT NULL DEFAULT '',
+  `expiryDate` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`paymentId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `payment` WRITE;
+/*!40000 ALTER TABLE `payment` DISABLE KEYS */;
+
+INSERT INTO `payment` (`paymentId`, `userId`, `nameOnCard`, `cardType`, `creditCardNumber`, `cvv`, `expiryDate`)
+VALUES
+	(1,1,'Visa','Joe Doe','4929889055927871','675','01/2016'),
+	(2,1,'Discover','Joe Doe','6011529863029189','675','01/2016'),
+	(3,2,'Master','Allex Funny','5175163260269307','112','12/2016');
+
+/*!40000 ALTER TABLE `payment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table purchaseDetail
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `purchaseDetail`;
+
+CREATE TABLE `purchaseDetail` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `purchaseId` int(11) NOT NULL,
+  `category` varchar(5) NOT NULL DEFAULT 'movie',
+  `catid` int(255) NOT NULL,
+  `type` varchar(11) NOT NULL DEFAULT 'buy',
+  `qty` int(55) NOT NULL,
+  `status` varchar(55) NOT NULL DEFAULT 'In Transit',
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `purchaseDetail` WRITE;
+/*!40000 ALTER TABLE `purchaseDetail` DISABLE KEYS */;
+
+INSERT INTO `purchaseDetail` (`Id`, `purchaseId`, `category`, `catid`, `type`, `qty`, `status`)
+VALUES
+	(1,1,'movie',18,'buy',1,'In Transit'),
+	(2,1,'book',20,'rent',3,'In Transit'),
+	(3,2,'book',5,'rent',2,'Delivered'),
+	(4,2,'book',100,'buy',1,'In Transit');
+
+/*!40000 ALTER TABLE `purchaseDetail` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table purchaseInfo
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `purchaseInfo`;
+
+CREATE TABLE `purchaseInfo` (
+  `purchaseId` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL DEFAULT '-1',
+  `addressId` int(11) NOT NULL,
+  `paymentId` int(11) NOT NULL,
+  `purchasedate` varchar(11) NOT NULL DEFAULT '',
+  PRIMARY KEY (`purchaseId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `purchaseInfo` WRITE;
+/*!40000 ALTER TABLE `purchaseInfo` DISABLE KEYS */;
+
+INSERT INTO `purchaseInfo` (`purchaseId`, `userId`, `addressId`, `paymentId`, `purchasedate`)
+VALUES
+	(1,1,1,1,'2015-11-28 '),
+	(2,1,1,2,'2015-11-24');
+
+/*!40000 ALTER TABLE `purchaseInfo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table sessions
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `sessions`;
+
+CREATE TABLE `sessions` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `access` varchar(255) NOT NULL DEFAULT '',
+  `data` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `sessions` WRITE;
+/*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
+
+INSERT INTO `sessions` (`id`, `access`, `data`)
+VALUES
+	(1,'2015-11-28 16:14:36','YTozOntpOjA7Tzo1OiJwaXRlbSI6Nzp7czo1OiJwdHlwZSI7czo0OiJSZW50IjtzOjU6ImN0eXBlIjtzOjEyOiIKICAgIG1vdmllICAiO3M6NjoidXByaWNlIjtzOjY6IiQgNS4zNSI7czo4OiJxdWFudGl0eSI7czoxOiIzIjtzOjU6InRpdGxlIjtzOjI3OiJHLkkuIEpvZTogVGhlIFJpc2Ugb2YgQ29icmEiO3M6MzoiaW1nIjtzOjEwMDoiaHR0cDovL2lhLm1lZGlhLWltZGIuY29tL2ltYWdlcy9NL01WNUJNVFF6TVRVMU56UXdObDVCTWw1QmFuQm5Ya0Z0WlRjd05EZzROek16TXdAQC5fVjFfU1gyMTRfQUxfLmpwZyI7czoyOiJpZCI7czoxOiIyIjt9aToxO086NToicGl0ZW0iOjc6e3M6NToicHR5cGUiO3M6NDoiUmVudCI7czo1OiJjdHlwZSI7czoxMToiCiAgICBib29rICAiO3M6NjoidXByaWNlIjtzOjY6IiQgNC44OCI7czo4OiJxdWFudGl0eSI7czoxOiIyIjtzOjU6InRpdGxlIjtzOjMyOiJIZWFkIEZpcnN0IEhUTUwgd2l0aCBDU1MgJiBYSFRNTCI7czozOiJpbWciO3M6NDg6Imh0dHA6Ly9kLmdyLWFzc2V0cy5jb20vYm9va3MvMTM4ODE4Njk2MmwvNTY0LmpwZyI7czoyOiJpZCI7czozOiI1MjkiO31pOjI7Tzo1OiJwaXRlbSI6Nzp7czo1OiJwdHlwZSI7czozOiJCdXkiO3M6NToiY3R5cGUiO3M6MTE6IgogICAgYm9vayAgIjtzOjY6InVwcmljZSI7czo2OiIkIDcuNTAiO3M6ODoicXVhbnRpdHkiO3M6MToiMSI7czo1OiJ0aXRsZSI7czoyNToiQ1NTOiBUaGUgRGVmaW5pdGl2ZSBHdWlkZSI7czozOiJpbWciO3M6NTA6Imh0dHA6Ly9kLmdyLWFzc2V0cy5jb20vYm9va3MvMTQwNzQzODc5M2wvMjY0MjAuanBnIjtzOjI6ImlkIjtzOjM6IjUzOSI7fX0=');
+
+/*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
 # Dump of table usr
 # ------------------------------------------------------------
 
@@ -1116,62 +1251,15 @@ CREATE TABLE `usr` (
 LOCK TABLES `usr` WRITE;
 /*!40000 ALTER TABLE `usr` DISABLE KEYS */;
 
-INSERT INTO `usr` (`id`, `fname`, `lname`, `name`, `email`, `password`)
+INSERT INTO `usr` (`id`, `name`, `email`, `password`,`fname`, `lname`)
 VALUES
-	(1,'tingting','xu','txu','alice.xtt@gmail.com','3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d'),
-	(2,'joe','j','joe','joe@scu.edu','3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d'),
-	(3, 'shubham', 'banthia', 'sb', 'sbanthia@scu.edu', 'b1b3773a05c0ed0176787a4f1574ff0075f7521e');
+	(1,'joe','joe@scu.edu','3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d','Joe','Doe'),
+	(2,'alex','alex@scu.edu','3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d','Alex','funny'),
+	(3,'lilly','lilly@scu.edu','3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d','lilly','george');
+
 /*!40000 ALTER TABLE `usr` ENABLE KEYS */;
 UNLOCK TABLES;
 
-
-
-DROP TABLE IF EXISTS `address`;
-
-CREATE TABLE `address`(
-  `addressId` int(11) NOT NULL AUTO_INCREMENT,
-  `userId` int(11) NOT NULL DEFAULT -1,
-  `address1` varchar(255) NOT NULL DEFAULT '',
-  `address2` varchar(255) NOT NULL DEFAULT '',
-  `city` varchar(255) NOT NULL DEFAULT '',
-  `state` varchar(255) NOT NULL DEFAULT '',
-  `country` varchar(255) NOT NULL DEFAULT '',
-  `zip` int(11) DEFAULT NULL,
-  `phone` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`addressId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-LOCK TABLES `address` WRITE;
-
-INSERT INTO `address` (`addressId`, `userId`, `address1`, `address2`, `city`, `state`, `country`, `zip`, `phone`)
-VALUES 
-(1, 1, 'SCU', '', 'santa clara', 'CA', 'US', 95050, '1111111111'),
-(2, 2, 'home', 'street address', 'santa clara', 'CA', 'US', 95053, '9999999999');
-
-UNLOCK TABLES;
-
-
-DROP TABLE IF EXISTS `payment`;
-
-CREATE TABLE `payment`(
-  `paymentId` int(11) NOT NULL AUTO_INCREMENT,
-  `userId` int(11) NOT NULL DEFAULT -1,
-  `cardType` varchar(255) NOT NULL DEFAULT '',
-  `nameOnCard` varchar(255) NOT NULL DEFAULT '',
-  `creditCardNumber` varchar(255) NOT NULL DEFAULT '',
-  `cvv` varchar(255) NOT NULL DEFAULT '',
-  `expiryDate` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`paymentId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-LOCK TABLES `payment` WRITE;
-
-INSERT INTO `payment` (`paymentId`, `userId`, `cardType`, `nameOnCard`, `creditCardNumber`, `cvv`, `expiryDate`)
-VALUES 
-(1, 1, 'amex', 'tingting xu', '123456789', '000', '01/2016'),
-(2, 2, 'mastercard', 'joe j', '987654321', '999', '12/2016');
-
-UNLOCK TABLES;
 
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

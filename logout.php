@@ -1,10 +1,16 @@
 <!-- ********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************-->
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+include("func.php");
+if(isset($_SESSION['id'])){
+saveSession();
+}
 session_unset();
 session_destroy();
 ini_set('display_errors', 'On');
-include("func.php");
+
 ?>
 <!DocType html>
 <html>

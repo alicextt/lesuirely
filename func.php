@@ -1,5 +1,8 @@
 <?php
 //********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 ini_set('display_errors', 'On');
 
@@ -218,6 +221,33 @@ function searchBook(&$search, &$itempage){
   $stmt = "select * from book where title like '%$search%'
   or description like '%$search%' or tags like '%$search%' or author like '%$search%' order by id limit $num, 40";
   return getData($stmt);
+}
+
+function saveSession(){
+    if(!isset($_SESSION['items'])){
+      return;
+    }
+    $items = base64_encode($_SESSION['items']);
+    $id=$_SESSION['id'];
+    $connection = new mysqli("localhost", "root", "root", "Leisurely"); // Establishing connection with server..
+    if($connection->connect_errno){
+      echo "Failed to connect to Mysql";
+      exit();
+    }
+    mysqli_query($connection, 'SET CHARACTER SET utf8');
+    $stmt= "select id from sessions where id=$id";
+    $result = $connection->query($stmt);
+
+    if(mysqli_num_rows($result)==0){
+      $stmt="insert into sessions(id, access, data) values ('$id', now(), '$items')";
+    }else{
+      $stmt = "update sessions set data = '$items', access=now() where id='$id'";
+    }
+    $result = $connection->query($stmt);
+    if(mysql_errno()){
+    echo "MySQL error ".mysql_errno().": "
+         .mysql_error()."\n<br>When executing <br>\n$stmt\n<br>";
+    }
 }
 
 ?>

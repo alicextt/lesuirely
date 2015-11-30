@@ -44,7 +44,7 @@ include("func.php");
           </li>
           <?php  if(!isset($_SESSION['user'])){
             ?>
-            <li><a id = "signup" href = "signup.html">Join Today</a></li>
+            <li><a id = "signup" href = "signup.php">Join Today</a></li>
             <li><a id = "sign" href="login.html">Sign In</a></li>
             <?php
           }else{
@@ -54,8 +54,8 @@ include("func.php");
               <a data-toggle="dropdown">Your Account
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="userInfo.html">Your account</a></li>
-                  <li><a href="#">Your orders</a></li>
+                  <li><a href="userInfo.php">Your account</a></li>
+                  <li><a href="order.php">Your orders</a></li>
                 </ul>
               </div>
             </li>

@@ -104,7 +104,74 @@ $("#changes").click(function(){
 
 });
 //*******************Checkout**********************************************************************************************//
-$("#checkout").click(function(){
+
+//******************************Luhncheck for Credit card validation*****************************************************//
+//***********************************************************************************************************************//
+var luhnChk = (function (arr) {
+                return function (value) {
+                var len = value.length,bit = 1,sum = 0;
+                while(len--){
+                          sum += !(bit ^= 1) ? parseInt(value[len], 10) : arr[value[len]];
+                            }
+                return sum % 10 === 0 && sum > 0;};
+              }([0, 2, 4, 6, 8, 1, 3, 5, 7, 9]));
+//************************************************************************************************************************//
+function cardnumber(inputtxt)
+{
+  var amex = /^(?:3[47][0-9]{13})$/;
+  var visa = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
+  var mastercard = /^(?:5[1-5][0-9]{14})$/;
+  var discover = /^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/;
+  var val = document.getElementById("card");
+  //var num =
+  var carderror;
+  var cardno;
+  //alert(inputtxt.value);
+  
+  if(val.value ==" "){
+    document.getElementById("carderror").innerHTML='<p>'+"Please select a Card"+'</p>';
+    return false;
+  }
+  else if(val.value =="amex"){
+    cardno = amex;
+    //alert("amex");
+  }
+  else if(val.value =="visa"){
+    cardno = visa;
+    //alert("visa");
+  }
+  else if(val.value =="mastercard"){
+    cardno = mastercard;
+    //alert("mastercard");
+  }
+  else if(val.value =="discover"){
+    cardno = discover;
+    //alert("discover");
+  }
+  //alert(inputtxt.value);
+  if(inputtxt.value.match(cardno))
+        { alert("pass");
+          //inputtxt = inputtxt.toString();
+           if(luhnChk(inputtxt.value)){
+              //alert("valid");    
+              return true;
+            }
+          else{
+              alert("Invalid Card Number");
+              return false;
+              }
+        }
+      else
+        {
+        alert("Not a valid credit card number!");
+        return false;
+        }
+}
+
+
+//************************************************************************************************************************//
+
+$("#order").click(function(){
   var fname = $("#fname").val();
   var lname = $("#lname").val();
   var usr = $("#usr").val();
@@ -126,45 +193,44 @@ $("#checkout").click(function(){
   // var staterror = "";
   // var phonerror = "";
   var count = 0;
-
-  if(fname == /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/){
+  if(fname != /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/){
     document.getElementById("fnerror").innerHTML = '<p>'+"Please enter the first name"+'</p>';
-    alert("Please enter the first name");
+    
   }
   else{
     count++;
   }
-  if(lname == /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/){
+  if(lname != /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/){
     document.getElementById("lnerror").innerHTML= '<p>'+"Please enter the last name"+'</p>';
   }
   else{
     count++;
   }
-  if(address1 == /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/ ){
+  if(address1 != /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/ ){
     document.getElementById("adderror").innerHTML= '<p>'+"Please enter the address first line"+'</p>';
   }
   else{
     count++;
   }
-  if(city == /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/){
+  if(city != /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/){
     document.getElementById("cityerror").innerHTML= '<p>'+"Please enter the city"+'</p>';
   }
   else{
     count++;
   }
-  if(state == ""){
+  if(state == " "){
     document.getElementById("staterror").innerHTML='<p>'+"Please select the state"+'</p>';
   }
   else{
     count++;
   }
-  if(country == /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/){
+  if(country != /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/){
     document.getElementById("countryerror").innerHTML='<p>'+"Please enter the country"+'</p>';
   }
   else{
     count++;
   }
-  if(zip == '' || !IsNumeric(zip)){
+  if(zip == '' || !IsNumeric(zip)){ 
     document.getElementById("ziperror").innerHTML= '<p>'+"Please enter a valid zip code"+'</p>';
   }
   else{
@@ -176,7 +242,34 @@ $("#checkout").click(function(){
   else{
     count++;
   }
+  //--------CREDIT CARD---------------------//
+  //var cvv = $("#cvv").val();
+  var cvv = document.getElementById("cvv").value;
+  var cardno = document.getElementById("cardno");
+  //alert(cardno.value);
+  var nam = document.getElementById("nam");
+  //alert(nam.value);
+  if(nam.value != /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/){
+    document.getElementById("namerror").innerHTML= '<p>'+"Please enter the Card Holder's Name"+'</p>';
+  }
+  if(cardno.value ===''){
+    document.getElementById("numerror").innerHTML= '<p>'+"Please enter a Card Number"+'</p>';
+  }
+ 
+  cardnumber(cardno);
 
+  var val = document.getElementById("card");
+  //alert(cvv);
+  //alert(val.value);
+  if (val.value == "amex" && cvv == /^[0-9]{4}$/){
+    alert("valid 4-digit cvv");
+  }
+  else if (val.value != " " && cvv == /^[0-9]{3}$/){
+    alert("valid 3-digit cvv");
+  }
+  else if (!cvv){
+    document.getElementById("cvverror").innerHTML= '<p>'+"Please enter a CVV"+'</p>';
+  }
   // if(count == 8){
   //   if(pwd === cpwd){
   //     //alert("yes");
@@ -311,9 +404,17 @@ $(document).ready(function () { //toggle the component with class accordion_body
           $(this).children(".plusminus").text('-'); }
         });
 });
+      
 
+$(document).ready(function () { //toggle the component with class accordion_body
+  $(".next").click(function () {
+    if ($('.accordion_body').is(':visible')) {
+     $(".accordion_body").slideUp(300); $(".plusminus").text('+');
+      }
+        });
+});
 
-// **************** slider related function in index.php
+// **************** slider related function in checkout.php
 $(document).ready(function () { //toggle the component with class inner_accordion_body
   $(".inner_accordion_head").click(function () {
     if ($('.inner_accordion_body').is(':visible')) {
@@ -328,30 +429,30 @@ $(document).ready(function () { //toggle the component with class inner_accordio
         });
 });
 
-$(document).ready(function($) {
-  $('#accordion').find('.accordion-toggle').click(function(){
+// $(document).ready(function($) {
+//   $('#accordion').find('.accordion-toggle').click(function(){
 
-    //Expand or collapse this panel
-    $(this).next().slideToggle('400');
+//     //Expand or collapse this panel
+//     $(this).next().slideToggle('400');
 
-    //Hide the other panels
-    $(".accordion-content").not($(this).next()).slideUp('400');
+//     //Hide the other panels
+//     $(".accordion-content").not($(this).next()).slideUp('400');
 
 
-  });
-});
+//   });
+// });
 
-$(document).ready(function($) {
-  $('#accordion').find('.inner-accordion-toggle').click(function(){
+// $(document).ready(function($) {
+//   $('#accordion').find('.inner-accordion-toggle').click(function(){
 
-    //Expand or collapse this panel
-    $(this).next().slideToggle('400');
+//     //Expand or collapse this panel
+//     $(this).next().slideToggle('400');
 
-    //Hide the other panels
-    $(".inner-accordion-content").not($(this).next()).slideUp('400');
+//     //Hide the other panels
+//     $(".inner-accordion-content").not($(this).next()).slideUp('400');
 
-  });
-});
+//   });
+// });
 
 //Silder
 var ul;

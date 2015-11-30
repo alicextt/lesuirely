@@ -70,6 +70,9 @@ include("func.php");
                     <label for="email">Email address</label>
                       <input type="text" class="form-control" id="email"/><div class="error" id="mailerror"></div>
                     </div>
+                      <div class="btn-left">
+                      <button class="next" type="button">Next</button>
+                      </div>
                 </div>
             </li>
           </ul>
@@ -98,7 +101,7 @@ include("func.php");
           </div>
           <div class="form-group">
             <label for="address">Address Line 2:</label>
-            <input type="text" class="form-control" id="address2"/><div class="error" id="adderror"></div>
+            <input type="text" class="form-control" id="address2"/>
           </div>
           <div class="form-group">
             <label for="city">City:</label>
@@ -161,7 +164,8 @@ include("func.php");
                 <option value="WI">Wisconsin</option>
                 <option value="WY">Wyoming</option>
               </select>
-          </div><div class="error" id="staterror"></div>
+              <div class="error" id="staterror"></div>
+          </div>
           <div class="form-group">
             <label for="country">Country:</label>
             <input type="text" class="form-control" id="country"/><div class="error" id="countryerror"></div>
@@ -190,6 +194,9 @@ include("func.php");
                 <label><input type="radio" name="optradio1">1 business day - $22.00</label>
           </div>  
             </div>
+            <div class="btn-left">
+                      <button class="next" type="button">Next</button>
+                      </div>
           </div>
          </div>
 
@@ -212,23 +219,38 @@ include("func.php");
         <div class="accordion_body">
         <div class="form1">
           <div class="form-group">
+            <label for="usr">Select a Card:</label>
+          <select class="form-control" id="card">
             <label>Name on Card:</label>
-            <input type="text" class="form-control"/>
+                <option value=" ">Select</option>
+                <option value="amex">American Express</option>
+                <option value="visa">Visa</option>
+                <option value="mastercard">Mastercard</option>
+                <option value="discover">Discover</option>
+          </select>
+          <div class="error" id="carderror"></div>
+          </div>
+          <div class="form-group">
+            <label>Name on Card:</label>
+            <input type="text" class="form-control" id="nam"/>
+            <div class="error" id="namerror"></div>
           </div>
           <div class="form-group">
             <label for="num">Credit/Debit Card Number:</label>
-            <input type="number" class="form-control" id="num"/>
+            <input type="number" class="form-control" id="cardno"/>
+            <div class="error" id="numerror"></div>
           </div>
-          <div class="card">
+          <!-- <div class="card"> -->
           <div class="form-group">
             <label>CVV:</label>
-            <input type="text" class="form-control"/>
+            <input type="number" class="form-control" id="cvv"/>
+            <div class="error" id="cvverror"></div>
           </div>
           <div class="form-group">
             <label>Valid Thru (MM/YYYY):</label>
-            <input type="text" class="form-control"/>
+            <input type="month" class="form-control"/>
           </div>
-        </div>
+        <!-- </div> -->
          <div class="pay">
           <p>Accepted Cards:</p>
           <img src="card.png" alt="Accepted Cards">
@@ -245,7 +267,7 @@ include("func.php");
           <div class ="form1">
         <p>This will display all the details entered by user for verification and finally place an order</p>
         <div class="btn-left">
-                    <button class="cbtn" type="button" id="checkout">Place Order</button>
+                    <button class="cbtn" type="button" id="order">Place Order</button>
         </div>
         </form>
       </div>

@@ -1,5 +1,6 @@
-<!-- ********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************-->
 <?php
+// ********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -17,6 +18,7 @@ include("func.php");
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+  <script src = "item.js" text = "text/javascript" language = "javascript"></script>
   <script src = "event.js" text = "text/javascript" language = "javascript"></script>
 
   <link href="styles.css" rel="stylesheet">
@@ -53,7 +55,7 @@ include("func.php");
               <a data-toggle="dropdown">Your Account
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="userInfo.html">Your account</a></li>
+                  <li><a href="userInfo.php">Your account</a></li>
                   <li><a href="order.php">Your orders</a></li>
                 </ul>
               </div>
@@ -73,72 +75,69 @@ include("func.php");
         <?php
         if(isset($_SESSION['user'])){
           $user= $_SESSION['user'];
-          echo "<h3>$user, here is your order details!</h3>";
+          echo "<h3>$user, here is your past order details!</h3>";
         }
         ?>
         <?php
         $itempage=1;
         $search='';
         $max=0;
-        $jsonData=searchMovie($search, $itempage, $max);
-        $json = json_decode($jsonData);
+        $jsonData= getUserPurchasehistory($_SESSION['id']);
+        $data = json_decode($jsonData);
         ?>
-        <h3> Movies from your key word: <?=$search?></h3>
-        <table>
-          <tr class="movie">
-            <?php
-            $count=0;
-            for($i=0;$i<count($json);$i++){
-              $data= $json[$i];
-              if($count<4){
-                $count++;
-                ?>
-                <td class="item center"><img class="book" src = "<?=$data->imgurl?>"><h5><a name="<?=$data->id?>" href="itemdetail.php?id=<?=$data->id?>&cat=movie"><?=$data->title?> <span>(<?=$data->year?>)</span></a></h5></td>
-                <?php
-              }
-              else{
-                $count=0;
-                $i--;
-                ?>
+        <div class="box" id="orderbox">
+          <fieldset>
+            <legend>Order Details</legend>
+              <table class="table">
+              <?php
+              if(is_array($data)){
+                $lastoid='';
+              foreach($data as $key){
+                $oid = $key->purchaseId;
+                $price=$key->price;
+                $qty=$key->qty;
+                $tprice = (float)$price * (int)$qty;
+                $category=$key->category;
+                if($lastoid=='' || $oid!=$lastoid){
+              ?>
+              </table>
+              <table class="table">
+                  <tr>
+                    <th class="col-md-2" colspan="2">Order Placed <br> <?=$key->purchasedate?></th>
+                    <th class="col-md-2">Total<br><span class="totalpriceperpo red"></span></th>
+                    <th class="col-md-2">Ship To<br> <?=$key->person?></th>
+                    <th class="col-md-2">Status <br><?=$key->status?></th>
+                    <th class="col-md-3 center" colspan="2">Order #: <?=$oid?></th>
+                  </tr>
+                  <?php
+                }
+                  ?>
+                <tr>
+                <td name="ctype"><?=$key->category ?></td>
+                <td name="ptype"><?=$key->type?></td>
+                <td name="img" id='purchasetitle'><img src=<?=$key->imgurl?> width=100 height=150></td>
+                <td name="price" colspan="2" ><a href="itemdetail.php?id=<?=$oid?>&cat=<?=$category?>"><?=$key->title?></a><br><?=$qty?> x $<?=$price?> = <span class='red'>$ <span class="itemprice" ><?=$tprice?></span></span></td>
+                <td name="qty" id="purchaseqty" class="center"><div class="cartqty">
+                <p>  <?php
+                  echo '<span>'.$qty.'</span>';
+                  if ($key->type=='rent') {
+                   echo ' weeks';
+                }else{
+                  echo ' items';
+                }
+                ?></p>
+                </div>
+                <div id="buyagain"><span class="itemid" hidden><?=$key->id?></span><button class="btn btn-danger">Buy Again</button>
+                </div></td>
               </tr>
-              <tr class="movie">
-                <?php
+              <?php
+              $lastoid=$oid;
               }
             }
-            ?>
-          </tr>
-        </table>
-        <hr>
-        <h3> Books from your key word: <?=$search?></h3>
-        <?php
-        $itempage=1;
-        $jsonData=searchBook($search, $itempage);
-        $books = json_decode($jsonData);
-        ?>
-        <table>
-          <tr class="movie">
-            <?php
-            $count=0;
-            for($i=0;$i<count($books);$i++){
-              $data= $books[$i];
-              if($count<4){
-                $count++;
-                ?>
-                <td class="item center"><img class="book" src = "<?=$data->imgurl?>"><h5><a name="<?=$data->id?>" href="itemdetail.php?id=<?=$data->id?>&cat=book"><?=$data->title?></a></h5></td>
-                <?php
-              }
-              else{
-                $count=0;
-                $i--;
-                ?>
-              </tr>
-              <tr class="movie">
-                <?php
-              }
-            }
-            ?>
-          </tr>
-        </table>
+              ?>
+            </table>
+          </fieldset>
+        </div>
         <div id="changePage" class="center">
           <ul class="pagination">
             <?php

@@ -1,7 +1,6 @@
 // ********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************
 
 
-
 $(document).ready(function(){
 
   $('.btn.btn-info').click(function(){
@@ -70,5 +69,28 @@ $(document).ready(function(){
     window.location.reload();
   });
 
-});
+  $('.totalpriceperpo').each(function(){
+    var total=$(this);
+    var t=0;
+    total.parent().parent().parent().parent().find(".itemprice").each(function(){
+      var s=$(this).text();
+      t+= parseFloat(s);
+    });
+    total.text('$ '+t);
+  });
 
+  $('#buyagain .btn.btn-danger').click(function(){
+    var x=$(this);
+    $.post('addcart.php',{
+      id: x.parent().find('#itemid').text(),
+      ptype: x.parent().parent().parent().find('[name="ptype"]').text(),
+      ctype: x.parent().parent().parent().find('[name="ctype"]').text(),
+      uprice: x.parent().parent().parent().find('.itemprice').text(),
+      quantity: 1,
+      title: x.parent().parent().parent().find('a').text(),
+      img: x.parent().parent().parent().find('img').attr('src'),
+    }, function(data){
+      window.location.href='checkout.php';
+    });
+  });
+});

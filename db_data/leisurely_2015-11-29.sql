@@ -6,8 +6,8 @@
 # http://code.google.com/p/sequel-pro/
 #
 # Host: 127.0.0.1 (MySQL 5.5.42)
-# Database: leisurely
-# Generation Time: 2015-11-29 23:38:08 +0000
+# Database: Leisurely
+# Generation Time: 2015-11-30 06:59:09 +0000
 # ************************************************************
 
 
@@ -28,6 +28,7 @@ DROP TABLE IF EXISTS `address`;
 CREATE TABLE `address` (
   `addressId` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL DEFAULT '-1',
+  `person` varchar(55) DEFAULT NULL,
   `address1` varchar(255) NOT NULL DEFAULT '',
   `address2` varchar(255) NOT NULL DEFAULT '',
   `city` varchar(255) NOT NULL DEFAULT '',
@@ -41,10 +42,10 @@ CREATE TABLE `address` (
 LOCK TABLES `address` WRITE;
 /*!40000 ALTER TABLE `address` DISABLE KEYS */;
 
-INSERT INTO `address` (`addressId`, `userId`, `address1`, `address2`, `city`, `state`, `country`, `zip`, `phone`)
+INSERT INTO `address` (`addressId`, `userId`, `person`, `address1`, `address2`, `city`, `state`, `country`, `zip`, `phone`)
 VALUES
-	(1,1,'SCU','','santa clara','CA','US',95050,'1111111111'),
-	(2,2,'home','street address','santa clara','CA','US',95053,'9999999999');
+	(1,1,'Joe Doe','455 El Camino','Apt 1234','santa clara','CA','US',95050,'3674257729'),
+	(2,2,'Alex Finn','home','street address','santa clara','CA','US',95053,'3674448888');
 
 /*!40000 ALTER TABLE `address` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1133,8 +1134,8 @@ DROP TABLE IF EXISTS `payment`;
 CREATE TABLE `payment` (
   `paymentId` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL DEFAULT '-1',
-  `nameOnCard` varchar(255) NOT NULL DEFAULT '',
   `cardType` varchar(255) NOT NULL DEFAULT '',
+  `nameOnCard` varchar(255) NOT NULL DEFAULT '',
   `creditCardNumber` varchar(255) NOT NULL DEFAULT '',
   `cvv` varchar(255) NOT NULL DEFAULT '',
   `expiryDate` varchar(255) NOT NULL DEFAULT '',
@@ -1144,7 +1145,7 @@ CREATE TABLE `payment` (
 LOCK TABLES `payment` WRITE;
 /*!40000 ALTER TABLE `payment` DISABLE KEYS */;
 
-INSERT INTO `payment` (`paymentId`, `userId`, `nameOnCard`, `cardType`, `creditCardNumber`, `cvv`, `expiryDate`)
+INSERT INTO `payment` (`paymentId`, `userId`, `cardType`, `nameOnCard`, `creditCardNumber`, `cvv`, `expiryDate`)
 VALUES
 	(1,1,'Visa','Joe Doe','4929889055927871','675','01/2016'),
 	(2,1,'Discover','Joe Doe','6011529863029189','675','01/2016'),
@@ -1166,19 +1167,19 @@ CREATE TABLE `purchaseDetail` (
   `catid` int(255) NOT NULL,
   `type` varchar(11) NOT NULL DEFAULT 'buy',
   `qty` int(55) NOT NULL,
-  `status` varchar(55) NOT NULL DEFAULT 'In Transit',
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `purchaseDetail` WRITE;
 /*!40000 ALTER TABLE `purchaseDetail` DISABLE KEYS */;
 
-INSERT INTO `purchaseDetail` (`Id`, `purchaseId`, `category`, `catid`, `type`, `qty`, `status`)
+INSERT INTO `purchaseDetail` (`Id`, `purchaseId`, `category`, `catid`, `type`, `qty`)
 VALUES
-	(1,1,'movie',18,'buy',1,'In Transit'),
-	(2,1,'book',20,'rent',3,'In Transit'),
-	(3,2,'book',5,'rent',2,'Delivered'),
-	(4,2,'book',100,'buy',1,'In Transit');
+	(1,1,'movie',18,'buy',1),
+	(2,1,'book',20,'rent',3),
+	(3,2,'book',5,'rent',2),
+	(4,2,'book',100,'buy',1),
+	(5,3,'movie',77,'buy',1);
 
 /*!40000 ALTER TABLE `purchaseDetail` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1195,16 +1196,18 @@ CREATE TABLE `purchaseInfo` (
   `addressId` int(11) NOT NULL,
   `paymentId` int(11) NOT NULL,
   `purchasedate` varchar(11) NOT NULL DEFAULT '',
+  `status` varchar(55) DEFAULT NULL,
   PRIMARY KEY (`purchaseId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `purchaseInfo` WRITE;
 /*!40000 ALTER TABLE `purchaseInfo` DISABLE KEYS */;
 
-INSERT INTO `purchaseInfo` (`purchaseId`, `userId`, `addressId`, `paymentId`, `purchasedate`)
+INSERT INTO `purchaseInfo` (`purchaseId`, `userId`, `addressId`, `paymentId`, `purchasedate`, `status`)
 VALUES
-	(1,1,1,1,'2015-11-28 '),
-	(2,1,1,2,'2015-11-24');
+	(1,1,1,1,'2015-11-28 ','In Transit'),
+	(2,1,1,2,'2015-11-24','Delivered'),
+	(3,1,1,2,'2014-11-28 ','Delivered');
 
 /*!40000 ALTER TABLE `purchaseInfo` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1251,11 +1254,11 @@ CREATE TABLE `usr` (
 LOCK TABLES `usr` WRITE;
 /*!40000 ALTER TABLE `usr` DISABLE KEYS */;
 
-INSERT INTO `usr` (`id`, `name`, `email`, `password`,`fname`, `lname`)
+INSERT INTO `usr` (`id`, `fname`, `lname`, `name`, `email`, `password`)
 VALUES
-	(1,'joe','joe@scu.edu','3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d','Joe','Doe'),
-	(2,'alex','alex@scu.edu','3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d','Alex','funny'),
-	(3,'lilly','lilly@scu.edu','3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d','lilly','george');
+	(1,'Joe','Doe','joe','joe@scu.edu','3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d'),
+	(2,'Alex','funny','alex','alex@scu.edu','3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d'),
+	(3,'lilly','george','lilly','lilly@scu.edu','3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d');
 
 /*!40000 ALTER TABLE `usr` ENABLE KEYS */;
 UNLOCK TABLES;

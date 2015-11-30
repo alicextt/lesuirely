@@ -97,6 +97,26 @@ li>.dropdown{
   border-radius: 5px;
 
 }
+
+/**********************order.php**************/
+div#orderbox {
+    width: 90%;
+     box-shadow: none;
+     float:none;
+     margin-left: auto;
+}
+
+
+div#orderbox td{
+  padding-top: 15px;
+}
+
+.red{
+  color: red;
+}
+
+/**********************end of order.php**************/
+
 form .glyphicon-search{
   padding: 2px;
   font-size: 1.5em;
@@ -407,7 +427,6 @@ td>img{
 }
 .vuser{
   padding-top: 135px;
-  font-weight: bold;
   padding-left: 50px;
   min-height: 500px;
 }

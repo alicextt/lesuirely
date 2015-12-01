@@ -144,6 +144,19 @@ function getitembyid($category, $id){
   return json_encode($data);
 }
 
+//********** checkout.php
+function getUserAddressByid($number){
+  $id=$_SESSION['id'];
+  if(!$number){
+  $stmt = "select * from address where userId =$id";
+}else{
+  $stmt = "select * from address where addressId=$number";
+}
+  return getData($stmt);
+}
+
+
+//*********** end of checkout.php
 function getUserPurchasehistory($id){
   $connection = mysqli_connect("localhost", "root", "root", "Leisurely"); // Establishing connection with server..
   if(mysqli_connect_errno()){

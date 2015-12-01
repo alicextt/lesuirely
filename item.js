@@ -69,6 +69,7 @@ $(document).ready(function(){
     window.location.reload();
   });
 
+// ******************order.php
   $('.totalpriceperpo').each(function(){
     var total=$(this);
     var t=0;
@@ -78,7 +79,6 @@ $(document).ready(function(){
     });
     total.text('$ '+t);
   });
-
 
 
   $('#buyagain .btn.btn-danger').click(function(){
@@ -94,6 +94,33 @@ $(document).ready(function(){
     }, function(data){
       window.location.href='checkout.php';
     });
+  });
+
+  // **************** checkout.php
+  $('select[id="usraddress"]').on('change', function() {
+    if(this.value!='*'){
+      var data = {
+        "address": this.value
+      };
+      $.ajax({
+        method: "GET",
+        url:'userquery.php',
+        data: data,
+        dataType: "json",
+        success: function(result){
+          var names = result.person.split(' ');
+          $("#fname").val(names[0]);
+          $("#lname").val(names[1]);
+          $("#address1").val(result.address1);
+          $("#address2").val(result.address2);
+          $("#city").val(result.city);
+          $("#state").val(result.state);
+          $("#country").val(result.country);
+          $("#zip").val(result.zip);
+          $("#phone").val(result.phone);
+        }
+      });
+    }
   });
 
 });

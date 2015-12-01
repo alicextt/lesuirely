@@ -143,291 +143,272 @@ function editInfoClick(){
 $(window).load(function(){
   window.resizeTo(1245, 800);
 
-//*******************Checkout**********************************************************************************************//
+  //*******************Checkout**********************************************************************************************//
 
-//******************************Luhncheck for Credit card validation*****************************************************//
-//***********************************************************************************************************************//
-var luhnChk = (function (arr) {
-                return function (value) {
-                var len = value.length,bit = 1,sum = 0;
-                while(len--){
-                          sum += !(bit ^= 1) ? parseInt(value[len], 10) : arr[value[len]];
-                            }
-                return sum % 10 === 0 && sum > 0;};
-              }([0, 2, 4, 6, 8, 1, 3, 5, 7, 9]));
-//************************************************************************************************************************//
-function cardnumber(inputtxt)
-{
-  var amex = /^(?:3[47][0-9]{13})$/;
-  var visa = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
-  var mastercard = /^(?:5[1-5][0-9]{14})$/;
-  var discover = /^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/;
-  var val = document.getElementById("card");
-  //var num =
-  var carderror;
-  var cardno;
-  //alert(inputtxt.value);
-  
-  if(val.value ==" "){
-    document.getElementById("carderror").innerHTML='<p>'+"Please select a Card"+'</p>';
-    return false;
-  }
-  else if(val.value =="amex"){
-    cardno = amex;
-    //alert("amex");
-  }
-  else if(val.value =="visa"){
-    cardno = visa;
-    //alert("visa");
-  }
-  else if(val.value =="mastercard"){
-    cardno = mastercard;
-    //alert("mastercard");
-  }
-  else if(val.value =="discover"){
-    cardno = discover;
-    //alert("discover");
-  }
-  //alert(inputtxt.value);
-  if(inputtxt.value.match(cardno))
-        { alert("pass");
-          //inputtxt = inputtxt.toString();
-           if(luhnChk(inputtxt.value)){
-              //alert("valid");    
-              return true;
-            }
-          else{
-              alert("Invalid Card Number");
-              return false;
-              }
-        }
-      else
-        {
-        alert("Not a valid credit card number!");
+  //******************************Luhncheck for Credit card validation*****************************************************//
+  //***********************************************************************************************************************//
+  var luhnChk = (function (arr) {
+    return function (value) {
+      var len = value.length,bit = 1,sum = 0;
+      while(len--){
+        sum += !(bit ^= 1) ? parseInt(value[len], 10) : arr[value[len]];
+      }
+      return sum % 10 === 0 && sum > 0;};
+    }([0, 2, 4, 6, 8, 1, 3, 5, 7, 9]));
+    //************************************************************************************************************************//
+    function cardnumber(inputtxt)
+    {
+      var amex = /^(?:3[47][0-9]{13})$/;
+      var visa = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
+      var mastercard = /^(?:5[1-5][0-9]{14})$/;
+      var discover = /^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/;
+      var val = document.getElementById("card");
+      //var num =
+      var carderror;
+      var cardno;
+      //alert(inputtxt.value);
+
+      if(val.value ==" "){
+        document.getElementById("carderror").innerHTML='<p>'+"Please select a Card"+'</p>';
         return false;
+      }
+      else if(val.value =="amex"){
+        cardno = amex;
+        //alert("amex");
+      }
+      else if(val.value =="visa"){
+        cardno = visa;
+        //alert("visa");
+      }
+      else if(val.value =="mastercard"){
+        cardno = mastercard;
+        //alert("mastercard");
+      }
+      else if(val.value =="discover"){
+        cardno = discover;
+        //alert("discover");
+      }
+      //alert(inputtxt.value);
+      if(inputtxt.value.match(cardno))
+      { alert("pass");
+      //inputtxt = inputtxt.toString();
+      if(luhnChk(inputtxt.value)){
+        //alert("valid");
+        return true;
+      }
+      else{
+        alert("Invalid Card Number");
+        return false;
+      }
+    }
+    else
+    {
+      alert("Not a valid credit card number!");
+      return false;
+    }
+  }
+
+
+  //************************************************************************************************************************//
+
+  $("#order").click(function(){
+    var fname = $("#fname").val();
+    var lname = $("#lname").val();
+    var usr = $("#usr").val();
+    var email = $("#email").val();
+    var pwd = $("#pwd").val();
+    var cpwd = $("#cpwd").val();
+    var address1 = $("#address1").val();
+    var address2 = $("#address2").val();
+    var city = $("#city").val();
+    var state = $("#state").val();
+    var country = $("#country").val();
+    var zip = $("#zip").val();
+    var phone = $("#phone").val();
+
+    // var fnerror = "";
+    // var lnerror = "";
+    // var adderror = "";
+    // var cityerror = "";
+    // var staterror = "";
+    // var phonerror = "";
+    var name_regex= /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/;
+    var address_regex = /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/;
+    var count = 0;
+    if(!fname.match(name_regex) || fname.length == 0){
+      document.getElementById("fnerror").innerHTML = '<p>'+"Please enter the first name"+'</p>';
+    }
+    else{
+      document.getElementById("fnerror").innerHTML ='';
+      count++;
+    }
+    if(!lname.match(name_regex) || lname.length == 0){
+      document.getElementById("lnerror").innerHTML= '<p>'+"Please enter the last name"+'</p>';
+    }
+    else{
+      document.getElementById("lnerror").innerHTML ='';
+      count++;
+    }
+    if(!address1.match(address_regex) || address1.length == 0){
+        document.getElementById("adderror").innerHTML= '<p>'+"Please enter the address first line"+'</p>';
+    }
+    else{
+      count++;
+    }
+    if(!city.match(name_regex) || city.length == 0){
+      document.getElementById("cityerror").innerHTML= '<p>'+"Please enter the city"+'</p>';
+    }
+    else{
+      count++;
+    }
+    if(state == " "){
+      document.getElementById("staterror").innerHTML='<p>'+"Please select the state"+'</p>';
+    }
+    else{
+      count++;
+    }
+    if(!country.match(name_regex) || country.length == 0){
+      document.getElementById("countryerror").innerHTML='<p>'+"Please enter the country"+'</p>';
+    }
+    else{
+      count++;
+    }
+    if(zip == '' || !IsNumeric(zip)){
+      document.getElementById("ziperror").innerHTML= '<p>'+"Please enter a valid zip code"+'</p>';
+    }
+    else{
+      count++;
+    }
+    if(phone == '' || !IsNumeric(zip)){
+      document.getElementById("phonerror").innerHTML= '<p>'+"Please enter a valid phone number"+'</p>';
+    }
+    else{
+      count++;
+    }
+    //--------CREDIT CARD---------------------//
+    //var cvv = $("#cvv").val();
+    var cvv = document.getElementById("cvv").value;
+    var cardno = document.getElementById("cardno");
+    //alert(cardno.value);
+    var nam = document.getElementById("nam");
+    //alert(nam.value);
+    if(nam.value != /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/){
+      document.getElementById("namerror").innerHTML= '<p>'+"Please enter the Card Holder's Name"+'</p>';
+    }
+    if(cardno.value ===''){
+      document.getElementById("numerror").innerHTML= '<p>'+"Please enter a Card Number"+'</p>';
+    }
+
+    cardnumber(cardno);
+
+    var val = document.getElementById("card");
+    //alert(cvv);
+    //alert(val.value);
+    cvv = cvv.toString();
+    if (val.value == "amex" && cvv.length === 4){
+      alert("valid 4-digit cvv");
+    }
+    else if (val.value != " " && cvv.length === 3){
+      alert("valid 3-digit cvv");
+    }
+    else if (!cvv){
+      document.getElementById("cvverror").innerHTML= '<p>'+"Please enter a CVV"+'</p>';
+    }
+
+  });
+
+  //************************************End of Checkout************************************************//
+  //**************** used in signUp.html . the register button clicked will first do validation and then will do an ajax call to register.php and save data into DB.
+  $("#register").click(function(){
+    var fname = $("#fname").val();
+    var lname = $("#lname").val();
+    var name=$("#usr").val();
+    var email = $("#email").val();
+    var password = $("#pwd").val();
+    var cpassword = $("#cpwd").val();
+    var count=0;
+    if(fname == ''){
+      $("#fnameError").text('* Empty first name!');
+    }
+    else if (fname.match("/^[a-zA-Z ]*$/")) {
+      $("#fnameError").text('* Only letters and whitespace allowed!');
+    }
+    else{
+      $("#fnameError").text('');
+      count++;
+      //console.log(fname);
+    }
+
+    if(lname == ''){
+      $("#lnameError").text('* Empty last name!');
+    }
+    else if (lname.match("/^[a-zA-Z ]*$/")) {
+      $("#lnameError").text('* Only letters and whitespace allowed!');
+    }
+    else{
+      $("#lnameError").text('');
+      count++;
+      //console.log(lname);
+    }
+
+    if(name == ''){
+      $("#usrerror").text('* Empty user name !');
+    }else if(!name.match(/^\w+$/)){
+      $("#usrerror").text('* User name have to be either number or letters !');
+      $("$usr").val(name);
+    }else{
+      $("#usrerror").text('');
+      count++;
+    }
+
+    if(email == ''){
+      $("#mailerror").text('* Empty email address !');
+    }else if(!email.match(/^([\w-\.]+@[\w-]+\.[\w-]{2,4})?$/)){
+      $("#mailerror").text('* Invalid email address!');
+    }else{
+      $("#mailerror").text('');
+      count++;
+    }
+
+    if(password == ''){
+      $("#pwderror").text('* Empty password !');
+    }else if(!password.match(/^([a-zA-Z0-9!@.\-_]){6,}$/)){
+      $("#pwderror").text('* Invalid password a-zA-Z0-9!@-. allowed at least length 6!');
+    }else{
+      $("#pwderror").text('');
+      count++;
+    }
+
+    if(cpassword!=password){
+      $("#cpwderror").text('* Password not same. Try again!');
+    }else{
+      $("#cpwderror").text('');
+      count++;
+    }
+    if(count==6)
+    {
+      $.post("register.php", {
+        fname1:fname,
+        lname1:lname,
+        name1: name,
+        email1: email,
+        password1: password
+      }, function(data) {
+        if (data == 'Success') {
+          // this will jump to the index html
+
+          window.location.replace("index.php");
+          console.log('insert user'+name+" successfully");
+          window.location.replace("login.html");
         }
-}
-
-
-//************************************************************************************************************************//
-
-$("#order").click(function(){
-  var fname = $("#fname").val();
-  var lname = $("#lname").val();
-  var usr = $("#usr").val();
-  var email = $("#email").val();
-  var pwd = $("#pwd").val();
-  var cpwd = $("#cpwd").val();
-  var address1 = $("#address1").val();
-  var address2 = $("#address2").val();
-  var city = $("#city").val();
-  var state = $("#state").val();
-  var country = $("#country").val();
-  var zip = $("#zip").val();
-  var phone = $("#phone").val();
-
-  // var fnerror = "";
-  // var lnerror = "";
-  // var adderror = "";
-  // var cityerror = "";
-  // var staterror = "";
-  // var phonerror = "";
-  var count = 0;
-  if(fname != /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/){
-    document.getElementById("fnerror").innerHTML = '<p>'+"Please enter the first name"+'</p>';
-    
-  }
-  else{
-    count++;
-  }
-  if(lname != /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/){
-    document.getElementById("lnerror").innerHTML= '<p>'+"Please enter the last name"+'</p>';
-  }
-  else{
-    count++;
-  }
-  if(address1 != /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/ ){
-    document.getElementById("adderror").innerHTML= '<p>'+"Please enter the address first line"+'</p>';
-  }
-  else{
-    count++;
-  }
-  if(city != /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/){
-    document.getElementById("cityerror").innerHTML= '<p>'+"Please enter the city"+'</p>';
-  }
-  else{
-    count++;
-  }
-  if(state == " "){
-    document.getElementById("staterror").innerHTML='<p>'+"Please select the state"+'</p>';
-  }
-  else{
-    count++;
-  }
-  if(country != /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/){
-    document.getElementById("countryerror").innerHTML='<p>'+"Please enter the country"+'</p>';
-  }
-  else{
-    count++;
-  }
-  if(zip == '' || !IsNumeric(zip)){ 
-    document.getElementById("ziperror").innerHTML= '<p>'+"Please enter a valid zip code"+'</p>';
-  }
-  else{
-    count++;
-  }
-  if(phone == '' || !IsNumeric(zip)){
-    document.getElementById("phonerror").innerHTML= '<p>'+"Please enter a valid phone number"+'</p>';
-  }
-  else{
-    count++;
-  }
-  //--------CREDIT CARD---------------------//
-  //var cvv = $("#cvv").val();
-  var cvv = document.getElementById("cvv").value;
-  var cardno = document.getElementById("cardno");
-  //alert(cardno.value);
-  var nam = document.getElementById("nam");
-  //alert(nam.value);
-  if(nam.value != /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/){
-    document.getElementById("namerror").innerHTML= '<p>'+"Please enter the Card Holder's Name"+'</p>';
-  }
-  if(cardno.value ===''){
-    document.getElementById("numerror").innerHTML= '<p>'+"Please enter a Card Number"+'</p>';
-  }
- 
-  cardnumber(cardno);
-
-  var val = document.getElementById("card");
-  //alert(cvv);
-  //alert(val.value);
-  cvv = cvv.toString();
-  if (val.value == "amex" && cvv.length === 4){
-    alert("valid 4-digit cvv");
-  }
-  else if (val.value != " " && cvv.length === 3){
-    alert("valid 3-digit cvv");
-  }
-  else if (!cvv){
-    document.getElementById("cvverror").innerHTML= '<p>'+"Please enter a CVV"+'</p>';
-  }
-  // if(count == 8){
-  //   if(pwd === cpwd){
-  //     //alert("yes");
-  //     $.post("info.php", {
-  //       fname1: fname,
-  //       lname1: lname,
-  //       name1: name,
-  //       email1: email,
-  //       password1: password
-  //     }, function(data) {
-  //       if (data == 'Success') {
-  //         $("form")[0].reset();
-  //         // this will jump to the index html
-  //         window.location.replace("login.html");
-  //       }
-  //       // alert(data);
-  //     });
-  //   }
-  //   else{
-  //     errorText = "Passwords do not match";
-  //   }
-  // }
-
-});
-
-//************************************End of Checkout************************************************//
-//**************** used in signUp.html . the register button clicked will first do validation and then will do an ajax call to register.php and save data into DB.
-$("#register").click(function(){
-  var fname = $("#fname").val();
-  var lname = $("#lname").val();
-  var name=$("#usr").val();
-  var email = $("#email").val();
-  var password = $("#pwd").val();
-  var cpassword = $("#cpwd").val();
-  var count=0;
-  if(fname == ''){
-    $("#fnameError").text('* Empty first name!');
-  }
-  else if (fname.match("/^[a-zA-Z ]*$/")) {
-    $("#fnameError").text('* Only letters and whitespace allowed!');
-  }
-  else{
-    $("#fnameError").text('');
-    count++;
-    //console.log(fname);
-  }
-
-  if(lname == ''){
-    $("#lnameError").text('* Empty last name!');
-  }
-  else if (lname.match("/^[a-zA-Z ]*$/")) {
-    $("#lnameError").text('* Only letters and whitespace allowed!');
-  }
-  else{
-    $("#lnameError").text('');
-    count++;
-    //console.log(lname);
-  }
-
-  if(name == ''){
-    $("#usrerror").text('* Empty user name !');
-  }else if(!name.match(/^\w+$/)){
-    $("#usrerror").text('* User name have to be either number or letters !');
-    $("$usr").val(name);
-  }else{
-    $("#usrerror").text('');
-    count++;
-  }
-
-  if(email == ''){
-    $("#mailerror").text('* Empty email address !');
-  }else if(!email.match(/^([\w-\.]+@[\w-]+\.[\w-]{2,4})?$/)){
-    $("#mailerror").text('* Invalid email address!');
-  }else{
-    $("#mailerror").text('');
-    count++;
-  }
-
-  if(password == ''){
-    $("#pwderror").text('* Empty password !');
-  }else if(!password.match(/^([a-zA-Z0-9!@.\-_]){6,}$/)){
-    $("#pwderror").text('* Invalid password a-zA-Z0-9!@-. allowed at least length 6!');
-  }else{
-    $("#pwderror").text('');
-    count++;
-  }
-
-  if(cpassword!=password){
-    $("#cpwderror").text('* Password not same. Try again!');
-  }else{
-    $("#cpwderror").text('');
-    count++;
-  }
-  if(count==6)
-  {
-    $.post("register.php", {
-      fname1:fname,
-      lname1:lname,
-      name1: name,
-      email1: email,
-      password1: password
-    }, function(data) {
-      if (data == 'Success') {
-        // this will jump to the index html
-
-        window.location.replace("index.php");
-        console.log('insert user'+name+" successfully");
-        window.location.replace("login.html");
-      }
-      else if(data=='User name taken'){
-        $("#usrerror").text('* This user name has already been take !');
-      }else{
-        alert('An sql error has occured');
-      }
-    });
-  }
-});
+        else if(data=='User name taken'){
+          $("#usrerror").text('* This user name has already been take !');
+        }else{
+          alert('An sql error has occured');
+        }
+      });
+    }
+  });
 });
 
 $(document).ready(function(){
@@ -469,32 +450,37 @@ $("#login").click(function(){
 $(document).ready(function () { //toggle the component with class accordion_body
   $(".accordion_head").click(function () {
     if ($('.accordion_body').is(':visible')) {
-     $(".accordion_body").slideUp(300); $(".plusminus").text('+');
-      }
-      if ($(this).next(".accordion_body").is(':visible')) {
-        $(this).next(".accordion_body").slideUp(300);
-        $(this).children(".plusminus").text('+'); }
-        else {
-          $(this).next(".accordion_body").slideDown(300);
-          $(this).children(".plusminus").text('-'); }
-        });
-});
-      
+      $(".accordion_body").slideUp(300); $(".plusminus").text('+');
+    }
+    if ($(this).next(".accordion_body").is(':visible')) {
+      $(this).next(".accordion_body").slideUp(300);
+      $(this).children(".plusminus").text('+'); }
+      else {
+        $(this).next(".accordion_body").slideDown(300);
+        $(this).children(".plusminus").text('-'); }
+      });
+    });
+
 
     // **************** slider related function in index.php
     $(document).ready(function () { //toggle the component with class inner_accordion_body
-      $(".inner_accordion_head").click(function () {
+       $(".inner_accordion_head").click(function () {
         if ($('.inner_accordion_body').is(':visible')) {
           $(".inner_accordion_body").slideUp(300); $(".plusminus1").text('+');
         }
         if ($(this).next(".inner_accordion_body").is(':visible')) {
           $(this).next(".inner_accordion_body").slideUp(300);
           $(this).children(".plusminus1").text('+'); }
-          else {
+        else {
             $(this).next(".inner_accordion_body").slideDown(300);
             $(this).children(".plusminus1").text('-'); }
-          });
         });
+
+        $(".nextbutton").click(function(){
+          var x=$(this).parent().parent().parent();
+          x.next(".accordion_head").trigger('click');
+        });
+    });
 
 
         //Silder

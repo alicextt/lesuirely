@@ -133,7 +133,7 @@ include("func.php");
                 }
                 ?></p>
                 </div>
-                <div id="buyagain"><span class="itemid" hidden><?=$key->id?></span><button class="btn btn-danger">Buy Again</button>
+                <div id="buyagain"><span class="itemid" hidden><?=$key->catid?></span><button class="btn btn-danger">Buy Again</button>
                 </div></td>
               </tr>
               <?php

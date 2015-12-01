@@ -8,6 +8,7 @@ $(document).ready(function(){
     var ptype = tr.find("[name='type']").text();
     var quantity=tr.find('select option:selected').val();
     var img=$(".left img").attr('src');
+    var id=$('#itemid').text();
     $.post('addcart.php',{
       id:$('#itemid').text(),
       ptype: ptype,
@@ -118,6 +119,28 @@ $(document).ready(function(){
           $("#country").val(result.country);
           $("#zip").val(result.zip);
           $("#phone").val(result.phone);
+        }
+      });
+    }
+  });
+
+  $('select[id="usrpayment"]').on('change', function() {
+    if(this.value!='*'){
+      var data = {
+        "card": this.value
+      };
+      $.ajax({
+        method: "GET",
+        url:'userquery.php',
+        data: data,
+        dataType: "json",
+        success: function(result){
+          var card= result.cardType;
+          $("#card").val(card.toLowerCase());
+          $("#nam").val(result.nameOnCard);
+          $("#cardno").val(result.creditCardNumber);
+          var s =result.expiryDate.split('/');
+          $("#validdate").val(s[1]+'-'+s[0]);
         }
       });
     }

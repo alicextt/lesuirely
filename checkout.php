@@ -83,13 +83,13 @@ include("func.php");
           }
           ?>
 
-          <div class="accordion_head">Shipping<span class="plusminus">+</span></div>
-          <div class="accordion_body">
+          <div class="accordion_head" name='shipping'>Shipping<span class="plusminus">+</span></div>
+          <div class="accordion_body" id="checkout1">
             <div class="form1">
               <div class="form-group">
                 <label for="usraddress">Choose one address:</label>
                 <select class="form-control" id="usraddress">
-                  <option value="*">Select:</option>
+                  <option value="*">Enter a new address:</option>
                   <?php
                   $addreses = getUserAddressByid('');
                   $array = json_decode($addreses);
@@ -102,7 +102,6 @@ include("func.php");
                     }
                   }
                   ?>
-                  <option value="*">Enter a new address</option>
                 </select>
               </div>
               <!--  <form accept-charset="UTF-8" action="#" method="post"> -->
@@ -205,16 +204,16 @@ include("func.php");
               <div class="form-group">
                 <label>Delivery: </label>
                 <div class="radio">
-                  <label><input type="radio" name="optradio1" checked>7-9 business days (Free Shipping on Orders over $35.00)</label>
+                  <label><input type="radio" name="option" checked>7-9 business days (Free Shipping on Orders over $35.0<span class='shipprice'>0</span>)</label>
                 </div>
                 <div class="radio">
-                  <label><input type="radio" name="optradio1">3-5 business days - $7.00</label>
+                  <label><input type="radio" name="option">3-5 business days - $<span class='shipprice'>7.00</span></label>
                 </div>
                 <div class="radio">
-                  <label><input type="radio" name="optradio1">2 business days - $17.00</label>
+                  <label><input type="radio" name="option">2 business days - $<span class='shipprice'>17.00</span></label>
                 </div>
                 <div class="radio">
-                  <label><input type="radio" name="optradio1">1 business day - $22.00</label>
+                  <label><input type="radio" name="option">1 business day - $<span classs='shipprice'>22.00</span></label>
                 </div>
               </div>
               <div class="btn-left">
@@ -241,9 +240,30 @@ include("func.php");
             </div>
           </div>
 
-          <div class="accordion_head">Payment<span class="plusminus">+</span></div>
-          <div class="accordion_body">
+          <div class="accordion_head" name='pay'>Payment<span class="plusminus">+</span></div>
+          <div class="accordion_body" id="checkout2">
             <div class="form1">
+              <div class="form-group">
+                <label for="usraddress">Choose one credit card:</label>
+                <select class="form-control" id="usrpayment">
+                  <option value="*">Enter a new card:</option>
+                  <?php
+                  $addreses = getUserPayment();
+                  $array = json_decode($addreses);
+                  if(is_array($array)){
+                    foreach($array as $key){
+                      $cardId = $key->paymentId;
+                      $s = 'name : '.$key ->nameOnCard;
+                      $s = $s.'.card : '.$key->cardType;
+                      $ccnumber= $key->creditCardNumber;
+                      $ccnumber=  substr($ccnumber, -4);
+                      $s = $s.'. last 4 digits '.$ccnumber;
+                      echo "<option value='$cardId'>$s</option>";
+                    }
+                  }
+                  ?>
+                </select>
+              </div>
               <div class="form-group">
                 <label for="usr">Select a Card:</label>
                 <select class="form-control" id="card">
@@ -274,7 +294,7 @@ include("func.php");
               </div>
               <div class="form-group">
                 <label>Valid Thru (MM/YYYY):</label>
-                <input type="month" class="form-control"/>
+                <input type="month" class="form-control" id='validdate'/>
               </div>
               <!-- </div> -->
               <div class="pay">

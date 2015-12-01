@@ -84,8 +84,9 @@ $(document).ready(function(){
 
   $('#buyagain .btn.btn-danger').click(function(){
     var x=$(this);
+    var id = x.parent().find('.itemid').text();
     $.post('addcart.php',{
-      id: x.parent().find('#itemid').text(),
+      id: id,
       ptype: x.parent().parent().parent().find('[name="ptype"]').text(),
       ctype: x.parent().parent().parent().find('[name="ctype"]').text(),
       uprice: "$ "+x.parent().parent().parent().find('.itemprice').text(),

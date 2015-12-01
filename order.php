@@ -94,6 +94,7 @@ include("func.php");
                 $lastoid='';
               foreach($data as $key){
                 $oid = $key->purchaseId;
+                $linkid=$key->catid;
                 $price=$key->price;
                 $qty=$key->qty;
                 $tprice = (float)$price * (int)$qty;
@@ -122,7 +123,7 @@ include("func.php");
                 <td name="ctype"><?=$key->category ?></td>
                 <td name="ptype"><?=$key->type?></td>
                 <td name="img" id='purchasetitle'><img src=<?=$key->imgurl?> width=100 height=150></td>
-                <td name="price" colspan="2" ><a href="itemdetail.php?id=<?=$oid?>&cat=<?=$category?>"><?=$key->title?></a><br><?=$qty?> x $<?=$price?> = <span class='red'>$ <span class="itemprice" ><?=$tprice?></span></span></td>
+                <td name="price" colspan="2" ><a href="itemdetail.php?id=<?=$linkid?>&cat=<?=$category?>"><?=$key->title?></a><br><?=$qty?> x $<?=$price?> = <span class='red'>$ <span class="itemprice" ><?=$tprice?></span></span></td>
                 <td name="qty" id="purchaseqty" class="center"><div class="cartqty">
                 <p>  <?php
                   echo '<span>'.$qty.'</span>';

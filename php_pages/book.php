@@ -2,7 +2,7 @@
 <?php
 session_start();
 ini_set('display_errors', 'On');
-include("func.php");
+include("../php_func/func.php");
 
 ?>
 <!DocType html>
@@ -18,9 +18,9 @@ include("func.php");
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-  <script src = "event.js" text = "text/javascript" language = "javascript"></script>
+  <script src = "/lesuirely/js/event.js" text = "text/javascript" language = "javascript"></script>
 
-  <link href="styles.css" rel="stylesheet">
+  <link href="/lesuirely/css/styles.css" rel="stylesheet">
 </head>
 <body onload="getDate()">
   <!-- header-->
@@ -28,12 +28,12 @@ include("func.php");
   <header class="container">
     <div class="horizontal">
       <ul>
-        <li><a href="index.php"><img src="logo.png" alt="leisurely" height="110"
+        <li><a href="/lesuirely/php_pages/index.php"><img src="/lesuirely/images/logo.png" alt="leisurely" height="110"
           width="125"></li></a>
           <li><a href="movie.php">Movies</a></li>
-          <li><a href="book.php">Books</a></li>
+          <li><a href="/lesuirely/php_pages/book.php">Books</a></li>
           <li>
-            <form accept-charset="utf-8" class="nav-search" method="GET" name="site-search" action="search.php">
+            <form accept-charset="utf-8" class="nav-search" method="GET" name="site-search" action="/lesuirely/php_pages/search.php">
               <div>
                 <button class="glyphicon glyphicon-search" id="nav-search-con" type="Submit"/>
               </div>
@@ -45,7 +45,7 @@ include("func.php");
           <?php  if(!isset($_SESSION['user'])){
             ?>
             <li><a id = "signup" href = "signup.php">Join Today</a></li>
-            <li><a id = "sign" href="login.html">Sign In</a></li>
+            <li><a id = "sign" href="/lesuirely/html/login.html">Sign In</a></li>
             <?php
           }else{
             ?>
@@ -54,16 +54,16 @@ include("func.php");
               <a data-toggle="dropdown">Your Account
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="userInfo.php">Your account</a></li>
-                  <li><a href="order.php">Your orders</a></li>
+                  <li><a href="/lesuirely/php_pages/userInfo.php">Your account</a></li>
+                  <li><a href="/lesuirely/php_pages/order.php">Your orders</a></li>
                 </ul>
               </div>
             </li>
-            <li><a id = "sigout" href="logout.php">Logout</a></li>
+            <li><a id = "sigout" href="/lesuirely/php_pages/logout.php">Logout</a></li>
             <?php
           }
           ?>
-          <li><a href="checkout.php"><img src="cart.png" alt="Lesuirely" height="50" width="50"><span id="cart"><?php
+          <li><a href="checkout.php"><img src="/lesuirely/images/cart.png" alt="Lesuirely" height="50" width="50"><span id="cart"><?php
           echo getCartItemQuantity();
           ?></span></a></li>
         </ul>
@@ -78,25 +78,25 @@ include("func.php");
             </h2>
           </li>
           <li>
-            <a href="book.php?tag=web">Web</a>
+            <a href="/lesuirely/php_pages/book.php?tag=web">Web</a>
           </li>
           <li>
-            <a href="book.php?tag=computer-science">computer-science</a>
+            <a href="/lesuirely/php_pages/book.php?tag=computer-science">computer-science</a>
           </li>
           <li>
-            <a href="book.php?tag=music">classical-music</a>
+            <a href="/lesuirely/php_pages/book.php?tag=music">classical-music</a>
           </li>
           <li>
-            <a href="book.php?tag=agriculture">agriculture</a>
+            <a href="/lesuirely/php_pages/book.php?tag=agriculture">agriculture</a>
           </li>
           <li>
-            <a href="book.php?tag=crime">crime</a>
+            <a href="/lesuirely/php_pages/book.php?tag=crime">crime</a>
           </li>
           <li>
-            <a href="book.php?tag=cultural">cultural-studies</a>
+            <a href="/lesuirely/php_pages/book.php?tag=cultural">cultural-studies</a>
           </li>
           <li>
-            <a href="book.php">All Categories</a>
+            <a href="/lesuirely/php_pages/book.php">All Categories</a>
           </li>
         </ul>
       </div>
@@ -140,9 +140,9 @@ include("func.php");
             $max =getMaxid('book', $tag, $people);
             for($i=1;$i<$max/40+1;$i++){
               if($i==$itempage-1){
-                echo "<li class='active'><a href='book.php?page=$i&tag=$tag&people=$people'>$i</a></li>";
+                echo "<li class='active'><a href='/lesuirely/php_pages/book.php?page=$i&tag=$tag&people=$people'>$i</a></li>";
               }else{
-                echo "<li><a href='book.php?page=$i&tag=$tag&people=$people'>$i</a></li>";
+                echo "<li><a href='/lesuirely/php_pages/book.php?page=$i&tag=$tag&people=$people'>$i</a></li>";
               }
             }
              ?>

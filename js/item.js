@@ -9,7 +9,7 @@ $(document).ready(function(){
     var quantity=tr.find('select option:selected').val();
     var img=$(".left img").attr('src');
     var id=$('#itemid').text();
-    $.post('addcart.php',{
+    $.post('../php_func/addcart.php',{
       id:$('#itemid').text(),
       ptype: ptype,
       ctype: $('title').text(),
@@ -40,14 +40,14 @@ $(document).ready(function(){
     var x= $(this).parent().parent().parent().find('[name="title"] p').text();
     if ($(this).text()=='+'){
       $(this).siblings().prop('disabled',false);
-      $.post("updateCart.php", {
+      $.post("../php_func/updateCart.php", {
         title: x,
         qty:t+1,
       }, function(data){
         console.log("update cart successfully");
       });
     }else if(t>0){
-      $.post("updateCart.php", {
+      $.post("../php_func/updateCart.php", {
         title: x,
         qty:t-1,
       }, function(data){
@@ -61,7 +61,7 @@ $(document).ready(function(){
     var tr=$(this).parent().parent().parent();
     var id=tr.find('.itemid').text();
     var ctype=tr.find('[name="ctype"]').text().trim();
-    $.post("updateCart.php", {
+    $.post("../php_func/updateCart.php", {
       category: ctype,
       id:id,
     }, function(data){
@@ -70,7 +70,7 @@ $(document).ready(function(){
     window.location.reload();
   });
 
-// ******************order.php
+// ******************/lesuirely/php_pages/order.php
   $('.totalpriceperpo').each(function(){
     var total=$(this);
     var t=0;
@@ -85,7 +85,7 @@ $(document).ready(function(){
   $('#buyagain .btn.btn-danger').click(function(){
     var x=$(this);
     var id = x.parent().find('.itemid').text();
-    $.post('addcart.php',{
+    $.post('../php_func/addcart.php',{
       id: id,
       ptype: x.parent().parent().parent().find('[name="ptype"]').text(),
       ctype: x.parent().parent().parent().find('[name="ctype"]').text(),
@@ -106,7 +106,7 @@ $(document).ready(function(){
       };
       $.ajax({
         method: "GET",
-        url:'userquery.php',
+        url:'/lesuirely/php_func/userquery.php',
         data: data,
         dataType: "json",
         success: function(result){
@@ -132,7 +132,7 @@ $(document).ready(function(){
       };
       $.ajax({
         method: "GET",
-        url:'userquery.php',
+        url:'/lesuirely/php_func/userquery.php',
         data: data,
         dataType: "json",
         success: function(result){

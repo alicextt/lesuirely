@@ -109,7 +109,7 @@ function editInfoClick(){
   if(count == 12){
     if(pwd === cpwd){
 
-      $.post("info.php", {
+      $.post("/lesuirely/php_func/info.php", {
         firstname: fname,
         lastname: lname,
         username: usr,
@@ -128,7 +128,7 @@ function editInfoClick(){
           //alert("yes");
 
           // this will jump to the index html
-          //window.location.replace("userInfo.php");
+          //window.location.replace("/lesuirely/php_pages/userInfo.php");
         }
         //alert(data);
       });
@@ -271,13 +271,13 @@ $(window).load(function(){
     }
     var payid=$('#usrpayment').val();
     var delievery = $('input:radio[name=option]:checked').next().text();
-    $.post('placeorder.php',{
+    $.post('../php_func/placeorder.php',{
       ship:shipid,
       card:payid,
       delievery: delievery
     }, function(data){
       if(data=='success'){
-        window.location.href='order.php';
+        window.location.href='/lesuirely/php_pages/order.php';
       }
     });
   });
@@ -297,7 +297,7 @@ $(window).load(function(){
   });
 
   //************************************End of Checkout************************************************//
-  //**************** used in signUp.html . the register button clicked will first do validation and then will do an ajax call to register.php and save data into DB.
+  //**************** used in /lesuirely/html/signUp.html . the register button clicked will first do validation and then will do an ajax call to /lesuirely/php_func/register.php and save data into DB.
   $("#register").click(function(){
     var fname = $("#fname").val();
     var lname = $("#lname").val();
@@ -366,7 +366,7 @@ $(window).load(function(){
     }
     if(count==6)
     {
-      $.post("register.php", {
+      $.post("/lesuirely/php_func/register.php", {
         fname1:fname,
         lname1:lname,
         name1: name,
@@ -376,9 +376,9 @@ $(window).load(function(){
         if (data == 'Success') {
           // this will jump to the index html
 
-          window.location.replace("index.php");
+          window.location.replace("/lesuirely/php_pages/index.php");
           console.log('insert user'+name+" successfully");
-          window.location.replace("login.html");
+          window.location.replace("/lesuirely/html/login.html");
         }
         else if(data=='User name taken'){
           $("#usrerror").text('* This user name has already been take !');
@@ -400,21 +400,21 @@ $(document).ready(function(){
   }
 );
 
-//********************** button in login.html. call to login.php to validate data.
+//********************** button in /lesuirely/html/login.html. call to /lesuirely/php_func/login.php to validate data.
 // login and check if user name && password are correct
 $("#login").click(function(){
   $("#usrerror").text('');
   $("#pwderror").text('');
   var name1=$("#usrname").val();
   var pwd1=$("#pwd").val();
-  $.post("login.php", {
+  $.post("/lesuirely/php_func/login.php", {
     name:name1,
     pwd:pwd1
   }, function(data){
     if (data == 'Success') {
       $("form")[0].reset();
       // this will jump to the index html
-      window.location.replace("index.php");
+      window.location.replace("/lesuirely/php_pages/index.php");
     }
     // alert(data);
     else if (data =='User name incorrect!') {
@@ -535,7 +535,7 @@ function validateAddress(){
   }
   return count==8;
 }
-  // **************** slider related function in index.php
+  // **************** slider related function in /lesuirely/php_pages/index.php
         //Silder
         var ul;
         var li_items;

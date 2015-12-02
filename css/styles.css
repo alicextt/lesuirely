@@ -8,7 +8,7 @@ body{
 .container {
   margin: 0;
   width: inherit;
-  background-image: url("book3.jpg");
+  background-image: url("/lesuirely/images/book3.jpg");
   position: fixed;
   z-index: 1;
 }
@@ -140,7 +140,7 @@ a:hover div.wrap{
   font-weight: normal;
 }
 
-/**********************end of order.php**************/
+/**********************end of /lesuirely/php_pages/order.php**************/
 
 
 
@@ -196,7 +196,7 @@ select.btn.dropdowntoggle.btn-default{
   width: 90px;
 }
 .rate{
-  background-image: url("images/star.png");
+  background-image: url("/lesuirely/images/star.png");
   background-repeat: no-repeat;
   height:66px;
   width:66px;
@@ -291,7 +291,7 @@ td>img{
 .checkout{
   margin: 0px;
   width: 100%;
-  background-image: url("header.jpg");
+  background-image: url("/lesuirely/images/header.jpg");
   /*position: fixed;*/
 }
 

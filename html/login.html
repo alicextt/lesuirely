@@ -12,8 +12,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-  <script src = "event.js" text = "text/javascript" language = "javascript"></script>
-  <link href="styles.css" rel="stylesheet">
+  <script src = "/lesuirely/js/event.js" text = "text/javascript" language = "javascript"></script>
+  <link href="/lesuirely/css/styles.css" rel="stylesheet">
 </head>
 
 <body onload="getDate()">
@@ -22,12 +22,12 @@
   <header class="container">
     <div class="horizontal">
       <ul>
-        <li><a href="index.php"><img src="logo.png" alt="leisurely" height="110"
+        <li><a href="/lesuirely/php_pages/index.php"><img src="/lesuirely/images/logo.png" alt="leisurely" height="110"
           width="125"></li></a>
           <li><a href="movie.php">Movies</a></li>
-          <li><a href="book.php">Books</a></li>
+          <li><a href="/lesuirely/php_pages/book.php">Books</a></li>
           <li>
-            <form accept-charset="utf-8" class="nav-search" method="GET" name="site-search" action="search.php">
+            <form accept-charset="utf-8" class="nav-search" method="GET" name="site-search" action="/lesuirely/php_pages/search.php">
               <div>
                 <button class="glyphicon glyphicon-search" id="nav-search-con" type="Submit"/>
               </div>
@@ -36,14 +36,14 @@
               </div>
             </form>
           </li>
-            <li><a id = "signup" href = "signup.html">Join Today</a></li>
-            <li><a id = "sign" href="login.html">Sign In</a></li>
+            <li><a id = "signup" href = "/lesuirely/html/signUp.html">Join Today</a></li>
+            <li><a id = "sign" href="/lesuirely/html/login.html">Sign In</a></li>
         </ul>
       </div>
     </header>
     <div class="right" id="form">
       <legend>Login Now!</legend>
-      <form action = "index.php" method= "POST" name="form1">
+      <form action = "/lesuirely/php_pages/index.php" method= "POST" name="form1">
         <div class="form-group">
           <label for="email">User name:</label>
           <input type="text" class="form-control" id="usrname" name="usrname"><div class="error" id="usrerror"></div>

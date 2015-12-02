@@ -2,7 +2,7 @@
 <?php
 session_start();
 ini_set('display_errors', 'On');
-include("func.php");
+include("../php_func/func.php");
 ?>
 
 <!DocType html>
@@ -19,16 +19,16 @@ include("func.php");
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-  <script src = "event.js" type = "text/javascript"></script>
-  <script src = "item.js" type = "text/javascript"></script>
+  <script src = "/lesuirely/js/event.js" type = "text/javascript"></script>
+  <script src = "/lesuirely/js/item.js" type = "text/javascript"></script>
 
-  <link href="styles.css" rel="stylesheet">
+  <link href="/lesuirely/css/styles.css" rel="stylesheet">
 </head>
 <body class = "checkout">
   <!-- header-->
   <noscript> Browser does not support JAVASCRIPT</noscript>
   <header class="checkout">
-    <a href="index.php" ><img src = "logo.png" alt="logo" height="150" width="150"></a>
+    <a href="/lesuirely/php_pages/index.php" ><img src = "/lesuirely/images/logo.png" alt="logo" height="150" width="150"></a>
   </header>
   <div class="box">
     <fieldset>
@@ -299,7 +299,7 @@ include("func.php");
               <!-- </div> -->
               <div class="pay">
                 <p>Accepted Cards:</p>
-                <img src="card.png" alt="Accepted Cards">
+                <img src="/lesuirely/images/card.png" alt="Accepted Cards">
               </div>
               <!-- <div class="form-group">
               <label for="num">Enter PROMO Code for additional discounts (if any):</label>

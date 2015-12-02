@@ -50,8 +50,8 @@ foreach ($items as $key) {
     echo "Error at insert into purchase detail....!!";
     return;
   }
-  $_SESSION['items']='';
-  echo 'success';
 }
+$_SESSION['items']='';
+echo 'success';
 
 ?>

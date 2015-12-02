@@ -78,6 +78,7 @@ $(document).ready(function(){
       var s=$(this).text();
       t+= parseFloat(s);
     });
+    t=t.toFixed(2);
     total.text('$ '+t);
   });
 

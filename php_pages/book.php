@@ -45,7 +45,7 @@ include("../php_func/func.php");
           </li>
           <?php  if(!isset($_SESSION['user'])){
             ?>
-            <li><a id = "signup" href = "signup.php">Join Today</a></li>
+            <li><a id = "signup" href = "/lesuirely/html/signUp.html">Join Today</a></li>
             <li><a id = "sign" href="/lesuirely/html/login.html">Sign In</a></li>
             <?php
           }else{

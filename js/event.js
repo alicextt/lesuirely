@@ -386,7 +386,7 @@ $(window).load(function(){
         else if(data=='User name taken'){
           $("#usrerror").text('* This user name has already been take !');
         }else{
-          alert('An sql error has occured');
+          alert(data);
         }
       });
     }

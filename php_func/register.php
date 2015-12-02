@@ -1,7 +1,9 @@
 <?php
 //-- ********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************
 ini_set('display_errors', 'On');
-
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 $connection = mysqli_connect("localhost", "root", "root", "Leisurely"); // Establishing connection with server..
 if(mysqli_connect_errno()){
   echo "Failed to connect to Mysql";
@@ -24,6 +26,22 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
   if(($data)==0){
     $query = mysqli_query($connection, "INSERT INTO usr(fname, lname, name, email, password) values ('$fname', '$lname', '$name', '$email', '$password')"); // Insert query
     if($query){
+      if(isset($_SESSION['items'])){
+        $items = base64_encode($_SESSION['items']);
+        $stmt= "select id from usr where name='$name'";
+        $result = $connection->query($stmt);
+        $row = mysqli_fetch_assoc($result);
+        $id= $row['id'];
+        
+        $stmt= "select id from sessions where id=$id";
+        $result = $connection->query($stmt);
+        if(mysqli_num_rows($result)==0){
+          $stmt="insert into sessions(id, access, data) values ('$id', now(), '$items')";
+        }else{
+          $stmt = "update sessions set data = '$items', access=now() where id='$id'";
+        }
+        $result = $connection->query($stmt);
+      }
       echo "Success";
     }else
     {

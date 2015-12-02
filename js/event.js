@@ -277,7 +277,10 @@ $(window).load(function(){
       delievery: delievery
     }, function(data){
       if(data=='success'){
+        alert('Your order have been placed!');
         window.location.href='/lesuirely/php_pages/order.php';
+      }else{
+        console.log(data);
       }
     });
   });

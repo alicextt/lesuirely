@@ -1,8 +1,8 @@
 // ********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************
 
-
 $(document).ready(function(){
 
+// ************ itemdetail.php*************
   $('.btn.btn-info').click(function(){
     var tr=$(this).parent().parent();
     var ptype = tr.find("[name='type']").text();
@@ -34,41 +34,6 @@ $(document).ready(function(){
     window.location.href="checkout.php";
   });
 
-  $('.btn.btn-default.chqty').click(function(){
-    var qty=$(this).parent().find('span');
-    var t=parseInt(qty.text());
-    var x= $(this).parent().parent().parent().find('[name="title"] p').text();
-    if ($(this).text()=='+'){
-      $(this).siblings().prop('disabled',false);
-      $.post("../php_func/updateCart.php", {
-        title: x,
-        qty:t+1,
-      }, function(data){
-        console.log("update cart successfully");
-      });
-    }else if(t>0){
-      $.post("../php_func/updateCart.php", {
-        title: x,
-        qty:t-1,
-      }, function(data){
-        console.log("update cart successfully");
-      });
-    }
-    window.location.reload();
-  });
-
-  $('#deletion .btn.btn-danger').click(function(){
-    var tr=$(this).parent().parent().parent();
-    var id=tr.find('.itemid').text();
-    var ctype=tr.find('[name="ctype"]').text().trim();
-    $.post("../php_func/updateCart.php", {
-      category: ctype,
-      id:id,
-    }, function(data){
-      console.log("delete item from cart successfully");
-    });
-    window.location.reload();
-  });
 
 // ******************/lesuirely/php_pages/order.php
   $('.totalpriceperpo').each(function(){
@@ -146,6 +111,42 @@ $(document).ready(function(){
         }
       });
     }
+  });
+
+  $('.btn.btn-default.chqty').click(function(){
+    var qty=$(this).parent().find('span');
+    var t=parseInt(qty.text());
+    var x= $(this).parent().parent().parent().find('[name="title"] p').text();
+    if ($(this).text()=='+'){
+      $(this).siblings().prop('disabled',false);
+      $.post("../php_func/updateCart.php", {
+        title: x,
+        qty:t+1,
+      }, function(data){
+        console.log("update cart successfully");
+      });
+    }else if(t>0){
+      $.post("../php_func/updateCart.php", {
+        title: x,
+        qty:t-1,
+      }, function(data){
+        console.log("update cart successfully");
+      });
+    }
+    window.location.reload();
+  });
+
+  $('#deletion .btn.btn-danger').click(function(){
+    var tr=$(this).parent().parent().parent();
+    var id=tr.find('.itemid').text();
+    var ctype=tr.find('[name="ctype"]').text().trim();
+    $.post("../php_func/updateCart.php", {
+      category: ctype,
+      id:id,
+    }, function(data){
+      console.log("delete item from cart successfully");
+    });
+    window.location.reload();
   });
 
 });

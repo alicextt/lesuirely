@@ -32,7 +32,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
         $result = $connection->query($stmt);
         $row = mysqli_fetch_assoc($result);
         $id= $row['id'];
-        
+
         $stmt= "select id from sessions where id=$id";
         $result = $connection->query($stmt);
         if(mysqli_num_rows($result)==0){

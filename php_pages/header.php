@@ -1,22 +1,17 @@
-<!-- ********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************-->
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-  session_start();
-}
-include("../php_func/func.php");
-if(isset($_SESSION['id'])){
-  saveSession();
-}
-session_unset();
-session_destroy();
-ini_set('display_errors', 'On');
+//-- ********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+ini_set('display_errors', 'On');
+include("../php_func/func.php");
 ?>
 <!DocType html>
 <html>
 <head>
   <title>
-    Leisurely | Logout page
+    <?php echo $pageTitle ?>
   </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -56,7 +51,16 @@ ini_set('display_errors', 'On');
             <?php
           }else{
             ?>
-            <li><a id = "signup" href = "userInfo.html">Info</a></li>
+            <li>
+            <div class="dropdown">
+              <a data-toggle="dropdown">Your Account
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/lesuirely/php_pages/userInfo.php">Your account</a></li>
+                  <li><a href="/lesuirely/php_pages/order.php">Your orders</a></li>
+                </ul>
+              </div>
+            </li>
             <li><a id = "sigout" href="/lesuirely/php_pages/logout.php">Logout</a></li>
             <?php
           }
@@ -65,12 +69,5 @@ ini_set('display_errors', 'On');
           echo getCartItemQuantity();
           ?></span></a></li>
         </ul>
-      </header>
-      <div class="vuser">
-        <center>
-          <h1 class="row voffset150">
-            GOODBYE! We hope to see you again!
-          </h1>
-        </center>
       </div>
-      <?php include 'footer.php'; ?>
+    </header>

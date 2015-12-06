@@ -1,4 +1,4 @@
-//<!-- ********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************-->
+// ********Author: Pooja, TingTing, Allan, Shubham @ Date: 2015 Fall ************
 function getDate(){
   var x = document.lastModified;
   document.getElementById("lastModified").innerHTML = x;

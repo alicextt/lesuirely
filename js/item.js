@@ -106,8 +106,8 @@ $(document).ready(function(){
           $("#card").val(card.toLowerCase());
           $("#nam").val(result.nameOnCard);
           $("#cardno").val(result.creditCardNumber);
-          var s =result.expiryDate.split('/');
-          $("#validdate").val(s[1]+'-'+s[0]);
+          var s =result.expiryDate;
+          $("#validdate").val(s);
         }
       });
     }

@@ -1148,9 +1148,9 @@ LOCK TABLES `payment` WRITE;
 
 INSERT INTO `payment` (`paymentId`, `userId`, `cardType`, `nameOnCard`, `creditCardNumber`, `cvv`, `expiryDate`)
 VALUES
-	(1,1,'Visa','Joe Doe','4929889055927871','675','01/2016'),
-	(2,1,'Discover','Joe Doe','6011529863029189','675','01/2016'),
-	(3,2,'Master','Allex Funny','5175163260269307','112','12/2016');
+	(1,1,'Visa','Joe Doe','4929889055927871','675','2016-02'),
+	(2,1,'Discover','Joe Doe','6011529863029189','675','2016-08'),
+	(3,2,'Master','Allex Funny','5175163260269307','112','2017-12');
 
 /*!40000 ALTER TABLE `payment` ENABLE KEYS */;
 UNLOCK TABLES;

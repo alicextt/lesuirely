@@ -51,7 +51,7 @@ ini_set('display_errors', 'On');
           </li>
           <?php  if(!isset($_SESSION['user'])){
             ?>
-            <li><a id = "signup" href = "/lesuirely/html/signUp.html">Join Today</a></li>
+            <li><a id = "signup" href = "/lesuirely/html/signup.html">Join Today</a></li>
             <li><a id = "sign" href="/lesuirely/html/login.html">Sign In</a></li>
             <?php
           }else{
